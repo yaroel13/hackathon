@@ -1,0 +1,11 @@
+# Package directories
+node_modules
+
+# Typescript directories
+.build
+
+# Webpack directories
+.webpack
+
+# VS Code directories
+.vscode

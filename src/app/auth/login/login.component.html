@@ -1,0 +1,56 @@
+<div fxLayout="row" class="full-height" fxLayoutAlign="center center">
+
+	<form [formGroup]="loginForm" 
+		class="padding-25"
+		fxLayout="column" 
+		(ngSubmit)="loginForm.valid && onSubmit(loginForm.value)" 
+		autocomplete="off" 
+		autocorrect="off"
+		fxLayoutGap="25px" 
+		fxFlex="500px" 
+		fxFlex.lt-sm="90%"
+		ngClass="mat-elevation-z5"
+		novalidate>
+
+		<!-- <img
+			class="img-responsive"
+			src="assets/images/escience-banner.jpg" 
+			alt="E-Science Logo">
+			
+		<mat-divider></mat-divider> -->
+
+	  <mat-form-field>
+			<input matInput 
+				placeholder="Username" 
+				[formControl]="loginForm.controls['username']" 
+				required>
+	    <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+	      Username is required
+	    </mat-error>
+		</mat-form-field>
+		
+	  <mat-form-field>
+			<input matInput 
+				placeholder="Password" 
+				[formControl]="loginForm.controls['password']" 
+				[type]="isPasswordShown ? 'text' : 'password'" 
+				required>
+			<mat-icon *ngIf="loginForm.controls['password'].value" 
+				[svgIcon]="isPasswordShown ? 'eye-off' : 'eye'" 
+				(click)="isPasswordShown = !isPasswordShown" 
+				matSuffix>
+			</mat-icon>
+	    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+	      Password is required
+	    </mat-error>
+		</mat-form-field>
+		
+		<button color="primary" [disabled]="isLoading" mat-raised-button type="submit">{{ inProgress ? 'Logging in...' : 'Login' }}</button>
+		
+  	<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between">
+  		<a routerLink="../forgot-password" [queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}" routerLinkActive="active" color="primary" class="mat-body cursor-pointer" style="color: #01796a;">Forgot Password?</a>
+  		<a routerLink="../register" routerLinkActive="active" color="primary" class="mat-body cursor-pointer" style="color: #01796a;">Register</a>
+  	</div>
+  	
+	</form>
+</div>
