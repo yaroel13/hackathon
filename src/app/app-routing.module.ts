@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
+import { AuthGuard } from './auth/guard/auth.guard';
+import { GuestGuard } from './auth/guard/guest.guard';
 
 
 export const routes: Routes = [
 	{ 
 		path: '',
-		redirectTo: '/login',
-		pathMatch: 'full' 
+		loadChildren: '../app/pages/pages.module#PagesModule',
+		canActivate: [ AuthGuard ]
 	},
 	{
 		path: 'login',
 		component: LoginComponent,
-		// canActivate: [ NoAuthGuard ]
+		canActivate: [ GuestGuard ]
 	},
 	// {
 	// 	path: 'register',

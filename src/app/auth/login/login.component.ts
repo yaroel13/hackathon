@@ -40,5 +40,6 @@ export class LoginComponent implements OnInit {
   onSubmit(value: any){
     this.isLoading = true;
     this.authService.authenticate();
+    this.router.navigate(['/']);
   }
 }

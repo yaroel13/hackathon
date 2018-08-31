@@ -48,8 +48,14 @@
 		<button color="primary" [disabled]="isLoading" mat-raised-button type="submit">{{ inProgress ? 'Logging in...' : 'Login' }}</button>
 		
   	<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between">
-  		<a routerLink="../forgot-password" [queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}" routerLinkActive="active" color="primary" class="mat-body cursor-pointer" style="color: #01796a;">Forgot Password?</a>
-  		<a routerLink="../register" routerLinkActive="active" color="primary" class="mat-body cursor-pointer" style="color: #01796a;">Register</a>
+			<a routerLink="../forgot-password" 
+				[queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}" 
+				routerLinkActive="active" 
+				color="primary" 
+				class="mat-body mat-primary-color">Forgot Password?</a>
+			<a routerLink="../register" 
+				routerLinkActive="active" 
+				color="primary" class="mat-body mat-primary-color">Register</a>
   	</div>
   	
 	</form>
