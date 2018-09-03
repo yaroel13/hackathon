@@ -1,5 +1,31 @@
-<p>
-  pages works!
-</p>
-<button mat-raised-button (click)="logout()">Logout</button>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="full-height">
+  <mat-sidenav #sidenav>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <button mat-icon-button (click)="sidenav.open()">
+          <mat-icon svgIcon="menu"></mat-icon>
+        </button>
+      </div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <img class="img-avatar" src="assets/images/material-letter-icons/J.png">
+          Juan Dela Cruz <mat-icon svgIcon="menu-down"></mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+          <button mat-menu-item>
+            <mat-icon svgIcon="account-circle"></mat-icon>
+            <span>Account Settings</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon svgIcon="logout-variant"></mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
