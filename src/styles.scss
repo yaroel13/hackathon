@@ -50,3 +50,8 @@ a.mat-menu-item > mat-icon {
   font-weight: 500;
   text-align: center;
 }
+
+mat-sidenav-container mat-sidenav {
+  width: 300px;
+  overflow-x: hidden;
+}

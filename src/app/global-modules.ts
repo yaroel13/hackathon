@@ -1,7 +1,9 @@
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule } from "@angular/material";
+import { CommonModule } from "@angular/common";
 
 export const MODULES = [
+  CommonModule,
   MatFormFieldModule,
   MatInputModule,
   MatIconModule,

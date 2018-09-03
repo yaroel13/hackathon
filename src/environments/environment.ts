@@ -1,15 +1,9 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: false
+  production: false,
+	region: 'ap-southeast-1',
+  cognitoUserPoolId: 'ap-southeast-1_SKJJOrIzn',
+  cognitoAppClientId: '3l6sa9p2ebk157dge2i4a32gri',
+  cognitoIdentityEndpoint: 'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_SKJJOrIzn',
+  cognitoIdentityPoolId: 'ap-southeast-1:a4c61255-796b-4096-a20b-4be58aeb4f9a',
+	apiEndpoint: 'http://localhost:3000',
 };
-
-/*
- * In development mode, for easier debugging, you can ignore zone related error
- * stack frames such as `zone.run`/`zoneDelegate.invokeTask` by importing the
- * below file. Don't forget to comment it out in production mode
- * because it will have a performance impact when errors are thrown
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

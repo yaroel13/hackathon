@@ -4,6 +4,7 @@
 $my-theme-primary: mat-palette($mat-pink);
 $my-theme-accent: mat-palette($mat-light-blue);
 $my-theme-warn: mat-palette($mat-red, A200);
+$my-theme-banner-url: 'https://material.angular.io/assets/img/examples/shiba2.jpg';
 
 $my-theme: mat-light-theme( $my-theme-primary, $my-theme-accent, $my-theme-warn);
 
@@ -17,6 +18,13 @@ $my-theme: mat-light-theme( $my-theme-primary, $my-theme-accent, $my-theme-warn)
 
 .mat-warn-color {
   color: mat-color($my-theme-warn) !important;
+}
+
+.sidenav-banner {
+  background-image: url($my-theme-banner-url);
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @include angular-material-theme($my-theme);

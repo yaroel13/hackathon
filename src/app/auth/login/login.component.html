@@ -1,7 +1,7 @@
 <div fxLayout="row" class="full-height" fxLayoutAlign="center center">
 
 	<form [formGroup]="loginForm" 
-		class="padding-25"
+		class="padding-25 mat-elevation-z5"
 		fxLayout="column" 
 		(ngSubmit)="loginForm.valid && onSubmit(loginForm.value)" 
 		autocomplete="off" 
@@ -9,7 +9,6 @@
 		fxLayoutGap="25px" 
 		fxFlex="500px" 
 		fxFlex.lt-sm="90%"
-		ngClass="mat-elevation-z5"
 		novalidate>
 
 		<!-- <img
@@ -45,7 +44,7 @@
 	    </mat-error>
 		</mat-form-field>
 		
-		<button color="primary" [disabled]="isLoading" mat-raised-button type="submit">{{ inProgress ? 'Logging in...' : 'Login' }}</button>
+		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ isSubmitting ? 'Logging in...' : 'Login' }}</button>
 		
   	<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between">
 			<a routerLink="../forgot-password" 

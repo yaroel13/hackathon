@@ -9,3 +9,5 @@ node_modules
 
 # VS Code directories
 .vscode
+
+dist

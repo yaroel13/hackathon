@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ClickableClickModule } from 'angular-clickable-click';
+import { ChangePasswordChallengeComponent } from './auth/change-password-challenge/change-password-challenge.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ChangePasswordChallengeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,9 @@ import { ClickableClickModule } from 'angular-clickable-click';
     ClickableClickModule,
     AppRoutingModule,
     ...MODULES
+  ],
+  entryComponents: [
+    ChangePasswordChallengeComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

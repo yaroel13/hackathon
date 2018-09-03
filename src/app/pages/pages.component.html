@@ -1,9 +1,18 @@
 <mat-sidenav-container class="full-height">
-  <mat-sidenav #sidenav>
-    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+  <mat-sidenav #sidenav fxLayout="column">
+    <div class="sidenav-banner"></div>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let route of routes">
+        <mat-icon mat-list-icon [svgIcon]="route.data?.icon"></mat-icon>
+        <h4 mat-line>{{ route.data?.name }}</h4>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-toolbar color="primary" 
+      class="mat-elevation-z1"
+      fxLayout="row" 
+      fxLayoutAlign="space-between center">
       <div>
         <button mat-icon-button (click)="sidenav.open()">
           <mat-icon svgIcon="menu"></mat-icon>

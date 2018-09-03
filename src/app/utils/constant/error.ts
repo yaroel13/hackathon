@@ -1,0 +1,6 @@
+export const 
+  COGNITO_ERROR_NOT_AUTHORIZED_EXCEPTION = "NotAuthorizedException",
+  COGNITO_ERROR_PASSWORDRESET_REQUIRED_EXCEPTION = "PasswordResetRequiredException",
+  COGNITO_ERROR_USER_NOT_CONFIRMED_EXCEPTION = "UserNotConfirmedException",
+  COGNITO_ERROR_USER_NOT_FOUND_EXCEPTION =  "UserNotFoundException"
+;
