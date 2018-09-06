@@ -71,15 +71,15 @@ export class LoginComponent implements OnInit {
 
         switch(err.name){
           case COGNITO_ERROR_NOT_AUTHORIZED_EXCEPTION:
-          case COGNITO_ERROR_PASSWORDRESET_REQUIRED_EXCEPTION:
+          case COGNITO_ERROR_USER_NOT_FOUND_EXCEPTION:
             self.dialogService.openSnackBar("Incorrect Username/Password");
             break;
-          case COGNITO_ERROR_USER_NOT_CONFIRMED_EXCEPTION:
+          case COGNITO_ERROR_PASSWORDRESET_REQUIRED_EXCEPTION:
             // TODO: SEND_RESET_PASSWORD_REQUIRED
             // TODO: ERROR_MESSAGE_ABOVE
             self.dialogService.openSnackBar("Password Reset Required. Please check your email for the instruction.");
             break;
-          case COGNITO_ERROR_USER_NOT_FOUND_EXCEPTION:
+          case COGNITO_ERROR_USER_NOT_CONFIRMED_EXCEPTION:
             // TODO: ERROR_MESSAGE_ABOVE
             self.dialogService.openSnackBar("Please check your email for your account verification");
             break;
