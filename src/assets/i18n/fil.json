@@ -1,0 +1,20 @@
+{  
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Login",
+  "LOGGING IN": "Nag lologin...",
+  "FORGOT_PASSWORD": "Nakalimutan ang Password?",
+  "REGISTER": "Magrehistro",
+
+  "MESSAGE_ERROR_PASSWORD_REQUIRED": "Ang Password ay kailangan",
+  "MESSAGE_ERROR_USERNAME_REQUIRED": "Ang Username ay kailangan",
+
+
+  "ACCOUNT_SETTINGS": "Settings ng Account",
+  "DASHBOARD": "Dashboard",
+  "LOGOUT": "Logout",
+
+  "LANGUAGE": "Wika",
+  "SAVE": "Save",
+  "SAVING": "Saving..."
+}

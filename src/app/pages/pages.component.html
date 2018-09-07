@@ -1,40 +1,52 @@
-<mat-sidenav-container class="full-height">
-  <mat-sidenav #sidenav fxLayout="column">
-    <div class="sidenav-banner"></div>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let route of routes">
-        <mat-icon mat-list-icon [svgIcon]="route.data?.icon"></mat-icon>
-        <h4 mat-line>{{ route.data?.name }}</h4>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" 
-      class="mat-elevation-z1"
-      fxLayout="row" 
-      fxLayoutAlign="space-between center">
-      <div>
-        <button mat-icon-button (click)="sidenav.open()">
-          <mat-icon svgIcon="menu"></mat-icon>
-        </button>
-      </div>
-      <div>
-        <button mat-button [matMenuTriggerFor]="menu">
-          <img class="img-avatar" src="assets/images/material-letter-icons/J.png">
-          Juan Dela Cruz <mat-icon svgIcon="menu-down"></mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
-          <button mat-menu-item>
-            <mat-icon svgIcon="account-circle"></mat-icon>
-            <span>Account Settings</span>
+<!-- <div class="main-container"> -->
+  <mat-sidenav-container class="full-height">
+    <mat-sidenav #sidenav fxLayout="column">
+      <div class="sidenav-banner"></div>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let route of routes" 
+          [routerLink]="[route.path]"
+          routerLinkActive="active"
+          (click)="sidenav.toggle()">
+          <mat-icon mat-list-icon [svgIcon]="route.data?.icon"></mat-icon>
+          <h4 mat-line>{{ route.data?.name }}</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" 
+        class="mat-elevation-z5 main-navbar"
+        fxLayout="row" 
+        fxLayoutAlign="space-between center">
+        <div>
+          <button mat-icon-button (click)="sidenav.open()">
+            <mat-icon svgIcon="menu"></mat-icon>
           </button>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon svgIcon="logout-variant"></mat-icon>
-            <span>Logout</span>
+        </div>
+        <div>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <!-- <img class="img-avatar mat-elevation-z1" src="assets/images/material-letter-icons/J.png"> -->
+            Juan Dela Cruz 
+            <mat-icon svgIcon="menu-down"></mat-icon>
           </button>
-        </mat-menu>
+          <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+            <button mat-menu-item [routerLink]="['/account-settings']">
+              <mat-icon svgIcon="account-circle"></mat-icon>
+              <span>{{ 'ACCOUNT_SETTINGS' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon svgIcon="logout-variant"></mat-icon>
+              <span>{{ 'LOGOUT' | translate }}</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+      <div fxLayout="column">
+        <router-outlet></router-outlet>
       </div>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <mat-toolbar color="primary" class="page-header">
+        <h1>Footer here</h1>
+      </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+<!-- </div> -->

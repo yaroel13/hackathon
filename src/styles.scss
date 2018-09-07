@@ -1,4 +1,4 @@
-@import "./custom-theme.scss";
+@import "./theme.scss";
 
 html, body {
   margin: 0px;
@@ -44,7 +44,7 @@ a.mat-menu-item > mat-icon {
   min-width: 40px;
   height: 40px;
   line-height: 40px;
-  margin: 0 8px 0 0;
+  margin: 14px 14px 10px 4px;
   border-radius: 50%;
   font-size: 17px;
   font-weight: 500;
@@ -54,4 +54,15 @@ a.mat-menu-item > mat-icon {
 mat-sidenav-container mat-sidenav {
   width: 300px;
   overflow-x: hidden;
+}
+
+.page-header {
+  height: 85px !important;
+  h1 {
+    padding-left: 12px;
+    font-weight: 300;
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+  }
 }

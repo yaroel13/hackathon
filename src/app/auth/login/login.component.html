@@ -20,18 +20,18 @@
 
 	  <mat-form-field>
 			<input matInput 
-				placeholder="Username" 
-				[formControl]="loginForm.controls['username']" 
+				[placeholder]="'USERNAME' | translate" 
+				formControlName="username" 
 				required>
 	    <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
-	      Username is required
+	      {{ 'MESSAGE_ERROR_USERNAME_REQUIRED' | translate }}
 	    </mat-error>
 		</mat-form-field>
 		
 	  <mat-form-field>
 			<input matInput 
-				placeholder="Password" 
-				[formControl]="loginForm.controls['password']" 
+				[placeholder]="'PASSWORD' | translate" 
+				formControlName="password" 
 				[type]="isPasswordShown ? 'text' : 'password'" 
 				required>
 			<mat-icon *ngIf="loginForm.controls['password'].value" 
@@ -40,21 +40,19 @@
 				matSuffix>
 			</mat-icon>
 	    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-	      Password is required
+	      {{ 'MESSAGE_ERROR_PASSWORD_REQUIRED' | translate }}
 	    </mat-error>
 		</mat-form-field>
 		
-		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ isSubmitting ? 'Logging in...' : 'Login' }}</button>
+		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ (isSubmitting ? 'LOGGING_IN' : 'LOGIN') | translate }}</button>
 		
   	<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between">
 			<a routerLink="../forgot-password" 
 				[queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}" 
-				routerLinkActive="active" 
 				color="primary" 
-				class="mat-body mat-primary-color">Forgot Password?</a>
+				class="mat-body mat-primary-color">{{ 'FORGOT_PASSWORD' | translate }}</a>
 			<a routerLink="../register" 
-				routerLinkActive="active" 
-				color="primary" class="mat-body mat-primary-color">Register</a>
+				color="primary" class="mat-body mat-primary-color">{{ 'REGISTER' | translate }}</a>
   	</div>
   	
 	</form>

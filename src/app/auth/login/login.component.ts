@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../../services';
 import { environment } from './../../../environments/environment';
-// import { ChangePasswordChallengeComponent } from '../change-password-challenge/change-password-challenge.component';
 import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { config, CognitoIdentityCredentials, CognitoIdentityServiceProvider } from 'aws-sdk'
 import { DialogService } from '../../services/dialog/dialog.service';

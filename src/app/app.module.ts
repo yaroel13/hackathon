@@ -8,10 +8,15 @@ import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.comp
 import { MODULES } from './global-modules';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ClickableClickModule } from 'angular-clickable-click';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ChangePasswordChallengeComponent } from './auth/change-password-challenge/change-password-challenge.component';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -23,11 +28,17 @@ import { ChangePasswordChallengeComponent } from './auth/change-password-challen
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     ClickableClickModule,
     AppRoutingModule,
+    TranslateModule.forRoot({
+      useDefaultLang: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     ...MODULES
   ],
   entryComponents: [

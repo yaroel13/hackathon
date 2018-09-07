@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
 import { Router } from '@angular/router';
-import { CHILD_ROUTES } from './pages.routes';
+import { ROUTES } from './pages.routes';
 
 @Component({
   selector: 'esc-pages',
@@ -18,7 +18,7 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routes = CHILD_ROUTES;
+    this.routes = ROUTES;
   }
 
   logout(){

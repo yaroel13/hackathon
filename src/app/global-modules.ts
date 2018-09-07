@@ -1,9 +1,14 @@
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule } from "@angular/material";
+import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule } from "@angular/material";
 import { CommonModule } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 export const MODULES = [
   CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
   MatFormFieldModule,
   MatInputModule,
   MatIconModule,
@@ -18,7 +23,6 @@ export const MODULES = [
   FlexLayoutModule,
   MatTooltipModule,
   MatDialogModule,
-  MatSelectModule,
   MatChipsModule,
   MatStepperModule,
   MatFormFieldModule,
@@ -28,5 +32,9 @@ export const MODULES = [
   MatCheckboxModule,
   MatSnackBarModule,
   MatDatepickerModule,
-  MatAutocompleteModule
+  MatSelectModule,
+  MatAutocompleteModule,
+  MatSlideToggleModule,
+  TranslateModule,
+  NgSelectModule
 ]

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HelperService } from './services';
 
 @Component({
   selector: 'esc-root',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(helper: HelperService) {
+    helper.initLocale();
+  }
 }

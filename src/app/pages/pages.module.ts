@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MODULES } from '../global-modules';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { MODULES } from '../global-modules';
   ],
   declarations: [
     DashboardComponent,
-    PagesComponent
+    PagesComponent,
+    AccountSettingsComponent
   ]
 })
 export class PagesModule { }

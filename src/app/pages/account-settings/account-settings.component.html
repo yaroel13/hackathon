@@ -1,0 +1,62 @@
+<div fxLayout="column">
+  <mat-toolbar color="primary" class="page-header">
+    <h1>{{ 'ACCOUNT_SETTINGS' | translate }}</h1>
+  </mat-toolbar>
+  
+  <div fxLayout="row" fxLayoutAlign="center"
+    class="margin-25 padding-25 mat-elevation-z2">
+
+    <form [formGroup]="settingsForm" 
+      fxLayout="column" 
+      (ngSubmit)="settingsForm.valid && onSubmit(settingsForm.value)" 
+      autocomplete="off" 
+      autocorrect="off"
+      fxLayoutGap="20px"
+      fxFlex="600px"
+      fxFlex.lt-md
+      novalidate>
+
+      <h3 class="mat-title">{{ 'ACCOUNT_SETTINGS_GENERAL' | translate }}</h3>
+  
+      <ng-select formControlName="language" 
+        [clearable]="false"
+        [items]="languages"
+        [placeholder]="'LANGUAGE' | translate" 
+        bindLabel="name"
+        bindValue="value">
+      </ng-select>
+
+      <mat-divider></mat-divider>
+
+      <h3 class="mat-title">{{ 'ACCOUNT_SETTINGS_OTHER' | translate }}</h3>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Setting 1</div>
+          <div class="mat-caption">Setting 1 Description</div>
+        </div>
+        <mat-slide-toggle color="primary" formControlName="setting1">
+        </mat-slide-toggle>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Setting 2</div>
+        </div>
+        <mat-slide-toggle color="accent" formControlName="setting2">
+        </mat-slide-toggle>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Setting 3</div>
+          <div class="mat-caption">Setting 3 Description</div>
+        </div>
+        <mat-slide-toggle color="warn" formControlName="setting3">
+        </mat-slide-toggle>
+      </div>
+      
+      <button [disabled]="isSubmitting" color="primary" mat-raised-button type="submit">{{ (isSubmitting ? 'SAVING' : 'SAVE') | translate }}</button>
+    </form>
+  </div>
+</div>
