@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { KEY_STORAGE_LANGUAGE, DEFAULT_LANGUAGE } from '../../utils/constant';
+import { LANGUAGES, KEY_STORAGE_LANGUAGE, DEFAULT_LANGUAGE } from '../../utils/constant';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,33 @@ export class HelperService {
   ) { }
 
   public initLocale(){
+    let langs = _.map(LANGUAGES, 'value');
+    this.translate.addLangs(langs);
+    
     this.translate.setDefaultLang(DEFAULT_LANGUAGE);
+
+    let lang;
+    
     if(localStorage.getItem(KEY_STORAGE_LANGUAGE)){
-      this.translate.use(localStorage.getItem(KEY_STORAGE_LANGUAGE));
+      lang = localStorage.getItem(KEY_STORAGE_LANGUAGE);
     } else {
-      this.translate.use(DEFAULT_LANGUAGE);
+      if(_.indexOf(langs, this.translate.getBrowserLang()) >= 0){
+        lang = this.translate.getBrowserLang();
+      } else {
+        lang = DEFAULT_LANGUAGE;
+      }
       localStorage.setItem(KEY_STORAGE_LANGUAGE, DEFAULT_LANGUAGE);
     }
+
+    this.translate.use(lang);
+  }
+
+  public getLocale(){
+    return localStorage.getItem(KEY_STORAGE_LANGUAGE);
+  }
+
+  public randomString(n: number = 6){
+   return Math.random().toString(36).substring(n);
   }
 
   public updateLocale(locale){

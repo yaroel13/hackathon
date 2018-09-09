@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ChartsModule } from 'ng2-charts';
 
 export const MODULES = [
   CommonModule,
@@ -36,5 +37,6 @@ export const MODULES = [
   MatAutocompleteModule,
   MatSlideToggleModule,
   TranslateModule,
-  NgSelectModule
+  NgSelectModule,
+  ChartsModule
 ]

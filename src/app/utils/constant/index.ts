@@ -4,5 +4,7 @@ export * from './error';
 export const 
   HTTP_HEADER_CONTENT_TYPE = 'Content-Type',
   HTTP_HEADER_AUTHORIZATION = 'Authorization',
-  MIME_TYPE_JSON = 'application/json'
+  MIME_TYPE_JSON = 'application/json',
+
+	DATETIME_FORMAT_FILE_PREFIX_S3 = "YYYYMMDDHHmmssSSS"
 ;

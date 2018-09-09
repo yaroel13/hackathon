@@ -21,7 +21,7 @@ export class HttpService {
     private http: HttpClient,
   ) { }
   
-  public get<T>(path, httpParams, additionalHeaders): Observable<T[] | T | any>{
+  public get<T>(path, httpParams?, additionalHeaders?): Observable<T[] | T | any>{
     let result;
     this.authService.user.cognitoUser.getSession((err, session: CognitoUserSession) => {
       if(err){

@@ -3,10 +3,10 @@
     <h1>{{ 'ACCOUNT_SETTINGS' | translate }}</h1>
   </mat-toolbar>
   
-  <div fxLayout="row" fxLayoutAlign="center"
-    class="margin-25 padding-25 mat-elevation-z2">
+  <div fxLayout="row" fxLayoutAlign="center">
 
     <form [formGroup]="settingsForm" 
+      class="margin-25 padding-25 mat-elevation-z2"
       fxLayout="column" 
       (ngSubmit)="settingsForm.valid && onSubmit(settingsForm.value)" 
       autocomplete="off" 

@@ -1,11 +1,15 @@
 <div fxLayout="column">
-    <mat-toolbar color="primary" class="page-header">
-      <h1>{{ 'DASHBOARD' | translate }}</h1>
-    </mat-toolbar>
-    
-    <div fxLayout="row" fxLayoutAlign="center"
-      class="margin-25 padding-25 mat-elevation-z2">
-  
-      
-    </div>
+  <mat-toolbar color="primary" class="page-header">
+    <h1>{{ 'DASHBOARD' | translate }}</h1>
+  </mat-toolbar>
+
+  <div fxFlex="300px">
+    <canvas baseChart *ngIf="chartData"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="false"
+      chartType="line">
+    </canvas>
   </div>
+</div>

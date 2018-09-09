@@ -15,9 +15,7 @@ export class AuthService {
   private _user: User;
 
   get whenLoggedIn(){ return this._whenLoggedIn };
-
   get user(){ return this._user }
-
   get userPool(){ return this._userPool }
 
   constructor() {
@@ -37,6 +35,7 @@ export class AuthService {
 
   public initAWSCredentials(){
     let cognitoUser = this.userPool.getCurrentUser();
+    console.log(cognitoUser)
 
     if(!cognitoUser){
       return;
@@ -65,11 +64,69 @@ export class AuthService {
     });
   }
 
+  public checkAWSCredentials(callback: (err?) => void){
+    let cognitoUser = this.userPool.getCurrentUser();
+  
+    if(!cognitoUser){
+      return callback(true);
+    }
+
+    if(((config.credentials) as CognitoIdentityCredentials).needsRefresh()){
+  
+      cognitoUser.getSession((err, session: CognitoUserSession) => {
+        if(err){
+          console.log(err);
+          return callback(err);
+        }
+
+        cognitoUser.refreshSession(session.getRefreshToken(), (err, session: CognitoUserSession) => {
+          if(err){
+            console.log(err);
+            return callback(err);
+          }
+          
+          let logins = {
+            [environment.cognitoIdentityEndpoint]: session.getIdToken().getJwtToken()
+          };
+      
+          let creds = new CognitoIdentityCredentials({
+            IdentityPoolId: environment.cognitoIdentityPoolId,
+            Logins: logins
+          },{
+            region: environment.region
+          });
+      
+          config.credentials = creds;
+    
+          ((config.credentials) as CognitoIdentityCredentials).refresh((err) => {
+            if(err){
+              console.log(err);
+              return callback(err);
+            }
+            callback();
+          });
+        });
+        
+      });
+    } else {
+      callback();
+    }
+  }
+
   public logout(){
     let cognitoUser = this.userPool.getCurrentUser();
     if(cognitoUser){
       cognitoUser.signOut();
     }
+
+    // Clear Cognito Cache ID and re-initialize
+    ((config.credentials) as CognitoIdentityCredentials).clearCachedId();
+    let creds = new CognitoIdentityCredentials({
+      IdentityPoolId: environment.cognitoIdentityPoolId
+    },{
+      region: environment.region
+    });      
+    config.credentials = creds;
     this.setUser(null);
   }
 }

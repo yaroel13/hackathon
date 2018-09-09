@@ -66,3 +66,12 @@ mat-sidenav-container mat-sidenav {
     color: #fff;
   }
 }
+
+esc-dashboard {
+  .widget {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width:80%;
+  }
+}

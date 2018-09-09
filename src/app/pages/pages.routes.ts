@@ -8,7 +8,7 @@ export const ROUTES: Routes = [
     component: DashboardComponent,
     data: {
       icon: "view-dashboard",
-      name: "Dashboard"
+      name: "DASHBOARD"
     }
   }
 ]
@@ -19,8 +19,4 @@ export const OTHER_ROUTES: Routes = [
     component: AccountSettingsComponent,
     loadChildren: './account-settings/account-settings.module#AccountSettingsModule'
   }
-  // {
-  //   path: 'account-settings',
-	// 	loadChildren: './account-settings/account-settings.module#AccountSettingsModule'
-  // }
 ]

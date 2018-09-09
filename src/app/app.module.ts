@@ -7,7 +7,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { PageNotFoundComponent } from './auth/page-not-found/page-not-found.component';
 import { MODULES } from './global-modules';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ClickableClickModule } from 'angular-clickable-click';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
