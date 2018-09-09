@@ -47,12 +47,14 @@
 		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ (isSubmitting ? 'LOGGING_IN' : 'LOGIN') | translate }}</button>
 		
   	<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between">
-			<a routerLink="../forgot-password" 
+			<button mat-stroked-button
+				routerLink="../forgot-password" 
 				[queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}" 
 				color="primary" 
-				class="mat-body mat-primary-color">{{ 'FORGOT_PASSWORD' | translate }}</a>
-			<a routerLink="../register" 
-				color="primary" class="mat-body mat-primary-color">{{ 'REGISTER' | translate }}</a>
+				class="mat-body mat-primary-color">{{ 'FORGOT_PASSWORD' | translate }}</button>
+			<button mat-stroked-button
+				routerLink="../register" 
+				color="primary" class="mat-body mat-primary-color">{{ 'REGISTER' | translate }}</button>
   	</div>
   	
 	</form>

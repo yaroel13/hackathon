@@ -38,12 +38,12 @@ export class HelperService {
     return localStorage.getItem(KEY_STORAGE_LANGUAGE);
   }
 
-  public randomString(n: number = 6){
-   return Math.random().toString(36).substring(n);
-  }
-
   public updateLocale(locale){
     this.translate.use(locale);
     localStorage.setItem(KEY_STORAGE_LANGUAGE, locale);
+  }
+
+  public randomString(n: number = 6){
+   return Math.random().toString(36).substring(n);
   }
 }
