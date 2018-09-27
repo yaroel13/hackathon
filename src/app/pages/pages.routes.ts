@@ -13,7 +13,7 @@ export const ROUTES: Routes = [
     }
   },
   {
-    // path: 'maintenance',
+    path: 'maintenance/doctor',
     // component: DoctorComponent,
     data: {
       icon: "view-dashboard",

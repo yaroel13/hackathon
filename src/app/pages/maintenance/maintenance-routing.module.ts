@@ -5,7 +5,7 @@ import { DoctorComponent } from './doctor/doctor.component';
 
 const routes: Routes = [
   {
-    path: 'doctor',
+    path: '',
     component: DoctorComponent,
     // data: {
     //   icon: "view-dashboard",
