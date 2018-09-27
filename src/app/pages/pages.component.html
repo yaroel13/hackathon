@@ -3,8 +3,8 @@
   <mat-sidenav #sidenav fxLayout="column">
     <div class="sidenav-banner"></div>
     <mat-nav-list>
-      <mat-list-item *ngFor="let route of routes" 
-        [routerLink]="[route.path]"
+      <mat-list-item *ngFor="let route of routes"
+        [routerLink]="['/'+route.path]"
         routerLinkActive="active"
         (click)="sidenav.toggle()">
         <mat-icon mat-list-icon [svgIcon]="route.data?.icon"></mat-icon>
@@ -14,9 +14,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary" 
+    <mat-toolbar color="primary"
       class="mat-elevation-z1 main-navbar"
-      fxLayout="row" 
+      fxLayout="row"
       fxLayoutAlign="space-between center">
       <button mat-icon-button (click)="sidenav.open()">
         <mat-icon svgIcon="menu"></mat-icon>
@@ -24,10 +24,10 @@
       <div>
         <button mat-button [matMenuTriggerFor]="menu">
           <!-- <img class="img-avatar mat-elevation-z1" src="assets/images/material-letter-icons/J.png"> -->
-          Juan Dela Cruz 
+          Juan Dela Cruz
           <mat-icon svgIcon="menu-down"></mat-icon>
         </button>
-        
+
         <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
           <button mat-menu-item [routerLink]="['/account-settings']">
             <mat-icon svgIcon="account-circle"></mat-icon>
@@ -49,5 +49,5 @@
       <h1>Footer here</h1>
     </mat-toolbar>
   </mat-sidenav-content>
-  
+
 </mat-sidenav-container>

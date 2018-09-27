@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  // font-size: 14px;
+  width: 90%;
+  padding: 5% 5% 0;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.table-container {
+  height: 400px;
+  overflow: auto;
+}

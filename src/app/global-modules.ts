@@ -1,5 +1,5 @@
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule } from "@angular/material";
+import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule, MatSortModule } from "@angular/material";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -36,6 +36,9 @@ export const MODULES = [
   MatSelectModule,
   MatAutocompleteModule,
   MatSlideToggleModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
   TranslateModule,
   NgSelectModule,
   ChartsModule
