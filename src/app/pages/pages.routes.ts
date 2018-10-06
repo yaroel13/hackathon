@@ -5,7 +5,7 @@ import { AccountSettingsComponent } from "./account-settings/account-settings.co
 
 export const ROUTES: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardComponent,
     data: {
       icon: "view-dashboard",

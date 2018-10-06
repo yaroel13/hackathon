@@ -1,4 +1,6 @@
-<div fxLayout="row" class="full-height" fxLayoutAlign="center center">
+<div fxLayout="row" 
+     class="full-height login" 
+		 fxLayoutAlign="center center ">
 
 	<form [formGroup]="loginForm" 
 		class="padding-25 mat-elevation-z5"
@@ -39,6 +41,7 @@
 				(click)="isPasswordShown = !isPasswordShown" 
 				matSuffix>
 			</mat-icon>
+	
 	    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
 	      {{ 'MESSAGE_ERROR_PASSWORD_REQUIRED' | translate }}
 	    </mat-error>

@@ -23,4 +23,6 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     AccountSettingsComponent
   ]
 })
-export class PagesModule { }
+export class PagesModule {
+  
+ }
