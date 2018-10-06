@@ -13,7 +13,7 @@ export const ROUTES: Routes = [
     }
   },
   {
-    // path: 'maintenance',
+    path: 'maintenance',
     // component: DoctorComponent,
     data: {
       icon: "view-dashboard",
@@ -33,7 +33,6 @@ export const ROUTES: Routes = [
 //     }
 //   }
 // ]
-
 export const OTHER_ROUTES: Routes = [
   {
     path: 'account-settings',
