@@ -1,64 +1,52 @@
-<div fxLayout="row" 
-     class="full-height login" 
-		 fxLayoutAlign="center center ">
+<div fxLayout="row" class="full-height login" fxLayoutAlign="center center ">
 
-	<form [formGroup]="loginForm" 
-		class="padding-25 mat-elevation-z5"
-		fxLayout="column" 
-		(ngSubmit)="loginForm.valid && onSubmit(loginForm.value)" 
-		autocomplete="off" 
-		autocorrect="off"
-		fxLayoutGap="25px" 
-		fxFlex="500px" 
-		fxFlex.lt-sm="90%"
-		novalidate>
+	<form [formGroup]="loginForm" class="padding-25 mat-elevation-z5" fxLayout="column" (ngSubmit)="loginForm.valid && onSubmit(loginForm.value)"
+	 autocomplete="off" autocorrect="off" fxLayoutGap="25px" fxFlex="370px" fxFlex.lt-sm="90%" novalidate>
 
-		<!-- <img
-			class="img-responsive"
-			src="assets/images/escience-banner.jpg" 
-			alt="E-Science Logo">
-			
-		<mat-divider></mat-divider> -->
+		<img class="logo" 
+		src="assets/images/escience-banner.jpg"
+		 alt="E-Science Logo">
 
-	  <mat-form-field>
-			<input matInput 
-				[placeholder]="'USERNAME' | translate" 
-				formControlName="username" 
-				required>
-	    <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
-	      {{ 'MESSAGE_ERROR_USERNAME_REQUIRED' | translate }}
-	    </mat-error>
+		<h2 class="mat-display-1 mat-primary-color">E-Science Corporation</h2>
+
+		<mat-form-field>
+			<input matInput [placeholder]="'USERNAME' | translate" formControlName="username" required>
+			<mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+				{{ 'MESSAGE_ERROR_USERNAME_REQUIRED' | translate }}
+			</mat-error>
 		</mat-form-field>
-		
-	  <mat-form-field>
-			<input matInput 
-				[placeholder]="'PASSWORD' | translate" 
-				formControlName="password" 
-				[type]="isPasswordShown ? 'text' : 'password'" 
-				required>
-			<mat-icon *ngIf="loginForm.controls['password'].value" 
-				[svgIcon]="isPasswordShown ? 'eye-off' : 'eye'" 
-				(click)="isPasswordShown = !isPasswordShown" 
-				matSuffix>
+
+		<mat-form-field>
+			<input matInput [placeholder]="'PASSWORD' | translate" formControlName="password" [type]="isPasswordShown ? 'text' : 'password'"
+			 required>
+			<mat-icon *ngIf="loginForm.controls['password'].value" [svgIcon]="isPasswordShown ? 'eye-off' : 'eye'" (click)="isPasswordShown = !isPasswordShown"
+			 matSuffix>
 			</mat-icon>
-	
-	    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-	      {{ 'MESSAGE_ERROR_PASSWORD_REQUIRED' | translate }}
-	    </mat-error>
+
+			<mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+				{{ 'MESSAGE_ERROR_PASSWORD_REQUIRED' | translate }}
+			</mat-error>
 		</mat-form-field>
-		
-		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ (isSubmitting ? 'LOGGING_IN' : 'LOGIN') | translate }}</button>
-		
-  	<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between">
-			<button mat-stroked-button
-				routerLink="../forgot-password" 
-				[queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}" 
-				color="primary" 
-				class="mat-body mat-primary-color">{{ 'FORGOT_PASSWORD' | translate }}</button>
-			<button mat-stroked-button
-				routerLink="../register" 
-				color="primary" class="mat-body mat-primary-color">{{ 'REGISTER' | translate }}</button>
-  	</div>
-  	
+
+		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ (isSubmitting ? 'LOGGING_IN' :
+			'LOGIN') | translate }}</button>
+
+		<div fxLayout="row" fxLayoutAlign="space-between">
+			<mat-checkbox>
+				<mat-label>{{ 'REMEMBER_ME' | translate }}</mat-label>
+			</mat-checkbox>
+
+			<button mat-button routerLink="../forgot-password" [queryParams]="loginForm.controls['username'].valid ? { username: loginForm.controls['username'].value } : {}"
+			 color="primary" class="mat-primary-color">{{ 'FORGOT_PASSWORD' | translate }}</button>
+		</div>
+
+		<div fxLayout="column" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
+
+			<mat-label class="mat-body-2 center">{{ 'MESSAGE_DONT_HAVE_ACCOUNT' | translate}}</mat-label>
+
+			<button mat-button routerLink="../register" color="primary" class="mat-body mat-primary-color">{{ 'REGISTER'
+				| translate }}</button>
+		</div>
+
 	</form>
 </div>

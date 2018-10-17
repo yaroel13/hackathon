@@ -2,10 +2,11 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { DoctorComponent } from "./maintenance/doctor/doctor.component";
 import { Routes } from "@angular/router";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
+import { PageNotFoundComponent } from "../auth/page-not-found/page-not-found.component";
 
 export const ROUTES: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
     data: {
       icon: "view-dashboard",
@@ -13,8 +14,7 @@ export const ROUTES: Routes = [
     }
   },
   {
-    path: 'maintenance',
-    // component: DoctorComponent,
+    path: '',
     data: {
       icon: "view-dashboard",
       name: "MAINTENANCE"

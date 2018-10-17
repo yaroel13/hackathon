@@ -10,60 +10,60 @@ $my-theme-banner-url: 'https://material.angular.io/assets/img/examples/shiba2.jp
 
 $my-theme: mat-light-theme( $my-theme-primary, $my-theme-accent, $my-theme-warn);
 
-.mat-primary-color {
-  color: mat-color($my-theme-primary) !important;
-}
+// .mat-primary-color {
+//   color: mat-color($my-theme-primary) !important;
+// }
 
-.mat-accent-color {
-  color: mat-color($my-theme-accent) !important;
-}
+// .mat-accent-color {
+//   color: mat-color($my-theme-accent) !important;
+// }
 
-.mat-warn-color {
-  color: mat-color($my-theme-warn) !important;
-}
+// .mat-warn-color {
+//   color: mat-color($my-theme-warn) !important;
+// }
 
-.sidenav-banner {
-  background-image: url($my-theme-banner-url);
-  height: 150px;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+// .sidenav-banner {
+//   background-image: url($my-theme-banner-url);
+//   height: 150px;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
 
-.mat-sidenav {
-  .mat-list-item.active{
-    background: mat-color(mat-palette($my-theme-primary, 400, 700, 700));
-    :hover, :active, :focus, .mat-list-item-focus {
-      background: mat-color(mat-palette($my-theme-primary));
-    }
-  }
-  .mat-list-item.active.mat-list-item-focus{
-    background: mat-color(mat-palette($my-theme-primary));
-  }
-}
+// .mat-sidenav {
+//   .mat-list-item.active{
+//     background: mat-color(mat-palette($my-theme-primary, 400, 700, 700));
+//     :hover, :active, :focus, .mat-list-item-focus {
+//       background: mat-color(mat-palette($my-theme-primary));
+//     }
+//   }
+//   .mat-list-item.active.mat-list-item-focus{
+//     background: mat-color(mat-palette($my-theme-primary));
+//   }
+// }
 
-.ng-select {
-  font-family: mat-font-family($config);
-  input {
-    font: inherit;
-    background: 0 0;
-    color: currentColor;
-    border: none;
-    outline: 0;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    vertical-align: bottom;
-    text-align: inherit;
-    margin-top: -0.0625em;
-    -webkit-appearance: none;
-    caret-color: mat-color($my-theme-primary)
-  }
-}
+// .ng-select {
+//   font-family: mat-font-family($config);
+//   input {
+//     font: inherit;
+//     background: 0 0;
+//     color: currentColor;
+//     border: none;
+//     outline: 0;
+//     padding: 0;
+//     margin: 0;
+//     width: 100%;
+//     max-width: 100%;
+//     vertical-align: bottom;
+//     text-align: inherit;
+//     margin-top: -0.0625em;
+//     -webkit-appearance: none;
+//     caret-color: mat-color($my-theme-primary)
+//   }
+// }
 
-.ng-select.ng-select-single .ng-value {
-  position: absolute;
-  top: 25px;
-}
+// .ng-select.ng-select-single .ng-value {
+//   position: absolute;
+//   top: 25px;
+// }
 
 @include angular-material-theme($my-theme);

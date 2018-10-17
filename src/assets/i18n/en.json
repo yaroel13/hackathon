@@ -1,6 +1,7 @@
 {
   "HELLO": "hello {{value}}",
 
+  "MESSAGE_DONT_HAVE_ACCOUNT" :"Still don't have an Account?",
   "MESSAGE_ERROR_PASSWORD_REQUIRED": "Password is required",
   "MESSAGE_ERROR_USERNAME_REQUIRED": "Username is required",
   "MESSAGE_ERROR_RELOGIN_REQUIRED": "Please re-login",
@@ -11,6 +12,7 @@
   "LOGGING_IN": "Logging in...",
   "FORGOT_PASSWORD": "Forgot Password?",
   "REGISTER": "Register",
+  "REMEMBER_ME":"Remember Me",
 
   "ACCOUNT_SETTINGS": "Account Settings",
   "ACCOUNT_SETTINGS_GENERAL": "General",

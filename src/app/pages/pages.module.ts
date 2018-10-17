@@ -13,12 +13,10 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 @NgModule({
   imports: [
     PagesRoutingModule,
-    // MaintenanceRoutingModule,
     ...MODULES
   ],
   declarations: [
     DashboardComponent,
-    // DoctorComponent,
     PagesComponent,
     AccountSettingsComponent
   ]
