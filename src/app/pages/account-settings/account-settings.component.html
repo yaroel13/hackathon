@@ -2,14 +2,14 @@
   <mat-toolbar color="primary" class="page-header">
     <h1>{{ 'ACCOUNT_SETTINGS' | translate }}</h1>
   </mat-toolbar>
-  
+
   <div fxLayout="row" fxLayoutAlign="center">
 
-    <form [formGroup]="settingsForm" 
+    <form [formGroup]="settingsForm"
       class="margin-25 padding-25 mat-elevation-z2"
-      fxLayout="column" 
-      (ngSubmit)="settingsForm.valid && onSubmit(settingsForm.value)" 
-      autocomplete="off" 
+      fxLayout="column"
+      (ngSubmit)="settingsForm.valid && onSubmit(settingsForm.value)"
+      autocomplete="off"
       autocorrect="off"
       fxLayoutGap="20px"
       fxFlex="600px"
@@ -17,11 +17,11 @@
       novalidate>
 
       <h3 class="mat-title">{{ 'ACCOUNT_SETTINGS_GENERAL' | translate }}</h3>
-  
-      <ng-select formControlName="language" 
+
+      <ng-select formControlName="language"
         [clearable]="false"
         [items]="languages"
-        [placeholder]="'LANGUAGE' | translate" 
+        [placeholder]="'LANGUAGE' | translate"
         bindLabel="name"
         bindValue="value">
       </ng-select>
@@ -55,8 +55,198 @@
         <mat-slide-toggle color="warn" formControlName="setting3">
         </mat-slide-toggle>
       </div>
-      
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Radio Button</div>
+        </div>
+        <mat-radio-group class="radio-group-vertical" formControlName="setting4">
+          <mat-radio-button class="mat-body radio-button" color="primary" value="option1">Option 1</mat-radio-button>
+          <mat-radio-button class="mat-body radio-button" color="accent" value="option2">Option 2</mat-radio-button>
+          <mat-radio-button class="mat-body radio-button" color="warn" value="option3">Option 3</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Checkbox 1</div>
+        </div>
+        <mat-checkbox color="primary" formControlName="checkbox1"></mat-checkbox>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Checkbox 2</div>
+        </div>
+        <mat-checkbox color="accent" formControlName="checkbox2"></mat-checkbox>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Checkbox 3</div>
+        </div>
+        <mat-checkbox color="warn" formControlName="checkbox3"></mat-checkbox>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Slider</div>
+        </div>
+        <mat-slider color="primary" formControlName="slider"></mat-slider>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <div class="mat-body">Date Picker</div>
+        </div>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="column" fxLayoutAlign="space-between">
+        <div>
+          <div class="mat-body">Button Toggle Group</div>
+        </div>
+        <div class="row-margin" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="mat-caption">Radio Button Behavior</div>
+          <mat-button-toggle-group formControlName="buttonGroup">
+            <mat-button-toggle value="left">Left</mat-button-toggle>
+            <mat-button-toggle value="center">Center</mat-button-toggle>
+            <mat-button-toggle value="right">Right</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div class="row-margin" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="mat-caption">Checkbox Behavior</div>
+          <mat-button-toggle-group formControlName="buttonGroupMultiple" multiple>
+            <mat-button-toggle value="left">Left</mat-button-toggle>
+            <mat-button-toggle value="center">Center</mat-button-toggle>
+            <mat-button-toggle value="right">Right</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Basic Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-button>Basic</button>
+          <button mat-button color="primary">Primary</button>
+          <button mat-button color="accent">Accent</button>
+          <button mat-button color="warn">Warn</button>
+          <button mat-button disabled>Disabled</button>
+          <a mat-button routerLink=".">Link</a>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Raised Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-raised-button>Basic</button>
+          <button mat-raised-button color="primary">Primary</button>
+          <button mat-raised-button color="accent">Accent</button>
+          <button mat-raised-button color="warn">Warn</button>
+          <button mat-raised-button disabled>Disabled</button>
+          <a mat-raised-button routerLink=".">Link</a>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Stroked Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-stroked-button>Basic</button>
+          <button mat-stroked-button color="primary">Primary</button>
+          <button mat-stroked-button color="accent">Accent</button>
+          <button mat-stroked-button color="warn">Warn</button>
+          <button mat-stroked-button disabled>Disabled</button>
+          <a mat-stroked-button routerLink=".">Link</a>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Flat Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-flat-button>Basic</button>
+          <button mat-flat-button color="primary">Primary</button>
+          <button mat-flat-button color="accent">Accent</button>
+          <button mat-flat-button color="warn">Warn</button>
+          <button mat-flat-button disabled>Disabled</button>
+          <a mat-flat-button routerLink=".">Link</a>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Icon Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-icon-button>
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+          <button mat-icon-button color="primary">
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+          <button mat-icon-button color="accent">
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+          <button mat-icon-button disabled>
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Flat Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-fab>Basic</button>
+          <button mat-fab color="primary">Primary</button>
+          <button mat-fab color="accent">Accent</button>
+          <button mat-fab color="warn">Warn</button>
+          <button mat-fab disabled>Disabled</button>
+          <button mat-fab>
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+          <a mat-fab routerLink=".">Link</a>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center space-between">
+        <div>
+          <div class="mat-body">Flat Button</div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-mini-fab>Basic</button>
+          <button mat-mini-fab color="primary">Primary</button>
+          <button mat-mini-fab color="accent">Accent</button>
+          <button mat-mini-fab color="warn">Warn</button>
+          <button mat-mini-fab disabled>Disabled</button>
+          <button mat-mini-fab>
+            <mat-icon svgIcon="heart"></mat-icon>
+          </button>
+          <a mat-mini-fab routerLink=".">Link</a>
+        </div>
+      </div>
+
       <button [disabled]="isSubmitting" color="primary" mat-raised-button type="submit">{{ (isSubmitting ? 'SAVING' : 'SAVE') | translate }}</button>
     </form>
   </div>
+  <div style="height: 400px"></div>
 </div>
