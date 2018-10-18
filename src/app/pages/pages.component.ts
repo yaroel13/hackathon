@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
 import { Router } from '@angular/router';
-import { ROUTES } from './pages.routes';
+import { ROUTES, MAINTENANCE_ROUTES } from './pages.routes';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routes = ROUTES;
+    this.routes = ROUTES.concat(MAINTENANCE_ROUTES);
   }
 
   logout(){

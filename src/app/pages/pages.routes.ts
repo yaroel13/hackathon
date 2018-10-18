@@ -1,8 +1,9 @@
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { DoctorComponent } from "./maintenance/doctor/doctor.component";
 import { Routes } from "@angular/router";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
-import { PageNotFoundComponent } from "../auth/page-not-found/page-not-found.component";
+import { DoctorComponent } from "./maintenance/doctor/doctor.component";
+
+
 
 export const ROUTES: Routes = [
   {
@@ -12,27 +13,20 @@ export const ROUTES: Routes = [
       icon: "view-dashboard",
       name: "DASHBOARD"
     }
-  },
-  {
-    path: '',
-    data: {
-      icon: "view-dashboard",
-      name: "MAINTENANCE"
-    },
-    loadChildren: './maintenance/maintenance.module#MaintenanceModule'
   }
 ]
 
-// export const MAINTENANCE_ROUTES: Routes = [
-//   {
-//     path: 'maintenance/doctor',
-//     component: DoctorComponent,
-//     data: {
-//       icon: "view-dashboard",
-//       name: "DOCTOR MAINTENANCE"
-//     }
-//   }
-// ]
+export const MAINTENANCE_ROUTES: Routes = [
+  {
+    path: 'maintenance/doctor',
+    component: DoctorComponent,
+    data: {
+      icon: "view-dashboard",
+      name: "Doctor Maintenance"
+    }
+  }
+]
+
 export const OTHER_ROUTES: Routes = [
   {
     path: 'account-settings',

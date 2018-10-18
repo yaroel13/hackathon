@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 
 import { PagesComponent } from './pages.component';
-import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MODULES } from '../global-modules';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { FooterModule } from './footer/footer.module';
+import {DoctorComponent} from './maintenance/doctor/doctor.component';
 
 @NgModule({
   imports: [
@@ -18,7 +18,8 @@ import { FooterModule } from './footer/footer.module';
   declarations: [
     DashboardComponent,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    DoctorComponent
   ]
 })
 export class PagesModule {

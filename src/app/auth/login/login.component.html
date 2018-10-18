@@ -1,4 +1,5 @@
-<div fxLayout="row" class="full-height login" fxLayoutAlign="center center ">
+<div class="login" fxLayout="column">
+<div fxLayout="row" class="full-height" fxLayoutAlign="center center ">
 	<mat-card class="padding-25 mat-elevation-z5" fxFlex="370px"  fxFlex.sm="80%" fxFlex.lt-sm="90%" >
 	<form [formGroup]="loginForm"  fxLayout="column" (ngSubmit)="loginForm.valid && onSubmit(loginForm.value)"
 	 autocomplete="off" autocorrect="off" fxLayoutGap="25px"  novalidate>
@@ -56,5 +57,6 @@
 
 	</form>
 </mat-card>
-
+</div>
+<esc-footer></esc-footer>
 </div>

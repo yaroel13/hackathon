@@ -8,7 +8,10 @@ import { Language } from 'aws-sdk/clients/support';
 })
 export class AppComponent {
 
+  public moduleName;
   constructor(language : LanguageService) {
     language.initLocale();
   }
+
+
 }
