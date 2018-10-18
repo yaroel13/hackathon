@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HelperService } from './services';
+import { LanguageService } from './services';
+import { Language } from 'aws-sdk/clients/support';
 
 @Component({
   selector: 'esc-root',
@@ -7,7 +8,7 @@ import { HelperService } from './services';
 })
 export class AppComponent {
 
-  constructor(helper: HelperService) {
-    helper.initLocale();
+  constructor(language : LanguageService) {
+    language.initLocale();
   }
 }

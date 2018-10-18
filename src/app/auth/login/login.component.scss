@@ -1,6 +1,5 @@
 @import "./../../../styles";
 @include mat-core();
-$background-url : '/assets/images/polygon-background.png';
 
 div.login {
     .logo{
@@ -8,9 +7,8 @@ div.login {
         height:auto;
         margin:auto;
     }
-    background: url($background-url),linear-gradient(to right,mat-color($my-theme-primary),mat-color($my-theme-warn));
+    background: url($background-url),linear-gradient(to right,mat-color($my-theme-primary),mat-color($my-theme-secondary));
     form {
-        background-color: white;
         h2{
             text-align: center;
             font-weight: bold;

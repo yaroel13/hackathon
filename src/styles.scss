@@ -1,4 +1,6 @@
 @import "./theme.scss";
+@include mat-core();
+
 
 html, body {
   margin: 0px;
@@ -65,6 +67,11 @@ mat-sidenav-container mat-sidenav {
     font-size: 20px;
   }
 }
+
+.page-footer {
+  text-align: right;
+  opacity:0.25;
+} 
 
 esc-dashboard {
   .widget {

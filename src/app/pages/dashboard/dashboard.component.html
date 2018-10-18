@@ -1,9 +1,7 @@
 <div fxLayout="column">
-  <mat-toolbar color="primary" class="page-header">
-    <h1>{{ 'DASHBOARD' | translate }}</h1>
-  </mat-toolbar>5
 
-  <div fxFlex="400px">
+
+  <div fxFlex="500px">
     <canvas baseChart *ngIf="chartData"
       [datasets]="chartData"
       [labels]="chartLabels"

@@ -1,33 +1,27 @@
-<div fxLayout="column">
-  <mat-toolbar color="primary" class="page-header">
-    <h1>{{ 'ACCOUNT_SETTINGS' | translate }}</h1>
-  </mat-toolbar>
-  
-  <div fxLayout="row" fxLayoutAlign="center">
-
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card
+    class="margin-25 padding-25 mat-elevation-z5"
+    fxFlex="700px">
+      
     <form [formGroup]="settingsForm" 
-      class="margin-25 padding-25 mat-elevation-z2"
       fxLayout="column" 
       (ngSubmit)="settingsForm.valid && onSubmit(settingsForm.value)" 
       autocomplete="off" 
       autocorrect="off"
       fxLayoutGap="20px"
-      fxFlex="600px"
-      fxFlex.lt-md
       novalidate>
-
+    
       <h3 class="mat-title">{{ 'ACCOUNT_SETTINGS_GENERAL' | translate }}</h3>
-  
-      <ng-select formControlName="language" 
-        [clearable]="false"
-        [items]="languages"
-        [placeholder]="'LANGUAGE' | translate" 
-        bindLabel="name"
-        bindValue="value">
-      </ng-select>
-
-      <mat-divider></mat-divider>
-
+      <mat-form-field>
+        <mat-select placeholder = "{{'LANGUAGE' | translate}}" formControlName="language" >
+          <mat-option *ngFor="let lang of languages" [value]="lang.value">
+            {{lang.name}}
+          </mat-option>
+        </mat-select> 
+      </mat-form-field>
+      
+      <mat-divider [inset]=true></mat-divider>
+      
       <h3 class="mat-title">{{ 'ACCOUNT_SETTINGS_OTHER' | translate }}</h3>
 
       <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -58,5 +52,7 @@
       
       <button [disabled]="isSubmitting" color="primary" mat-raised-button type="submit">{{ (isSubmitting ? 'SAVING' : 'SAVE') | translate }}</button>
     </form>
-  </div>
+    
+  </mat-card>
+
 </div>

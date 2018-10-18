@@ -12,6 +12,7 @@ import { ClickableClickModule } from 'angular-clickable-click';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ChangePasswordChallengeComponent } from './auth/change-password-challenge/change-password-challenge.component';
+import { FooterModule } from './pages/footer/footer.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    FooterModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ClickableClickModule,

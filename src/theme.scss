@@ -3,12 +3,14 @@
 @include mat-core();
 
 $config: mat-typography-config();
-$my-theme-primary: mat-palette($mat-cyan, 700, 300, 200);
+$my-theme-primary: mat-palette($mat-light-blue);
+$my-theme-secondary: mat-palette($mat-green, A700, 100, 200);
 $my-theme-accent: mat-palette($mat-light-blue);
 $my-theme-warn: mat-palette($mat-red, A200);
 $my-theme-banner-url: 'https://material.angular.io/assets/img/examples/shiba2.jpg';
+$background-url : '/assets/images/background-4.png';
 
-$my-theme: mat-light-theme( $my-theme-primary, $my-theme-accent, $my-theme-warn);
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 
 // .mat-primary-color {
 //   color: mat-color($my-theme-primary) !important;

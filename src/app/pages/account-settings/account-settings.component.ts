@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { LANGUAGES } from '../../utils/constant';
 import { TranslateService } from '@ngx-translate/core';
-import { HelperService } from '../../services';
+import { LanguageService } from '../../services';
 
 @Component({
   selector: 'esc-account-settings',
@@ -16,7 +16,7 @@ export class AccountSettingsComponent implements OnInit {
   public languages = LANGUAGES;
 
   constructor(
-    private helper: HelperService,
+    private languageService: LanguageService,
     private translate: TranslateService,
     private fb: FormBuilder
   ) { }
@@ -33,7 +33,7 @@ export class AccountSettingsComponent implements OnInit {
   onSubmit(value){
     this.isSubmitting = true;
     setTimeout(() => {
-      this.helper.updateLocale(value.language);
+      this.languageService.updateLocale(value.language);
       this.isSubmitting = false;
     } , 1000);
   }

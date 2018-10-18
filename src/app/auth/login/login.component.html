@@ -1,16 +1,22 @@
 <div fxLayout="row" class="full-height login" fxLayoutAlign="center center ">
-
-	<form [formGroup]="loginForm" class="padding-25 mat-elevation-z5" fxLayout="column" (ngSubmit)="loginForm.valid && onSubmit(loginForm.value)"
-	 autocomplete="off" autocorrect="off" fxLayoutGap="25px" fxFlex="370px" fxFlex.lt-sm="90%" novalidate>
-
+	<mat-card class="padding-25 mat-elevation-z5" fxFlex="370px"  fxFlex.sm="80%" fxFlex.lt-sm="90%" >
+	<form [formGroup]="loginForm"  fxLayout="column" (ngSubmit)="loginForm.valid && onSubmit(loginForm.value)"
+	 autocomplete="off" autocorrect="off" fxLayoutGap="25px"  novalidate>
+		
+		 <!--Image Logo-->
 		<img class="logo" 
 		src="assets/images/escience-banner.jpg"
 		 alt="E-Science Logo">
 
-		<h2 class="mat-display-1 mat-primary-color">E-Science Corporation</h2>
+		 <!--Statement Logo-->
+		<!-- <h2 class="mat-display-1 mat-primary-color">E-Science Corporation</h2> -->
 
 		<mat-form-field>
-			<input matInput [placeholder]="'USERNAME' | translate" formControlName="username" required>
+			<input matInput 
+				[placeholder]="'USERNAME' | translate"
+				formControlName="username" 
+				autocomplete="off"
+				required>
 			<mat-error *ngIf="loginForm.controls['username'].hasError('required')">
 				{{ 'MESSAGE_ERROR_USERNAME_REQUIRED' | translate }}
 			</mat-error>
@@ -31,7 +37,7 @@
 		<button color="primary" [disabled]="isSubmitting" mat-raised-button type="submit">{{ (isSubmitting ? 'LOGGING_IN' :
 			'LOGIN') | translate }}</button>
 
-		<div fxLayout="row" fxLayoutAlign="space-between">
+		<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" >
 			<mat-checkbox>
 				<mat-label>{{ 'REMEMBER_ME' | translate }}</mat-label>
 			</mat-checkbox>
@@ -49,4 +55,6 @@
 		</div>
 
 	</form>
+</mat-card>
+
 </div>

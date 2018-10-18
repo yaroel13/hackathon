@@ -3,6 +3,7 @@ import { AuthService } from '../services';
 import { Router } from '@angular/router';
 import { ROUTES } from './pages.routes';
 
+
 @Component({
   selector: 'esc-pages',
   templateUrl: './pages.component.html',
