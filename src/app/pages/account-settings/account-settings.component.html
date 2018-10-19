@@ -106,7 +106,7 @@
           <div class="mat-body">Date Picker</div>
         </div>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="datePicker">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

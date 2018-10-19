@@ -32,6 +32,7 @@ export class AccountSettingsComponent implements OnInit {
       checkbox2: [true],
       checkbox3: [true],
       slider: [50],
+      datePicker: [new Date()],
       buttonGroup: ['left'],
       buttonGroupMultiple: ['left']
     });
