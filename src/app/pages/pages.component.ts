@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class PagesComponent implements OnInit {
 
-  public routes;
+  public navigations;
 
   constructor(
     private authService: AuthService,
@@ -20,7 +20,8 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routes = ROUTES.concat(MAINTENANCE_ROUTES);
+    this.navigations = [ROUTES,MAINTENANCE_ROUTES];
+    console.log(this.navigations);
   }
 
   logout(){

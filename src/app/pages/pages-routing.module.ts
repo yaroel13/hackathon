@@ -7,9 +7,10 @@ const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
-    ...ROUTES,
+    ROUTES.mainModule,
+    ...ROUTES.subModules,
     ...OTHER_ROUTES,
-    ...MAINTENANCE_ROUTES
+    ...MAINTENANCE_ROUTES.subModules
   ]
 }];
 

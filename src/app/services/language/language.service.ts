@@ -49,5 +49,13 @@ export class LanguageService {
     localStorage.setItem(KEY_STORAGE_LANGUAGE, locale);
   }
 
+  public getTranslation(key,params)
+  {
+    this.translate.get(key, params).subscribe((res: string) => {
+      return res;
+  });
+  }
+
+
 
 }

@@ -18,7 +18,9 @@
   "ACCOUNT_SETTINGS_GENERAL": "General",
   "ACCOUNT_SETTINGS_OTHER": "Other",
   "DASHBOARD": "Dashboard",
+  "DOCTOR":"Doctor",
   "LOGOUT": "Logout",
+  "MAINTENANCE":"Maintenance",
 
   "LANGUAGE": "Language",
   "SAVE": "Save",

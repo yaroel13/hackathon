@@ -24,12 +24,11 @@ $my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 //   color: mat-color($my-theme-warn) !important;
 // }
 
-// .sidenav-banner {
-//   background-image: url($my-theme-banner-url);
-//   height: 150px;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
+.sidenav-banner {
+    background: url($background-url), linear-gradient(to right, mat-color($my-theme-primary), mat-color($my-theme-secondary));
+    height: 150px;
+    background-size: cover;
+}
 
 // .mat-sidenav {
 //   .mat-list-item.active{

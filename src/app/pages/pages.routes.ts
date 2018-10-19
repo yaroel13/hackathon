@@ -2,30 +2,44 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { Routes } from "@angular/router";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 import { DoctorComponent } from "./maintenance/doctor/doctor.component";
+import {NavigationItem} from "../model/navigation-item.model";
+import {LanguageService} from "../services/language/language.service";
 
 
-
-export const ROUTES: Routes = [
+export const ROUTES: NavigationItem = 
   {
-    path: '',
+    mainModule:{
+      path: '',
     component: DashboardComponent,
     data: {
       icon: "view-dashboard",
       name: "DASHBOARD"
     }
+  },
+  subModules:[]
   }
-]
 
-export const MAINTENANCE_ROUTES: Routes = [
+
+const MAINTENANCE_ROUTE = "maintenance";
+export const MAINTENANCE_ROUTES: NavigationItem = 
   {
-    path: 'maintenance/doctor',
-    component: DoctorComponent,
+    mainModule:{
+      path: '',
     data: {
-      icon: "view-dashboard",
-      name: "Doctor Maintenance"
+      icon: "wrench",
+      name: "MAINTENANCE"
     }
+  },
+  subModules:[{
+    path: MAINTENANCE_ROUTE+"/doctor",
+    component: DoctorComponent,
+  data: {
+    icon: "account",
+    name: "DOCTOR"
+  }}]
   }
-]
+
+
 
 export const OTHER_ROUTES: Routes = [
   {
