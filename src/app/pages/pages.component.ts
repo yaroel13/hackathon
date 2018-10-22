@@ -20,7 +20,7 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.navigations = [ROUTES,MAINTENANCE_ROUTES];
+    this.navigations = [ROUTES,MAINTENANCE_ROUTES,ROUTES];
     console.log(this.navigations);
   }
 

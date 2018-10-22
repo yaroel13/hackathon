@@ -77,3 +77,9 @@ esc-dashboard {
     min-width:80%;
   }
 }
+
+esc-pages {
+  .mat-expansion-panel-content > .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+}

@@ -10,19 +10,19 @@ $my-theme-warn: mat-palette($mat-red, A200);
 $my-theme-banner-url: 'https://material.angular.io/assets/img/examples/shiba2.jpg';
 $background-url : '/assets/images/background-4.png';
 
-$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+$my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 
-// .mat-primary-color {
-//   color: mat-color($my-theme-primary) !important;
-// }
+.mat-primary-color {
+  color: mat-color($my-theme-primary) !important;
+}
 
-// .mat-accent-color {
-//   color: mat-color($my-theme-accent) !important;
-// }
+.mat-accent-color {
+  color: mat-color($my-theme-accent) !important;
+}
 
-// .mat-warn-color {
-//   color: mat-color($my-theme-warn) !important;
-// }
+.mat-warn-color {
+  color: mat-color($my-theme-warn) !important;
+}
 
 .sidenav-banner {
     background: url($background-url), linear-gradient(to right, mat-color($my-theme-primary), mat-color($my-theme-secondary));

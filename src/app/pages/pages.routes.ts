@@ -36,6 +36,24 @@ export const MAINTENANCE_ROUTES: NavigationItem =
   data: {
     icon: "account",
     name: "DOCTOR"
+  }},{
+    path: MAINTENANCE_ROUTE+"/doctor",
+    component: DoctorComponent,
+  data: {
+    icon: "account",
+    name: "DOCTOR"
+  }},{
+    path: MAINTENANCE_ROUTE+"/doctor",
+    component: DoctorComponent,
+  data: {
+    icon: "account",
+    name: "DOCTOR"
+  }},{
+    path: MAINTENANCE_ROUTE+"/doctor",
+    component: DoctorComponent,
+  data: {
+    icon: "account",
+    name: "DOCTOR"
   }}]
   }
 
