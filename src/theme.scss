@@ -10,7 +10,7 @@ $my-theme-warn: mat-palette($mat-red, A200);
 $my-theme-banner-url: 'https://material.angular.io/assets/img/examples/shiba2.jpg';
 $background-url : '/assets/images/background-4.png';
 
-$my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 
 .mat-primary-color {
   color: mat-color($my-theme-primary) !important;

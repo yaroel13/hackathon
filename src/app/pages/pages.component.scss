@@ -1,5 +1,6 @@
 $nav-height:48px;
 $nav-font-size: 15px;
+$expanded-background-color: rgba(0,0,0,0.08);
 
 .nav-icon {
 	transform: scale(.8);
@@ -14,6 +15,7 @@ $nav-font-size: 15px;
 
 .header-navbar {
 	padding-top: 0px;
+
 	.mat-list-item {
 		height: $nav-height !important;
 		padding-left: 10px !important;
@@ -22,32 +24,44 @@ $nav-font-size: 15px;
 }
 
 
-
+.expansion-panel
+{
+	.mat-expansion-panel-header.mat-expanded {
+		background-color: $expanded-background-color !important;
+		
+	}
+	
+	
+}
 
 //Expansion Navigation Header Style
 .expansion-navbar {
-	.mat-list-item
-	{
-	font-size: $nav-font-size;
+	.mat-list-item {
+		font-size: $nav-font-size;
 	}
+
+
+
 }
 
 
 //Expansion Navigation Detail Style
 .detail-navbar {
+	background-color:$expanded-background-color !important;
+	padding-top: 0px;
 
-	padding-top:0px;
 	.mat-list-item {
 		padding: 0px !important;
-		font-size:$nav-font-size;
-		padding-left:50px;
-		height:$nav-height;
+		font-size: $nav-font-size;
+		padding-left: 50px;
+		height: $nav-height;
 	}
+
 	.mat-list-item-content {
 		padding: 0px !important;
 	}
-	div
-	{
-		padding-left:50px;
+
+	div {
+		padding-left: 50px;
 	}
 }
