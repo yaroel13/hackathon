@@ -26,7 +26,15 @@ export class AccountSettingsComponent implements OnInit {
       language: [this.translate.currentLang, Validators.required],
       setting1: [true],
       setting2: [true],
-      setting3: [true]
+      setting3: [true],
+      setting4: ['option1'],
+      checkbox1: [true],
+      checkbox2: [true],
+      checkbox3: [true],
+      slider: [50],
+      datePicker: [new Date()],
+      buttonGroup: ['left'],
+      buttonGroupMultiple: ['left']
     });
   }
 

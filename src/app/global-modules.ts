@@ -1,5 +1,5 @@
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule, MatSortModule, MatExpansionPanel, MatAccordion, MatExpansionModule } from "@angular/material";
+import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule, MatSortModule, MatExpansionPanel, MatAccordion, MatExpansionModule, MatRadioButton, MatRadioModule, MatSliderModule, MatButtonToggleModule } from "@angular/material";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -16,6 +16,8 @@ export const MODULES = [
   MatButtonModule, 
   MatCardModule,
   MatMenuModule,
+  MatSliderModule,
+  MatButtonToggleModule,
   MatToolbarModule, 
   MatSidenavModule,
   MatListModule,
@@ -27,6 +29,7 @@ export const MODULES = [
   MatStepperModule,
   MatFormFieldModule,
   MatInputModule,
+  MatRadioModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
   MatCheckboxModule,
