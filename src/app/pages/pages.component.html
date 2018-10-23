@@ -3,37 +3,51 @@
   <mat-sidenav #sidenav fxLayout="column">
     <div class="sidenav-banner"></div>
 
-    
-    <mat-accordion  *ngFor="let navigation of navigations">
-      <mat-nav-list *ngIf="!navigation.subModules.length" >
-      <mat-list-item style="font-size: 15px;" class="mat-primary-bg-color"
-        (click)="sidenav.toggle()">
-        <div>
-          <mat-icon style="transform: scale(.8)" svgIcon="{{navigation.mainModule.data.icon}}"></mat-icon>
-        </div>
-        <div fxFlex>
-          {{ navigation.mainModule.data?.name | translate }}
-        </div>
-      </mat-list-item>
-    </mat-nav-list>
-      <mat-expansion-panel [expanded]="false" *ngIf="navigation.subModules.length" class="mat-elevation-z0" style="padding:0px;">
-        <mat-expansion-panel-header style="padding:0 15 15 ;">
+
+    <mat-accordion *ngFor="let navigation of navigations">
+
+      
+      <!--Single Module Part-->
+      <mat-nav-list *ngIf="!navigation.subModules.length" 
+                     class="header-navbar nav-list-header">
+        <mat-list-item 
+          class="mat-primary-bg-color" 
+          [routerLink]="navigation.mainModule.path"
+          (click)="sidenav.toggle()">
+          <div>
+            <mat-icon svgIcon="{{navigation.mainModule.data.icon}}" class="nav-icon">
+            </mat-icon>
+          </div>
+          <div>
+            {{ navigation.mainModule.data?.name | translate }}
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <!--Multiple Submodule Part-->
+      <mat-expansion-panel [expanded]="false" *ngIf="navigation.subModules.length" 
+      class="mat-elevation-z0">
+        <mat-expansion-panel-header [collapsedHeight]="'48px'" 
+                                    [expandedHeight]="'48px'"
+                                    class="expansion-navbar">
           <mat-panel-title fxLayout fxLayoutAlign="start center">
             <div>
-              <mat-icon style="transform: scale(.8)" svgIcon="{{navigation.mainModule.data.icon}}">
+              <mat-icon svgIcon="{{navigation.mainModule.data.icon}}"  class="nav-icon">
               </mat-icon>
             </div>
             <div> {{navigation.mainModule.data.name | translate }} </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <ng-template matExpansionPanelContent style="margin:0px;padding:0px;">
-          
-          <mat-nav-list >
-            <mat-list-item style="padding-left:5px;padding-right:5px;"
-               *ngFor="let subModule of navigation.subModules"
-              [routerLink]="subModule.path" (click)="sidenav.toggle()">
-              <div fxFlex>
-                {{ subModule.data?.name | translate }}</div>
+        <mat-divider></mat-divider>
+        <ng-template matExpansionPanelContent >
+          <mat-nav-list class="detail-navbar">
+            <mat-list-item  *ngFor="let subModule of navigation.subModules"
+              [routerLink]="subModule.path" 
+              (click)="sidenav.toggle()">
+              <mat-divider></mat-divider>
+              <div>
+                {{ subModule.data?.name | translate }}
+              </div>
             </mat-list-item>
           </mat-nav-list>
         </ng-template>
