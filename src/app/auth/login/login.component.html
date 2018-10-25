@@ -12,6 +12,10 @@
 		 <!--Statement Logo-->
 		<!-- <h2 class="mat-display-1 mat-primary-color">E-Science Corporation</h2> -->
 
+		<mat-label class="mat-warn-color mat-subheading-1" *ngIf="errorMessage">
+			{{errorMessage}}
+		</mat-label>
+
 		<mat-form-field>
 			<input matInput 
 				[placeholder]="'USERNAME' | translate"
@@ -39,7 +43,7 @@
 			'LOGIN') | translate }}</button>
 
 		<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" >
-			<mat-checkbox>
+			<mat-checkbox formControlName="rememberMe" >
 				<mat-label>{{ 'REMEMBER_ME' | translate }}</mat-label>
 			</mat-checkbox>
 

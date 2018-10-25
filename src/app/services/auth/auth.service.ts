@@ -35,7 +35,7 @@ export class AuthService {
 
   public initAWSCredentials(){
     let cognitoUser = this.userPool.getCurrentUser();
-    console.log(cognitoUser)
+    //console.log(cognitoUser)
 
     if(!cognitoUser){
       return;

@@ -8,6 +8,7 @@ import { config, CognitoIdentityCredentials, CognitoIdentityServiceProvider } fr
 import { DialogService } from '../../services/dialog/dialog.service';
 import { ChangePasswordChallengeComponent } from '../change-password-challenge/change-password-challenge.component';
 import { COGNITO_ERROR_NOT_AUTHORIZED_EXCEPTION, COGNITO_ERROR_PASSWORDRESET_REQUIRED_EXCEPTION, COGNITO_ERROR_USER_NOT_CONFIRMED_EXCEPTION, COGNITO_ERROR_USER_NOT_FOUND_EXCEPTION } from '../../utils/constant';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'esc-login',
@@ -19,20 +20,24 @@ export class LoginComponent implements OnInit {
   public isPasswordShown: boolean;
   public isSubmitting : boolean;
   public loginForm : FormGroup;
+  public errorMessage: String;
 
   constructor(
     private fb: FormBuilder, 
     private route: ActivatedRoute, 
     private dialogService: DialogService,
     private router: Router, 
-    private authService: AuthService
+    private authService: AuthService,
+    private languageService: LanguageService
   ){}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: [null, Validators.required],
-      password: [null, Validators.required]
+      password: [null, Validators.required],
+      rememberMe: [false]
     });
+
 
     this.route.queryParams.subscribe(params => {
       if(params['username']){
@@ -46,6 +51,7 @@ export class LoginComponent implements OnInit {
     this.isSubmitting = true;
     this.loginForm.disable();
 
+
     let authenticationDetails = new AuthenticationDetails({
       Username: value.username,
       Password: value.password
@@ -57,6 +63,7 @@ export class LoginComponent implements OnInit {
     });
     
     let self = this;
+    
 
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (session) {
@@ -71,25 +78,25 @@ export class LoginComponent implements OnInit {
         switch(err.name){
           case COGNITO_ERROR_NOT_AUTHORIZED_EXCEPTION:
           case COGNITO_ERROR_USER_NOT_FOUND_EXCEPTION:
-            self.dialogService.openSnackBar("Incorrect Username/Password");
+            self.errorMessage = self.languageService.getTranslation("MESSAGE_ERROR_USERNAME_PASSWORD_INCORRECT",{});
             break;
           case COGNITO_ERROR_PASSWORDRESET_REQUIRED_EXCEPTION:
             // TODO: SEND_RESET_PASSWORD_REQUIRED
             // TODO: ERROR_MESSAGE_ABOVE
-            self.dialogService.openSnackBar("Password Reset Required. Please check your email for the instruction.");
+            self.errorMessage = self.languageService.getTranslation("MESSAGE_ERROR_USERNAME_PASSWORD_INCORRECT",{});
             break;
           case COGNITO_ERROR_USER_NOT_CONFIRMED_EXCEPTION:
             // TODO: ERROR_MESSAGE_ABOVE
-            self.dialogService.openSnackBar("Please check your email for your account verification");
+            self.errorMessage = self.languageService.getTranslation("MESSAGE_ERROR_VERIFY_ACCOUNT",{});
             break;
           default: 
           // TODO: ERROR_MESSAGE_ABOVE
-            self.dialogService.openSnackBar("An error occurred. Please Try Again.");
+          self.errorMessage = self.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{});
+            
         }
       },
       newPasswordRequired: function (userAttributes, requiredAttributes) {
         self.isSubmitting = false;
-
         delete userAttributes.phone_number_verified;
         delete userAttributes.email_verified;
         self.dialogService.openDialog(ChangePasswordChallengeComponent, { 

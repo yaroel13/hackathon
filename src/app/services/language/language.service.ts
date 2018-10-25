@@ -2,58 +2,54 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES, KEY_STORAGE_LANGUAGE, DEFAULT_LANGUAGE } from '../../utils/constant';
 import * as _ from 'lodash';
+import { TranslationWidth } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
 
-  constructor(private translate : TranslateService) { 
-    
+  constructor(private translate: TranslateService) {
+
   }
 
-  public initLocale()
-  {
-    let langs = _.map(LANGUAGES,'value');
+  public initLocale() {
+    let langs = _.map(LANGUAGES, 'value');
     this.translate.addLangs(langs);
     this.translate.setDefaultLang(DEFAULT_LANGUAGE);
-    
+
     let lang;
-    if(localStorage.getItem(KEY_STORAGE_LANGUAGE))
-    {
+    if (localStorage.getItem(KEY_STORAGE_LANGUAGE)) {
       lang = localStorage.getItem(KEY_STORAGE_LANGUAGE);
     }
-    else
-    {
-      if(_.indexOf(langs,this.translate.getBrowserLang()))
-      {
+    else {
+      if (_.indexOf(langs, this.translate.getBrowserLang())) {
         lang = this.translate.getBrowserLang();
       }
-      else
-      {
+      else {
         lang = this.translate.getDefaultLang();
       }
-      localStorage.setItem(KEY_STORAGE_LANGUAGE,this.translate.getDefaultLang());
+      localStorage.setItem(KEY_STORAGE_LANGUAGE, this.translate.getDefaultLang());
     }
     this.translate.use(lang);
   }
 
-  public getLocale()
-  {
+  public getLocale() {
     return localStorage.getItem(KEY_STORAGE_LANGUAGE);
   }
 
-  
-  public updateLocale(locale){
+
+  public updateLocale(locale) {
     this.translate.use(locale);
     localStorage.setItem(KEY_STORAGE_LANGUAGE, locale);
   }
 
-  public getTranslation(key,params)
-  {
-    this.translate.get(key, params).subscribe((res: string) => {
-      return res;
-  });
+  public getTranslation(key, params) {
+    var translation;
+     this.translate.get(key, params).subscribe((res: string) => {
+      translation = res;
+    });
+  return translation;
   }
 
 

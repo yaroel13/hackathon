@@ -5,6 +5,10 @@
   "MESSAGE_ERROR_PASSWORD_REQUIRED": "Password is required",
   "MESSAGE_ERROR_USERNAME_REQUIRED": "Username is required",
   "MESSAGE_ERROR_RELOGIN_REQUIRED": "Please re-login",
+  "MESSAGE_ERROR_USERNAME_PASSWORD_INCORRECT":"Incorrect Password/Username",
+  "MESSAGE_ERROR_PASSWORD_RESET_REQUIRED":"Password Reset Required. Please check your email for the instruction.",
+  "MESSAGE_ERROR_VERIFY_ACCOUNT":"Please check your email for your account verification.",
+  "MESSAGE_ERROR_DEFAULT":"An error occurred. Please try again.",
 
   "USERNAME": "Username",
   "PASSWORD": "Password",

@@ -1,7 +1,14 @@
 .page-footer {
-    text-align: right;
-    opacity:0.35;
-    position: relative;
-    padding:10px;
-    margin:20px;
-  } 
+  text-align: right;
+  opacity: 0.35;
+  position: relative;
+  padding: 10px;
+  margin: 20px;
+  font-size: 16px;
+
+
+  @media only screen and (max-width: 600px) {
+    padding:0px;
+    text-align:center;
+  }
+}
