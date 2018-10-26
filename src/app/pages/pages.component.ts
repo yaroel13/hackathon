@@ -21,6 +21,10 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    /**
+     * Navigation Building
+     */
     this.routes = PAGES_ROUTES;
     PAGES_ROUTES[1].children=MAINTENANCE_ROUTES;
   }

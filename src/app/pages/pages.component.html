@@ -38,8 +38,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent >
-          <mat-nav-list class="detail-navbar">
-            <mat-list-item  *ngFor="let subRoute of route.children"
+          <mat-nav-list class="detail-navbar" *ngFor="let subRoute of route.children">
+            <mat-list-item *ngIf="subRoute.path"
               [routerLink]="'/'+route.path+'/'+subRoute.path" 
               (click)="sidenav.toggle()">
               <div>
