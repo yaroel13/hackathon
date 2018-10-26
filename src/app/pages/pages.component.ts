@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
 import { Router } from '@angular/router';
-import { ROUTES, MAINTENANCE_ROUTES } from './pages.routes';
+import { ROUTES } from './pages.routes';
 import * as _ from 'lodash';
 
 
@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class PagesComponent implements OnInit {
 
-  public navigations;
+  public routes;
 
   constructor(
     private authService: AuthService,
@@ -20,8 +20,8 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.navigations = [ROUTES,MAINTENANCE_ROUTES,ROUTES,MAINTENANCE_ROUTES,MAINTENANCE_ROUTES];
-    console.log(this.navigations);
+    this.routes = [ROUTES];
+    console.log(this.routes);
   }
 
   logout(){

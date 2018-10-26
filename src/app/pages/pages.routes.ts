@@ -13,16 +13,15 @@ export const ROUTES: Routes = [
       icon: "view-dashboard",
       name: "DASHBOARD"
     }
-  ,
-  },{
-    path: '',
-    component: DashboardComponent,
+  },
+  {
+    path: 'maintenance',
     data: {
-      icon: "view-dashboard",
-      name: "DASHBOARD"
-    }
-  ,
-  }]
+      icon: "wrench",
+      name: "MAINTENANCE"
+    },
+    loadChildren: "../maintenance/maintenance.module#MaintenanceModule"
+  }];
 
 
 
