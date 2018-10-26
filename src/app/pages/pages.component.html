@@ -7,43 +7,43 @@
 
       
       <!--Single Module Part-->
-      <mat-nav-list *ngIf="!route.s" 
+      <mat-nav-list *ngIf="!route.children" 
                      class="header-navbar nav-list-header">
         <mat-list-item 
           class="mat-primary-bg-color" 
-          [routerLink]="navigation.mainModule.path"
+          [routerLink]="route.path"
           (click)="sidenav.toggle()">
           <div>
-            <mat-icon svgIcon="{{navigation.mainModule.data.icon}}" class="nav-icon">
+            <mat-icon svgIcon="{{route.data.icon}}" class="nav-icon">
             </mat-icon>
           </div>
           <div>
-            {{ navigation.mainModule.data?.name | translate }}
+            {{ route.data?.name | translate }}
           </div>
         </mat-list-item>
       </mat-nav-list>
 
       <!--Multiple Submodule Part-->
-      <mat-expansion-panel [expanded]="false" *ngIf="navigation.subModules.length" 
+      <mat-expansion-panel [expanded]="false" *ngIf="route.children" 
       class="mat-elevation-z0 expansion-panel">
         <mat-expansion-panel-header [collapsedHeight]="'48px'" 
                                     [expandedHeight]="'48px'"
                                     class="expansion-navbar">
           <mat-panel-title fxLayout fxLayoutAlign="start center">
             <div>
-              <mat-icon svgIcon="{{navigation.mainModule.data.icon}}"  class="nav-icon">
+              <mat-icon svgIcon="{{route.data.icon}}"  class="nav-icon">
               </mat-icon>
             </div>
-            <div> {{navigation.mainModule.data.name | translate }} </div>
+            <div> {{route.data.name | translate }} </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent >
           <mat-nav-list class="detail-navbar">
-            <mat-list-item  *ngFor="let subModule of navigation.subModules"
-              [routerLink]="subModule.path" 
+            <mat-list-item  *ngFor="let subRoute of route.children"
+              [routerLink]="'/'+route.path+'/'+subRoute.path" 
               (click)="sidenav.toggle()">
               <div>
-                {{ subModule.data?.name | translate }}
+                {{ subRoute.data?.name | translate }}
               </div>
             </mat-list-item>
           </mat-nav-list>

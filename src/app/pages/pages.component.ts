@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
 import { Router } from '@angular/router';
-import { ROUTES } from './pages.routes';
+import { PAGES_ROUTES } from './pages.routes';
+import { MAINTENANCE_ROUTES } from './maintenance/maintenance.routes';
 import * as _ from 'lodash';
 
 
@@ -20,8 +21,8 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routes = [ROUTES];
-    console.log(this.routes);
+    this.routes = PAGES_ROUTES;
+    PAGES_ROUTES[1].children=MAINTENANCE_ROUTES;
   }
 
   logout(){

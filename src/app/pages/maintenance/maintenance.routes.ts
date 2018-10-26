@@ -1,11 +1,15 @@
 
 import { Routes } from "@angular/router";
-import {DoctorComponent} from './doctor/doctor.component';
 
-export const ROUTES: Routes = [
+export const MAINTENANCE_ROUTES: Routes = [
+    {
+        path:'',
+        pathMatch:'full',
+        redirectTo:'/'
+    },
     {
         path: 'doctor',
-        component: DoctorComponent,
+        loadChildren:'./doctor/doctor.module#DoctorModule',
         data: {
             icon: "account",
             name: "DOCTOR"

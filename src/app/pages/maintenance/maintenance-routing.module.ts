@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {ROUTES} from './maintenance.routes';
+import { RouterModule } from '@angular/router';
+import {MAINTENANCE_ROUTES} from './maintenance.routes';
 
-const routes = ROUTES;
+const routes = MAINTENANCE_ROUTES;
 
 @NgModule({
   exports:[RouterModule],

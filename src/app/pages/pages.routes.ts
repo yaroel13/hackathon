@@ -1,11 +1,8 @@
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { Routes } from "@angular/router";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
-import { DoctorComponent } from "./maintenance/doctor/doctor.component";
 
-
-
-export const ROUTES: Routes = [
+export const PAGES_ROUTES: Routes = [
   {
     path: '',
     component: DashboardComponent,
@@ -20,7 +17,7 @@ export const ROUTES: Routes = [
       icon: "wrench",
       name: "MAINTENANCE"
     },
-    loadChildren: "../maintenance/maintenance.module#MaintenanceModule"
+    loadChildren: "./maintenance/maintenance.module#MaintenanceModule"
   }];
 
 
