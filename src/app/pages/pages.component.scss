@@ -1,3 +1,6 @@
+@import "../../styles.scss";
+@include mat-core();
+
 $nav-height:48px;
 $nav-font-size: 15px;
 $expanded-background-color: rgba(0,0,0,0.08);
@@ -11,8 +14,8 @@ $expanded-background-color: rgba(0,0,0,0.08);
 	top: 0;
 	position: sticky;
 	z-index: 1;
+	
 }
-
 .header-navbar {
 	padding-top: 0px;
 

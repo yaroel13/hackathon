@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PagesRoutingModule } from './pages-routing.module';
-
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MODULES } from '../global-modules';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { FooterModule } from './footer/footer.module';
-import {DoctorComponent} from './maintenance/doctor/doctor.component';
 
 @NgModule({
   imports: [
@@ -17,8 +15,7 @@ import {DoctorComponent} from './maintenance/doctor/doctor.component';
   declarations: [
     DashboardComponent,
     PagesComponent,
-    AccountSettingsComponent,
-    DoctorComponent
+    AccountSettingsComponent
   ]
 })
 export class PagesModule {
