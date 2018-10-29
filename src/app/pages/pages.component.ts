@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PAGES_ROUTES } from './pages.routes';
+import { PAGES_ROUTES, OTHER_ROUTES } from './pages.routes';
 import { MAINTENANCE_ROUTES } from './maintenance/maintenance.routes';
 import * as _ from 'lodash';
 
@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 export class PagesComponent implements OnInit {
 
   public routes;
-  public 
+  public otherRoutes;
 
   private firstChild;
 
@@ -32,7 +32,10 @@ export class PagesComponent implements OnInit {
     this.routes = PAGES_ROUTES;
     PAGES_ROUTES[1].children=MAINTENANCE_ROUTES;
 
-    console.log(this.activeRouter);
+    /**
+     * Other Navigations Building
+     */
+    this.otherRoutes = OTHER_ROUTES;
   }
 
   logout(){

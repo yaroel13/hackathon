@@ -62,9 +62,10 @@
         </button>
 
         <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
-          <button mat-menu-item [routerLink]="['/account-settings']">
-            <mat-icon svgIcon="account-circle"></mat-icon>
-            <span>{{ 'ACCOUNT_SETTINGS' | translate }}</span>
+          <button mat-menu-item *ngFor="let route of otherRoutes" [routerLink]="['/'+route.path]">
+            <mat-icon svgIcon="{{route.data.icon}}" >
+              </mat-icon>
+            <span>{{ route.data.name | translate }}</span>
           </button>
           <button mat-menu-item (click)="logout()">
             <mat-icon svgIcon="logout-variant"></mat-icon>

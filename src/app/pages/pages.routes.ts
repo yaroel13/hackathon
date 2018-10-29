@@ -29,6 +29,7 @@ export const OTHER_ROUTES: Routes = [
     path: 'account-settings',
     component: AccountSettingsComponent, 
     data: {
+      icon:'account-circle',
       name: "ACCOUNT_SETTINGS"
     }
   }
