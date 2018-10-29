@@ -8,22 +8,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DoctorDetailComponent implements OnInit {
 
-  doctor;
-
-  private _item;
-
-  @Input()
-  set item(item: object) {
-    console.log("set")
-    this._item = {id: 1, code: this.route.snapshot.paramMap.get('code')};
-  }
-
-  get item(): object { return this._item; }
+  public item;
 
   constructor(
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(routeParams => {
+      console.log(this.route.snapshot.paramMap.get('code'));
+      this.item = {
+        code: this.route.snapshot.paramMap.get('code')
+      }
+    });
   }
 }

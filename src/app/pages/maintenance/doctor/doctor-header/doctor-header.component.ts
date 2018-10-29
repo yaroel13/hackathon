@@ -35,6 +35,7 @@ export class DoctorHeaderComponent implements OnInit {
   sampleClick(row){
     // console.log(row);
     console.log(this.route);
+    // console.log(this.route.snapshot.pathFromRoot.filter(i => i.url[0]!=='').map(o => o.url[0]).join('/'));
 
   }
 
