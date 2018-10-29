@@ -5,6 +5,10 @@ import { DoctorComponent } from './doctor.component';
 const routes:Routes = [{
   path:'',
   component:DoctorComponent
+},
+{
+  path: ':code',
+  component: DoctorComponent
 }]
 
 @NgModule({

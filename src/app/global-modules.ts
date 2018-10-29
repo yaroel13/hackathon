@@ -5,6 +5,9 @@ import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ChartsModule } from 'ng2-charts';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+// import { AngularSplitModule } from 'angular-split';
 
 export const MODULES = [
   CommonModule,
@@ -45,5 +48,8 @@ export const MODULES = [
   MatExpansionModule,
   TranslateModule,
   NgSelectModule,
-  ChartsModule
+  ChartsModule,
+  DragDropModule,
+  ScrollDispatchModule,
+  // AngularSplitModule
 ]

@@ -15,7 +15,7 @@ import { FooterModule } from './footer/footer.module';
   declarations: [
     DashboardComponent,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
   ]
 })
 export class PagesModule {

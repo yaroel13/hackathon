@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+  height: 100%;
+
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  // font-size: 14px;
+  width: 90%;
+  padding: 5% 5% 0;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.example-viewport {
+  height: 100%;
+  width: 100%;
+  // border: 1px solid black;
+}
+
+.example-item {
+  height: 50px;
+}

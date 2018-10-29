@@ -1,0 +1,68 @@
+<!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport"> -->
+<!-- <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div> -->
+
+<!-- <table mat-table [dataSource]="dataSource" matSort> -->
+<!-- <th mat-sort-header> ID </th>
+
+    <tr *cdkVirtualFor="let item of items" class="clickable-row" (click)="sampleClick(row)">
+      <td>{{ item }}</td>
+    </tr> -->
+
+<!-- <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *cdkVirtualFor="let row;" class="clickable-row" (click)="sampleClick(row)">
+    </tr>
+  </table> -->
+
+<!-- <table class="demo-ol">
+    <tr *cdkVirtualFor="let state of dataSource | async" class="demo-tr">
+      <td class="demo-td">{{state.id}}</td>
+      <td class="demo-td">{{state.code}}</td>
+    </tr>
+  </table> -->
+<!-- </cdk-virtual-scroll-viewport> -->
+
+<!-- <table mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="first_name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="last_name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="sampleClick(row)"></tr>
+</table> -->
+
+<cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
+  <table class="demo-ol">
+    <th>ID</th>
+    <th>Code</th>
+    <tr *cdkVirtualFor="let item of items" class="demo-tr clickable-row" (click)="sampleClick()" [routerLink]="getCurrentRoute(item)">
+      <td class="demo-td">{{item.id}}</td>
+      <td class="demo-td">{{item.code}}</td>
+    </tr>
+  </table>
+</cdk-virtual-scroll-viewport>
