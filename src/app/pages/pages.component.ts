@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PAGES_ROUTES } from './pages.routes';
 import { MAINTENANCE_ROUTES } from './maintenance/maintenance.routes';
 import * as _ from 'lodash';
@@ -14,10 +14,14 @@ import * as _ from 'lodash';
 export class PagesComponent implements OnInit {
 
   public routes;
+  public 
+
+  private firstChild;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private activeRouter: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -27,11 +31,25 @@ export class PagesComponent implements OnInit {
      */
     this.routes = PAGES_ROUTES;
     PAGES_ROUTES[1].children=MAINTENANCE_ROUTES;
+
+    console.log(this.activeRouter);
   }
 
   logout(){
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  public getActiveModuleName()
+  {
+      this.firstChild = this.activeRouter.snapshot.firstChild;
+
+      while(this.firstChild.firstChild)
+      {
+        this.firstChild = this.firstChild.firstChild;
+      }
+
+      return this.firstChild.data.name;
   }
 
 }
