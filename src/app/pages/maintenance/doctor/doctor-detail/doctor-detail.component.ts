@@ -10,23 +10,20 @@ export class DoctorDetailComponent implements OnInit {
 
   doctor;
 
-  @Input() item;
+  private _item;
+
+  @Input()
+  set item(item: object) {
+    console.log("set")
+    this._item = {id: 1, code: this.route.snapshot.paramMap.get('code')};
+  }
+
+  get item(): object { return this._item; }
 
   constructor(
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    // console.log(this.item);
-    // this.route.params.subscribe(routeParams => {
-    //   // this.loadUserDetail(routeParams.id);
-      this.getDetail();
-    // });
   }
-
-  getDetail(): void {
-    // console.log(this.route.snapshot.paramMap.get('code'));
-    this.item = {id: 1, code: this.route.snapshot.paramMap.get('code')};
-  }
-
 }

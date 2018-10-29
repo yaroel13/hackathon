@@ -56,11 +56,12 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable-row" (click)="sampleClick(row)"></tr>
 </table> -->
 
-<cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
   <table class="demo-ol">
     <th>ID</th>
     <th>Code</th>
-    <tr *cdkVirtualFor="let item of items" class="demo-tr clickable-row" (click)="sampleClick()" [routerLink]="getCurrentRoute(item)">
+    <!-- <tr *cdkVirtualFor="let item of items" class="demo-tr clickable-row" (click)="sampleClick()" [routerLink]="getCurrentRoute(item)"> -->
+    <tr *cdkVirtualFor="let item of items" class="demo-tr clickable-row" (click)="sampleClick()" routerLink="/maintenance/doctor/{{item.code}}">
       <td class="demo-td">{{item.id}}</td>
       <td class="demo-td">{{item.code}}</td>
     </tr>
