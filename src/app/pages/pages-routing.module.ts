@@ -7,8 +7,8 @@ const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
-    ...PAGES_ROUTES,
-    ...OTHER_ROUTES
+    ...OTHER_ROUTES,
+    ...PAGES_ROUTES
   ]
 }];
 

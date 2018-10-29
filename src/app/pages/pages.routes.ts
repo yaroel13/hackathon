@@ -27,7 +27,9 @@ export const PAGES_ROUTES: Routes = [
 export const OTHER_ROUTES: Routes = [
   {
     path: 'account-settings',
-    component: AccountSettingsComponent,
-    loadChildren: './account-settings/account-settings.module#AccountSettingsModule'
+    component: AccountSettingsComponent, 
+    data: {
+      name: "ACCOUNT_SETTINGS"
+    }
   }
 ]
