@@ -30,6 +30,7 @@
     "@ngx-translate/http-loader": "^3.0.1",
     "amazon-cognito-identity-js": "^2.0.23",
     "angular-clickable-click": "^0.1.1",
+    "angular-split-ng6": "^1.0.0-rc.5",
     "aws-sdk": "^2.306.0",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",

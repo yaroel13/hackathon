@@ -1,5 +1,6 @@
+import { AngularSplitModule } from 'angular-split-ng6';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule, MatSortModule } from "@angular/material";
+import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule, MatSortModule, MatExpansionModule } from "@angular/material";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -7,6 +8,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ChartsModule } from 'ng2-charts';
 
 export const MODULES = [
+  AngularSplitModule,
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
@@ -39,6 +41,7 @@ export const MODULES = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
+  MatExpansionModule,
   TranslateModule,
   NgSelectModule,
   ChartsModule

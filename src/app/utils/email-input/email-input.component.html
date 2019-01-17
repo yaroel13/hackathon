@@ -1,0 +1,24 @@
+<form [formGroup]="form" novalidate autocomplete="off" autocorrect="off">
+  <h3 mat-dialog-title>Enter Email Address</h3>
+  <div mat-dialog-content>
+    <div fxFlex fxLayout="column" fxLayoutGap="20px">
+    <mat-form-field>
+      <input matInput [placeholder]="'EMAIL_ADDRESS' | translate" formControlName="email" required>
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+        Required Field
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('maxlength')">
+        Must not exceed 200 characters
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <span class="spacer"></span>
+    <button type="button"  mat-button color="primary" (click)="dialogRef.close(form.value.email)" [disabled]="form.controls['email'].errors">{{ 'BUTTON_SUBMIT' | translate }}</button>
+    <button type="button" mat-button (click)="dialogRef.close(false)">{{ 'BUTTON_CANCEL' | translate }}</button>
+  </div>
+</form>

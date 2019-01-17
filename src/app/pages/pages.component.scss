@@ -1,5 +1,76 @@
+@import "../../styles.scss";
+@include mat-core();
+
+$nav-height:48px;
+$nav-font-size: 12px;
+$expanded-background-color: rgba(0,0,0,0.08);
+
+:host ::ng-deep .mat-drawer-inner-container {
+  overflow: hidden !important;
+  flex-direction: column;
+}
+
+.nav-icon {
+	transform: scale(.8);
+	margin-right: 16px;
+}
+
 .main-navbar {
 	top: 0;
 	position: sticky;
 	z-index: 1;
+}
+
+.module-name
+{
+	vertical-align: middle;
+}
+
+.header-navbar {
+	padding-top: 0px;
+
+	.mat-list-item {
+		height: $nav-height !important;
+		padding-left: 10px !important;
+		font-size: $nav-font-size;
+	}
+}
+
+.expansion-panel
+{
+	.mat-expansion-panel-header.mat-expanded {
+		background-color: $expanded-background-color !important;
+	}
+}
+
+//Expansion Navigation Header Style
+.expansion-navbar {
+	.mat-list-item {
+		font-size: $nav-font-size;
+	}
+}
+
+//Expansion Navigation Detail Style
+.detail-navbar {
+	// background-color:$expanded-background-color !important;
+	padding-top: 0px;
+
+	.mat-list-item {
+		padding: 0px !important;
+		font-size: $nav-font-size;
+		padding-left: 50px;
+		height: $nav-height;
+	}
+
+	.mat-list-item-content {
+		padding: 0px !important;
+	}
+
+	div {
+		padding-left: 50px;
+	}
+}
+
+.single-module-font {
+	font-size: 15px !important;
 }

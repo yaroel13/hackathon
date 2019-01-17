@@ -1,0 +1,16 @@
+:host ::ng-deep .mat-tab-body-wrapper { 
+  overflow: auto; 
+}
+
+:host ::ng-deep mat-tab-body {
+  height: 100%;
+}
+
+mat-tab-group {
+  height: 100%;
+}
+
+::ng-deep .mat-list .mat-list-item .mat-line{
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}

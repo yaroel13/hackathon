@@ -1,21 +1,14 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { MAINTENANCE_ROUTES } from './maintenance.routes';
 
-import { DoctorComponent } from './doctor/doctor.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: DoctorComponent,
-    // data: {
-    //   icon: "view-dashboard",
-    //   name: "DOCTOR MAINTENANCE"
-    // }
-  }
-];
+const routes = MAINTENANCE_ROUTES;
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports:[RouterModule],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+  declarations: []
 })
 export class MaintenanceRoutingModule { }

@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{ 'DIALOG_TITLE_FILTER_USER' | translate }}</h1>
+<form [formGroup]="filterForm" novalidate autocomplete="off" autocorrect="off">
+  <div mat-dialog-content fxLayout="column" fxAlign="center center">
+    <div class="height-auto">
+      <div fxLayout="column" fxLayoutGap="20px">
+        <!-- <mat-form-field class="full-width">
+					<mat-chip-list #roleChipList>
+						<mat-chip class="mat-chip-manual-primary" *ngFor="let role of roles" [removable]="!loading.submit" (removed)="remove(role, roles)">
+							{{ role.name }}
+							<mat-icon matChipRemove *ngIf="!loading.submit">close</mat-icon>
+						</mat-chip>
+            <input [placeholder]="'ROLE' | translate" [matChipInputFor]="roleChipList" [matAutocomplete]="autoRole" formControlName="role" (blur)="roleSearch.value = ''" #roleSearch>
+            <mat-icon matSuffix svgIcon="menu-down"></mat-icon>
+						<mat-autocomplete #autoRole="matAutocomplete" (optionSelected)="add($event, roles, roleSearchResult, 'role')" >
+              <mat-option *ngIf="!loading.searchRole && roleSearchResult.length == 0 && filterForm.get('role').value == ''" disabled>{{ 'MESSAGE_INFO_TYPE_TO_SEARCH' | translate }}</mat-option>
+              <mat-option *ngIf="loading.searchRole" disabled>{{ 'SEARCHING' | translate }}</mat-option>
+							<mat-option *ngFor="let role of roleSearchResult" [value]="role">{{ role.name }}</mat-option>
+							<mat-option *ngIf="!loading.searchRole && roleSearchResult.length == 0 && (filterForm.get('role').value && !filterForm.get('role').value.id)" disabled>{{ 'MESSAGE_INFO_NO_RESULT_FOUND' | translate }}</mat-option>
+						</mat-autocomplete>
+					</mat-chip-list>
+				</mat-form-field> -->
+
+        <mat-form-field>
+          <mat-select [placeholder]="'STATUS' | translate" formControlName="status">
+            <mat-option value="">{{ 'OPTION_ALL' | translate }}</mat-option>
+            <mat-option value="1">{{ 'OPTION_ACTIVE' | translate }}</mat-option>
+            <mat-option value="0">{{ 'OPTION_INACTIVE' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <span class="spacer"></span>
+    <button type="button" color="primary" mat-button (click)="getValue()">{{ 'BUTTON_APPLY' | translate }}</button>
+    <button type="button" color="warn" mat-button (click)="reset()">{{ 'BUTTON_RESET' | translate }}</button>
+    <button type="button" mat-button (click)="dialogRef.close()">{{ 'BUTTON_CANCEL' | translate }}</button>
+  </div>
+</form>

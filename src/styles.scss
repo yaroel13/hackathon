@@ -1,4 +1,5 @@
 @import "./theme.scss";
+@include mat-core();
 
 html, body {
   margin: 0px;
@@ -27,9 +28,11 @@ html, body {
 button.mat-menu-item {
   line-height: 24px !important;
 }
+
 a.mat-menu-item > mat-icon {
   margin-bottom: 14px;
 }
+
 .mat-icon svg {
   height: 24px;
   width: 24px;
@@ -73,4 +76,23 @@ esc-dashboard {
     flex-grow: 1;
     min-width:80%;
   }
+}
+
+esc-pages {
+  .mat-expansion-panel-content>.mat-expansion-panel-body {
+    padding: 0px !important;
+  }
+}
+
+.height-90 {
+  height: 90vh;
+}
+
+.spacer {
+	flex: 1 1 auto;
+  text-align: center;
+}
+
+.count-margin {
+  margin: 10px;
 }

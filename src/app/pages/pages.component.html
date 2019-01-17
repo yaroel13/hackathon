@@ -2,7 +2,7 @@
 
   <mat-sidenav #sidenav fxLayout="column">
     <div class="sidenav-banner"></div>
-    <mat-nav-list>
+    <!-- <mat-nav-list>
       <mat-list-item *ngFor="let route of routes"
         [routerLink]="['/'+route.path]"
         routerLinkActive="active"
@@ -10,7 +10,44 @@
         <mat-icon mat-list-icon [svgIcon]="route.data?.icon"></mat-icon>
         <h4 mat-line>{{ route.data?.name | translate }}</h4>
       </mat-list-item>
-    </mat-nav-list>
+    </mat-nav-list> -->
+    <mat-accordion *ngFor="let route of routes" multi="false">
+      <!--Single Module Part-->
+      <mat-nav-list *ngIf="!route.children" class="header-navbar nav-list-header">
+        <mat-list-item class="mat-primary-bg-color single-module-font" [routerLink]="'/'+route.path" (click)="sidenav.toggle()">
+          <div>
+            <mat-icon svgIcon="{{route.data.icon}}" class="nav-icon">
+            </mat-icon>
+          </div>
+          <div>
+            {{ route.data?.name | translate }}
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <!--Multiple Submodule Part-->
+      <mat-expansion-panel [expanded]="false" *ngIf="route.children" class="mat-elevation-z0 expansion-panel">
+        <mat-expansion-panel-header [collapsedHeight]="'48px'" [expandedHeight]="'48px'" class="expansion-navbar">
+          <mat-panel-title fxLayout fxLayoutAlign="start center">
+            <div>
+              <mat-icon svgIcon="{{route.data.icon}}" class="nav-icon">
+              </mat-icon>
+            </div>
+            <div> {{route.data.name | translate }} </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <mat-nav-list class="detail-navbar" *ngFor="let subRoute of route.children">
+            <mat-list-item *ngIf="subRoute.path" [routerLink]="'/'+route.path+'/'+subRoute.path" (click)="sidenav.toggle()">
+              <div>
+                {{ subRoute.data?.name | translate }}
+              </div>
+            </mat-list-item>
+          </mat-nav-list>
+        </ng-template>
+      </mat-expansion-panel>
+
+    </mat-accordion>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -41,13 +78,13 @@
       </div>
     </mat-toolbar>
 
-    <div fxLayout="column">
+    <div fxLayout="column" class="full-height">
       <router-outlet></router-outlet>
     </div>
 
-    <mat-toolbar color="primary" class="page-header">
+    <!-- <mat-toolbar color="primary" class="page-header">
       <h1>Footer here</h1>
-    </mat-toolbar>
+    </mat-toolbar> -->
   </mat-sidenav-content>
 
 </mat-sidenav-container>
