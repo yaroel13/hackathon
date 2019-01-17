@@ -4,6 +4,11 @@
   "MESSAGE_ERROR_PASSWORD_REQUIRED": "Password is required",
   "MESSAGE_ERROR_USERNAME_REQUIRED": "Username is required",
   "MESSAGE_ERROR_RELOGIN_REQUIRED": "Please re-login",
+
+  "MESSAGE_ERROR_DEFAULT": "An error occurred. Please try again.",
+
+  "MESSAGE_ERROR_CODE_ALREADY_EXISTS": "Code already exists",
+  "MESSAGE_ERROR_EMAIL_ALREADY_EXISTS": "Email already exists",
   "MESSAGE_ERROR_SAVING_DATA": "Error saving data",
 
   "MESSAGE_INFO_NO_DATA": "No data",
