@@ -70,7 +70,6 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.patchForm();
-    this.subscribeSearch();
   }
 
   initForm() {
@@ -110,189 +109,6 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  getInitialOptionValues(name, acTrigger) {
-    if (!this.form.controls[name].value) {
-      this.filterLists[name].limit = this.incrementsOf;
-      this.filterLists[name].page = this.initialPage;
-      this.getData(name);
-    } else {
-      this[acTrigger].openPanel();
-    }
-  }
-
-  getData(name) {
-    switch(name) {
-      // case "principal": {
-      //   this.loading.principalSearch = true;
-      //   this.principalService.getList(this.filterLists[name]).pipe(
-      //     catchError((err) => {
-      //       console.error(err);
-      //       return observableOf(null);
-      //     }))
-      //     .subscribe((res: any) => {
-      //       if (res == null) {
-      //         return;
-      //       }
-      //       // console.log(res)
-      //       this.principalOptionsLength = _.toNumber(_.get(res.metadata, 'total'));
-      //       this.principalOptions = res.data;
-      //       this.filterLists[name].fetchingData = false;
-      //       this.autocompleteScroll('principal', 'principalACRef', 'principalACTr');
-      //       this.loading.principalSearch = false;
-      //     });
-      //   break;
-      // }
-
-      // case "role": {
-      //   this.loading.roleSearch = true;
-      //   this.securityMatrixService.getList(this.filterLists[name]).pipe(
-      //     catchError((err) => {
-      //       console.error(err);
-      //       return observableOf(null);
-      //     }))
-      //     .subscribe((res: any) => {
-      //       if (res == null) {
-      //         return;
-      //       }
-      //       // console.log(res)
-      //       this.roleOptionsLength = _.toNumber(_.get(res.metadata, 'total'));
-      //       this.roleOptions = res.data;
-      //       this.filterLists[name].fetchingData = false;
-      //       this.autocompleteScroll('role', 'roleACRef', 'roleACTr');
-      //       this.loading.roleSearch = false;
-      //     });
-      //   break;
-      // }
-
-      default: {
-        break;
-      }
-    }
-  }
-
-  getMoreData(name) {
-    switch(name) {
-      // case "principal": {
-      //   if (!this.loading.principalSearch && this.principalOptionsLength > this.principalOptions.length) {
-      //     this.filterLists[name].limit = this.incrementsOf;
-      //     this.filterLists[name].page += 1;
-      //     this.getData(name);
-      //   }
-      //   break;
-      // }
-
-      // case "role": {
-      //   if (!this.loading.roleSearch && this.roleOptionsLength > this.roleOptions.length) {
-      //     this.filterLists[name].limit = this.incrementsOf;
-      //     this.filterLists[name].page += 1;
-      //     this.getData(name);
-      //   }
-      //   break;
-      // }
-
-      default: {
-        break;
-      }
-    }
-  }
-
-  subscribeSearch() {
-    // this.form.controls['role'].valueChanges.pipe(
-    //   tap((term) => {
-    //     if (!(typeof term === 'string' || term instanceof String)) {
-    //       throw "Invalid format";
-    //     }
-    //     this.filterLists['role'].page = this.initialPage;
-    //     this.filterLists['role'].query = this.form.controls['role'].value;
-    //   }),
-    //   debounceTime(600),
-    //   map((term: string) => _.trim(term)),
-    //   distinctUntilChanged(),
-    //   switchMap((term) => term ?
-    //     this.securityMatrixService.getList({
-    //       page: this.initialPage,
-    //       query: term
-    //     }) :
-    //     observableOf(null)
-    //   ),
-    //   retry(-1),
-    //   catchError((err) => {
-    //     console.error(err);
-    //     return observableOf(null);
-    //   }))
-    //   .subscribe((res: any) => {
-    //     // console.log(res);
-    //     if (res == null) {
-    //       return;
-    //     } else {
-    //       this.roleOptions = res.data;
-    //     }
-    //   });
-
-    // this.form.controls['principal'].valueChanges.pipe(
-    //   tap((term) => {
-    //     if (!(typeof term === 'string' || term instanceof String)) {
-    //       throw "Invalid format";
-    //     }
-    //     this.filterLists['principal'].page = this.initialPage;
-    //     this.filterLists['principal'].query = this.form.controls['principal'].value;
-    //   }),
-    //   debounceTime(600),
-    //   map((term: string) => _.trim(term)),
-    //   distinctUntilChanged(),
-    //   switchMap((term) => term ?
-    //     this.principalService.getList({
-    //       page: this.initialPage,
-    //       query: term
-    //     }) :
-    //     observableOf(null)
-    //   ),
-    //   retry(-1),
-    //   catchError((err) => {
-    //     console.error(err);
-    //     return observableOf(null);
-    //   }))
-    //   .subscribe((res: any) => {
-    //     // console.log(res);
-    //     if (res == null) {
-    //       return;
-    //     } else {
-    //       this.principalOptions = res.data;
-    //     }
-    //   });
-  }
-
-  autocompleteScroll(name, refName, acTrigger) {
-    setTimeout(() => {
-      if (this[refName].isOpen || this[refName].panel) {
-        fromEvent(this[refName].panel.nativeElement, 'scroll')
-          .pipe(
-            map(x => this[refName].panel.nativeElement.scrollTop),
-            takeUntil(this[acTrigger].panelClosingActions)
-          )
-          .subscribe(x => {
-            const scrollTop = this[refName].panel.nativeElement
-              .scrollTop;
-            const scrollHeight = this[refName].panel.nativeElement
-              .scrollHeight;
-            const elementHeight = this[refName].panel.nativeElement
-              .clientHeight;
-            const atBottom = scrollHeight === scrollTop + elementHeight;
-            if (atBottom) {
-              // fetch more data
-              this.getMoreData(name);
-            }
-          });
-      }
-    });
-  }
-
-  autoCmpltClosed(name) {
-    if (!this.form.controls[name].value) {
-      this.filterLists[name].list = [];
-    }
-  }
-
   close() {
     this.onClose.emit(true);
   }
@@ -309,7 +125,7 @@ export class UserFormComponent implements OnInit {
         "email": value.email ? value.email : null,
         "imei": value.imei ? value.imei : null,
         "status": value.status ? value.status : null,
-        "temporary_password": "Star123!"
+        "temporary_password": "Pass123!"
       }
       if (this.selectedData.id) {
         formValue["status"] = formValue.status == true ? 1 : 0;
@@ -373,10 +189,6 @@ export class UserFormComponent implements OnInit {
     if (message) {
       this.dialogService.openSnackBar(message);
     }
-  }
-
-  displayFn(data?: any): string | undefined {
-    return data ? data.name : null;
   }
 
 }

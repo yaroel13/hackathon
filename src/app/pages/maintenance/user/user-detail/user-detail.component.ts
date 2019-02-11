@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { of as observableOf, Subscription } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { UserHeaderComponent } from '../user-header/user-header.component';
-import { DialogService, LanguageService } from '../../../../services';
+import { DialogService, LanguageService, HelperService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
 
 @Component({
@@ -24,7 +24,8 @@ export class UserDetailComponent implements OnInit {
     private languageService: LanguageService,
     public userService: UserService,
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private helperService: HelperService
   ) { }
 
   private getDetailSub: Subscription;
@@ -67,9 +68,7 @@ export class UserDetailComponent implements OnInit {
       .subscribe((res: any) => {
         // console.log(res);
         let detail = res.data;
-        detail.created_date = moment.utc(detail.created_date).local();
-        detail.modified_date = moment.utc(detail.modified_date).local();
-        this.userDetail = detail;
+        this.userDetail = this.helperService.convertToLocalDatetime([detail])[0];
       });
   }
 
@@ -110,7 +109,7 @@ export class UserDetailComponent implements OnInit {
         this.loading.resetPassword = true;
         let data = {
           id: this.userDetail.id,
-          temporary_password: "Star123!"
+          temporary_password: "Pass123!"
         }
         let request = this.userService.resetPassword(data);
 

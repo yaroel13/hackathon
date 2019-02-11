@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatAutocompleteSelectedEvent } from '@an
 import * as _ from 'lodash';
 import { of as observableOf } from 'rxjs';
 import { tap, catchError, debounceTime, map, distinctUntilChanged, finalize, switchMap, retry } from 'rxjs/operators';
-// import { SecurityMatrixService } from '../../../security-matrix/security-matrix.service';
 import { DialogService, LanguageService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
 
@@ -25,7 +24,6 @@ export class UserFilterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    // private securityMatrixService: SecurityMatrixService,
     public dialogRef: MatDialogRef<UserFilterComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService,
@@ -46,29 +44,6 @@ export class UserFilterComponent implements OnInit {
       status: this.data && this.data.filter ? this.data.filter.status : null
     });
     this.roles = this.data.filter.roles;
-
-    // this.filterForm.controls['role'].valueChanges.pipe(
-    //   tap(() => {
-    //     this.roleSearchResult = [];
-    //     this.loading.searchRole = true;
-    //   }),
-    //   debounceTime(600),
-    //   map((term: string) => _.trim(term)),
-    //   distinctUntilChanged(),
-    //   finalize(() => this.loading.searchRole = false),
-    //   switchMap((term) => this.securityMatrixService.getList({ query: term })),
-    //   retry(-1),
-    //   catchError((err) => {
-    //     return observableOf([]);
-    //   }),
-    //   )
-    //   .subscribe(
-    //     (res: any) => {
-    //       let roles = res.data;
-    //       this.roleSearchResult = _.reject(roles, (data) => { return _.findIndex(this.roles, { id: data.id }) >= 0 });
-    //       this.loading.searchRole = false;
-    //     }
-    //   )
   }
 
   reset() {
@@ -110,33 +85,4 @@ export class UserFilterComponent implements OnInit {
         }
       });
   }
-
-  add(event: MatAutocompleteSelectedEvent, list: any[], searchResult: any[], searchElement: any): void {
-    let value = event.option.value;
-
-    if(!event.option.value) {
-      return;
-    }
-
-    switch(searchElement){
-      case "role":
-        this.roleSearch.nativeElement.value = '';
-        break;
-    }
-
-    if(_.findIndex(list, { id: value.id }) < 0){
-      list.push(value);
-    }
-
-    searchResult = _.reject(searchResult, { id : value.id });
-  }
-
-  remove(tag: any, list: any[]): void {
-    let index = list.indexOf(tag);
-
-    if (index >= 0) {
-      list.splice(index, 1);
-    }
-  }
-
 }

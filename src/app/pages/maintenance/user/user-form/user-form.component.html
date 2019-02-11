@@ -7,7 +7,6 @@
         </button>
         <span fxFlex></span>
         <span class="mat-detail-header text-align-center">
-          <!-- {{ selectedData.id ? selectedData.name : 'Add User' }} -->
           {{ 'DETAILS' | translate }}
         </span>
         <span fxFlex></span>
@@ -21,32 +20,6 @@
       <div class="form-container padding-25" fxLayout fxFlexFill fxLayoutGap="50px">
 
         <div fxFlex fxLayout="column" fxLayoutGap="20px">
-          <!-- <mat-form-field>
-            <input matInput [placeholder]="'ACCOUNT' | translate" (focus)="getInitialOptionValues('principal', 'principalACTr')" formControlName="principal" [matAutocomplete]="principalAC" #principalSearch required>
-
-            <mat-autocomplete (opened)="autocompleteScroll('principal', 'principalACRef','principalACTr')"
-              (closed)="autoCmpltClosed('principal')" #principalAC="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngIf="loading.principalSearch" disabled>{{ 'SEARCHING' | translate }}</mat-option>
-              <mat-option *ngFor="let data of principalOptions" [value]="data">
-                {{ data?.name }}
-              </mat-option>
-              <mat-option *ngIf="!loading.principalSearch && principalOptions.length == 0" disabled>{{ 'MESSAGE_INFO_NO_RESULT_FOUND' | translate }}</mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput [placeholder]="'ROLE' | translate" (focus)="getInitialOptionValues('role', 'roleACTr')" formControlName="role" [matAutocomplete]="roleAC" #roleSearch required>
-
-            <mat-autocomplete (opened)="autocompleteScroll('role', 'roleACRef','roleACTr')"
-              (closed)="autoCmpltClosed('role')" #roleAC="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngIf="loading.roleSearch" disabled>{{ 'SEARCHING' | translate }}</mat-option>
-              <mat-option *ngFor="let data of roleOptions" [value]="data">
-                {{ data?.name }}
-              </mat-option>
-              <mat-option *ngIf="!loading.roleSearch && roleOptions.length == 0" disabled>{{ 'MESSAGE_INFO_NO_RESULT_FOUND' | translate }}</mat-option>
-            </mat-autocomplete>
-          </mat-form-field> -->
-
           <mat-form-field>
             <input matInput [placeholder]="'CODE' | translate" formControlName="preferred_username" required>
             <mat-error *ngIf="form.controls['preferred_username'].hasError('required')">

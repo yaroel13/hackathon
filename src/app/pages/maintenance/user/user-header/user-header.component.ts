@@ -10,6 +10,7 @@ import { UserFilterComponent } from '../user-filter/user-filter.component';
 import { EmailInputComponent } from '../../../../utils/email-input/email-input.component';
 import { DialogService, LanguageService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
+import { REQUEST_DATA } from '../../../../utils/constant';
 
 @Component({
   selector: 'esc-user-header',
@@ -30,11 +31,6 @@ export class UserHeaderComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-  private incrementsOf = 20;
-  private initialPage = 1;
-  private initialKeyword = "";
-  private initialStatus = "";
-  private initialFilterValue = null;
   public searchForm: FormGroup;
 
   public error = {
@@ -49,19 +45,18 @@ export class UserHeaderComponent implements OnInit {
   public listLength = 0;
   public selectedData;
 
-  private tableData = {
-    limit: this.incrementsOf,
-    page: this.initialPage,
-    query: this.initialKeyword,
-    roles: this.initialFilterValue,
-    status: this.initialStatus,
-    fetchingData: false
-  }
+  private tableData = Object.assign({}, REQUEST_DATA,
+    {
+      roles: null,
+      status: "",
+      fetchingData: false
+    }
+  );
 
   public filter: any = {
     roles: [],
     status: this.tableData.status,
-    query: this.initialKeyword
+    query: REQUEST_DATA.query
   };
 
   ngOnInit() {
@@ -108,7 +103,7 @@ export class UserHeaderComponent implements OnInit {
         if(this.listData.length == 0){
           this.error.init = true;
         } else {
-          this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_INFO_PASSWORD_RESET",{}));
+          this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
         }
         return observableOf(null);
       }))
@@ -172,8 +167,6 @@ export class UserHeaderComponent implements OnInit {
     .subscribe((email) => {
       if(email) {
         let requestData = {
-          limit: 5000,
-          page: this.initialPage,
           roles: this.tableData.roles,
           email: email
         }
@@ -204,7 +197,7 @@ export class UserHeaderComponent implements OnInit {
       distinctUntilChanged()
     ).subscribe((term) => {
       this.listData = [];
-      this.tableData.page = this.initialPage;
+      this.tableData.page = REQUEST_DATA.page;
       this.tableData.query = _.toString(term);
       this.filter.query = _.toString(term);
       this.getListData();

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGUAGES, KEY_STORAGE_LANGUAGE, DEFAULT_LANGUAGE } from '../../utils/constant';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,16 @@ export class HelperService {
 
   public randomString(n: number = 6){
    return Math.random().toString(36).substring(n);
+  }
+
+  public convertToLocalDatetime(objArr) {
+    objArr.forEach(obj => {
+      Object.keys(obj).forEach(function(key) {
+        if(_.isString(obj[key]) && _.isNaN(_.toNumber(obj[key])) && moment(obj[key]).isValid()) {
+          obj[key] = moment.utc(obj[key]).local();
+        }
+      });
+    });
+    return objArr;
   }
 }

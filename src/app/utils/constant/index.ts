@@ -1,6 +1,7 @@
 export * from './language';
 export * from './error';
 export * from './paths';
+export * from './request-data';
 
 export const
   HTTP_HEADER_CONTENT_TYPE = 'Content-Type',
