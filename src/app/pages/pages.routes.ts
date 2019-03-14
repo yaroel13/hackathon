@@ -13,6 +13,7 @@ export const PAGES_ROUTES: Routes = [
   },
   {
     path: 'maintenance',
+    // component: DoctorComponent,
     data: {
       icon: "wrench",
       name: "MAINTENANCE"

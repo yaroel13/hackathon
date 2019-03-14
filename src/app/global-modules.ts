@@ -1,3 +1,4 @@
+import { AngularSplitModule } from 'angular-split-ng6';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule, MatProgressSpinnerModule, MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatAutocomplete, MatAutocompleteModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule, MatSortModule, MatExpansionPanel, MatAccordion, MatExpansionModule, MatRadioButton, MatRadioModule, MatSliderModule, MatButtonToggleModule, MatNativeDateModule } from "@angular/material";
 import { CommonModule } from "@angular/common";
@@ -10,6 +11,7 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 // import { AngularSplitModule } from 'angular-split';
 
 export const MODULES = [
+  AngularSplitModule,
   CommonModule,
   FormsModule,
   ReactiveFormsModule,

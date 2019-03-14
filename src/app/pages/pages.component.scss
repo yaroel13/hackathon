@@ -2,8 +2,13 @@
 @include mat-core();
 
 $nav-height:48px;
-$nav-font-size: 15px;
+$nav-font-size: 12px;
 $expanded-background-color: rgba(0,0,0,0.08);
+
+:host ::ng-deep .mat-drawer-inner-container {
+  overflow: hidden !important;
+  flex-direction: column;
+}
 
 .nav-icon {
 	transform: scale(.8);
@@ -14,7 +19,6 @@ $expanded-background-color: rgba(0,0,0,0.08);
 	top: 0;
 	position: sticky;
 	z-index: 1;
-	
 }
 
 .module-name
@@ -32,15 +36,11 @@ $expanded-background-color: rgba(0,0,0,0.08);
 	}
 }
 
-
 .expansion-panel
 {
 	.mat-expansion-panel-header.mat-expanded {
 		background-color: $expanded-background-color !important;
-		
 	}
-	
-	
 }
 
 //Expansion Navigation Header Style
@@ -48,15 +48,11 @@ $expanded-background-color: rgba(0,0,0,0.08);
 	.mat-list-item {
 		font-size: $nav-font-size;
 	}
-
-
-
 }
-
 
 //Expansion Navigation Detail Style
 .detail-navbar {
-	background-color:$expanded-background-color !important;
+	// background-color:$expanded-background-color !important;
 	padding-top: 0px;
 
 	.mat-list-item {
@@ -73,4 +69,8 @@ $expanded-background-color: rgba(0,0,0,0.08);
 	div {
 		padding-left: 50px;
 	}
+}
+
+.single-module-font {
+	font-size: 15px !important;
 }

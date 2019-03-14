@@ -1,0 +1,10 @@
+<h1 mat-dialog-title *ngIf="title">{{ title }}</h1>
+<div mat-dialog-content class="mat-subheading-1" *ngIf="message">
+	<p class="mat-body">{{ message }}</p>
+</div>
+<div mat-dialog-actions>
+	<button type="button" mat-button (click)="extraButtonFn" color="accent" *ngIf="extraButton">{{ extraButton }}</button>
+	<span class="spacer"></span>
+	<button type="button" mat-button (click)="dialogRef.close(false)" *ngIf="hasCancel">{{ 'CANCEL' | translate }}</button>
+	<button type="button" mat-button (click)="dialogRef.close(true)" cdkFocusInitial [color]="color" >{{ button }}</button>
+</div>

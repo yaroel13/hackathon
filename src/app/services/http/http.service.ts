@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '..';
@@ -14,13 +15,13 @@ import { CognitoUserSession } from 'amazon-cognito-identity-js';
 export class HttpService {
 
   private apiEndpoint = environment.apiEndpoint;
-  
+
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
   ) { }
-  
+
   public get<T>(path, httpParams?, additionalHeaders?): Observable<T[] | T | any>{
     let result;
     this.authService.user.cognitoUser.getSession((err, session: CognitoUserSession) => {
@@ -29,7 +30,7 @@ export class HttpService {
       }
 
       let url = new URL(path, this.apiEndpoint);
-      let headers = _.assign({}, additionalHeaders, { 
+      let headers = _.assign({}, additionalHeaders, {
         [ HTTP_HEADER_CONTENT_TYPE ]: MIME_TYPE_JSON,
         [ HTTP_HEADER_AUTHORIZATION ]: session.getIdToken().getJwtToken()
       });
@@ -38,6 +39,46 @@ export class HttpService {
         headers: new HttpHeaders(headers),
         params: httpParams
       });
+    });
+    return result;
+  }
+
+  public post<T>(path, data?, additionalHeaders?): Observable<T[] | T | any>{
+    let result;
+    this.authService.user.cognitoUser.getSession((err, session: CognitoUserSession) => {
+      if(err){
+        return result = of(err);
+      }
+
+      let url = Location.joinWithSlash(this.apiEndpoint, path);
+      let headers = _.assign({}, additionalHeaders, {
+        [ HTTP_HEADER_CONTENT_TYPE ]: MIME_TYPE_JSON,
+        [ HTTP_HEADER_AUTHORIZATION ]: session.getIdToken().getJwtToken()
+      });
+      // console.log(path, data);
+        return result = this.http.post<T[] | T>(url.toString(), data, {
+          headers: new HttpHeaders(headers)
+        });
+    });
+    return result;
+  }
+
+  public put<T>(path, data?, additionalHeaders?): Observable<T[] | T | any>{
+    let result;
+    this.authService.user.cognitoUser.getSession((err, session: CognitoUserSession) => {
+      if(err){
+        return result = of(err);
+      }
+
+      let url = Location.joinWithSlash(this.apiEndpoint, path);
+      let headers = _.assign({}, additionalHeaders, {
+        [ HTTP_HEADER_CONTENT_TYPE ]: MIME_TYPE_JSON,
+        [ HTTP_HEADER_AUTHORIZATION ]: session.getIdToken().getJwtToken()
+      });
+      // console.log(path, data);
+        return result = this.http.put<T[] | T>(url.toString(), data, {
+          headers: new HttpHeaders(headers)
+        });
     });
     return result;
   }

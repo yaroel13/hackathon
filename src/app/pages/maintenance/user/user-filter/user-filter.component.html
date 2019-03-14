@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{ 'DIALOG_TITLE_FILTER_USER' | translate }}</h1>
+<form [formGroup]="filterForm" novalidate autocomplete="off" autocorrect="off">
+  <div mat-dialog-content fxLayout="column" fxAlign="center center">
+    <div class="height-auto">
+      <div fxLayout="column" fxLayoutGap="20px">
+        <mat-form-field>
+          <mat-select [placeholder]="'STATUS' | translate" formControlName="status">
+            <mat-option value="">{{ 'OPTION_ALL' | translate }}</mat-option>
+            <mat-option value="1">{{ 'OPTION_ACTIVE' | translate }}</mat-option>
+            <mat-option value="0">{{ 'OPTION_INACTIVE' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <span class="spacer"></span>
+    <button type="button" color="primary" mat-button (click)="getValue()">{{ 'BUTTON_APPLY' | translate }}</button>
+    <button type="button" color="warn" mat-button (click)="reset()">{{ 'BUTTON_RESET' | translate }}</button>
+    <button type="button" mat-button (click)="dialogRef.close()">{{ 'BUTTON_CANCEL' | translate }}</button>
+  </div>
+</form>

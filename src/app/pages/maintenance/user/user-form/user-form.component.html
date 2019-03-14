@@ -1,0 +1,80 @@
+<form [formGroup]="form" (submit)="onSubmit(form.getRawValue())" novalidate autocomplete="off" autocorrect="off">
+  <div fxLayout="column" fxFlexFill>
+    <div>
+      <mat-toolbar fxLayout="row" style="text-align:left">
+        <button mat-icon-button [matTooltip]="'CLOSE' | translate" (click)="close()" type="button">
+          <mat-icon svgIcon="close"></mat-icon>
+        </button>
+        <span fxFlex></span>
+        <span class="mat-detail-header text-align-center">
+          {{ 'DETAILS' | translate }}
+        </span>
+        <span fxFlex></span>
+        <button mat-icon-button [matTooltip]="'SAVE' | translate" type="submit" style="text-align:right">
+          <mat-icon svgIcon="check"></mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+
+    <div style="overflow: auto" *ngIf="selectedData">
+      <div class="form-container padding-25" fxLayout fxFlexFill fxLayoutGap="50px">
+
+        <div fxFlex fxLayout="column" fxLayoutGap="20px">
+          <mat-form-field>
+            <input matInput [placeholder]="'CODE' | translate" formControlName="preferred_username" required>
+            <mat-error *ngIf="form.controls['preferred_username'].hasError('required')">
+              {{ 'FORM_ERROR_REQUIRED_FIELD' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['preferred_username'].hasError('maxlength')">
+              {{ 'FORM_ERROR_USER_CODE_MAX_LENGTH' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['preferred_username'].hasError('pattern')">
+              {{ 'FORM_ERROR_ALPHANUMERIC_PATTERN' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['preferred_username'].hasError('notUnique')">
+              {{ 'MESSAGE_ERROR_CODE_ALREADY_EXISTS' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [placeholder]="'NAME' | translate" formControlName="name" required>
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+              {{ 'FORM_ERROR_REQUIRED_FIELD' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['name'].hasError('maxlength')">
+              {{ 'FORM_ERROR_USER_NAME_MAX_LENGTH' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [placeholder]="'EMAIL_ADDRESS' | translate" formControlName="email" required>
+            <mat-error *ngIf="form.controls['email'].hasError('required')">
+              {{ 'FORM_ERROR_REQUIRED_FIELD' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('maxlength')">
+              {{ 'FORM_ERROR_EMAIL_MAX_LENGTH' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('email')">
+              {{ 'FORM_ERROR_VALID_EMAIL' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('notUnique')">
+              {{ 'MESSAGE_ERROR_EMAIL_ALREADY_EXISTS' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [placeholder]="'IMEI' | translate" formControlName="imei">
+            <mat-error *ngIf="form.controls['imei'].hasError('maxlength')">
+              {{ 'FORM_ERROR_IMEI_MAX_LENGTH' | translate }}
+            </mat-error>
+            <mat-error *ngIf="form.controls['imei'].hasError('pattern')">
+              {{ 'FORM_ERROR_NUMERIC_PATTERN' | translate }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="status" *ngIf="selectedData.id">{{ 'STATUS' | translate }}</mat-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

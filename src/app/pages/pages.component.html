@@ -2,13 +2,19 @@
 
   <mat-sidenav #sidenav fxLayout="column">
     <div class="sidenav-banner"></div>
-
+    <!-- <mat-nav-list>
+      <mat-list-item *ngFor="let route of routes"
+        [routerLink]="['/'+route.path]"
+        routerLinkActive="active"
+        (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon [svgIcon]="route.data?.icon"></mat-icon>
+        <h4 mat-line>{{ route.data?.name | translate }}</h4>
+      </mat-list-item>
+    </mat-nav-list> -->
     <mat-accordion *ngFor="let route of routes" multi="false">
-
-
       <!--Single Module Part-->
       <mat-nav-list *ngIf="!route.children" class="header-navbar nav-list-header">
-        <mat-list-item class="mat-primary-bg-color" [routerLink]="route.path" (click)="sidenav.toggle()">
+        <mat-list-item class="mat-primary-bg-color single-module-font" [routerLink]="'/'+route.path" (click)="sidenav.toggle()">
           <div>
             <mat-icon svgIcon="{{route.data.icon}}" class="nav-icon">
             </mat-icon>
@@ -75,13 +81,13 @@
       </div>
     </mat-toolbar>
 
-    <div fxLayout="column">
+    <div fxLayout="column" class="full-height">
       <router-outlet></router-outlet>
     </div>
 
-    <div fxLayout="column">
-      <esc-footer></esc-footer>
-    </div>
+    <!-- <mat-toolbar color="primary" class="page-header">
+      <h1>Footer here</h1>
+    </mat-toolbar> -->
   </mat-sidenav-content>
 
 </mat-sidenav-container>

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PAGES_ROUTES, OTHER_ROUTES } from './pages.routes';
+import { PAGES_ROUTES } from './pages.routes';
 import { MAINTENANCE_ROUTES } from './maintenance/maintenance.routes';
-import * as _ from 'lodash';
-
 
 @Component({
   selector: 'esc-pages',
@@ -25,17 +23,26 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // this.routes = ROUTES;
+    this.getRoutes();
+  }
 
+  private getRoutes() {
     /**
      * Navigation Building
      */
-    this.routes = PAGES_ROUTES;
-    PAGES_ROUTES[1].children=MAINTENANCE_ROUTES;
+    let temp = PAGES_ROUTES.filter(r => {
+      return r.data.name
+    })
+    this.routes = temp;
+
+    PAGES_ROUTES[1].children = MAINTENANCE_ROUTES;
+    // PAGES_ROUTES[2].children = REPORT_ROUTES;
 
     /**
      * Other Navigations Building
      */
-    this.otherRoutes = OTHER_ROUTES;
+    // this.otherRoutes = OTHER_ROUTES;
   }
 
   logout(){

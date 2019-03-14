@@ -1,7 +1,9 @@
 export * from './language';
 export * from './error';
+export * from './paths';
+export * from './request-data';
 
-export const 
+export const
   HTTP_HEADER_CONTENT_TYPE = 'Content-Type',
   HTTP_HEADER_AUTHORIZATION = 'Authorization',
   MIME_TYPE_JSON = 'application/json',
