@@ -132,3 +132,13 @@ p {
 mat-nav-list {
 	padding-top: 0px !important;
 }
+
+.hideList {
+  display: none !important;
+}
+
+.ng-star-inserted-full-height > .ng-star-inserted {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  overflow: hidden !important;
+}

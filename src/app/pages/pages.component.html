@@ -1,6 +1,6 @@
-<mat-sidenav-container class="full-height">
+<mat-sidenav-container class="full-height" fxLayout="column" fxFlex>
 
-  <mat-sidenav #sidenav fxLayout="column">
+  <mat-sidenav #sidenav fxLayout="column" autoFocus="false">
     <div class="sidenav-banner"></div>
     <!-- <mat-nav-list>
       <mat-list-item *ngFor="let route of routes"
@@ -50,7 +50,7 @@
     </mat-accordion>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content fxLayout="column" fxFlex>
     <mat-toolbar color="primary" class="mat-elevation-z1 main-navbar" fxLayout="row" fxLayoutAlign="space-between center">
       <div>
         <button mat-icon-button (click)="sidenav.open()">
@@ -81,7 +81,7 @@
       </div>
     </mat-toolbar>
 
-    <div fxLayout="column" class="full-height">
+    <div fxLayout="column" fxFlex class="ng-star-inserted-full-height">
       <router-outlet></router-outlet>
     </div>
 
