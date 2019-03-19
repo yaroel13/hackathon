@@ -21,21 +21,9 @@ export class UserHeaderComponent implements OnInit {
 
   @Output() emitData: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(
-    public userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute,
-    public media: ObservableMedia,
-    private dialogService: DialogService,
-    private languageService: LanguageService,
-    private fb: FormBuilder
-  ) { }
-
+  private url = "maintenance/user";
   public searchForm: FormGroup;
 
-  public error = {
-    init: false
-  }
   public loading = {
     init: false,
     more: false
@@ -47,17 +35,25 @@ export class UserHeaderComponent implements OnInit {
 
   private tableData = Object.assign({}, REQUEST_DATA,
     {
-      roles: null,
-      status: "",
-      fetchingData: false
+      roles: [],
+      status: "1",
     }
   );
-
-  public filter: any = {
+  public filter = {
     roles: [],
     status: this.tableData.status,
-    query: REQUEST_DATA.query
+    query: ""
   };
+
+  constructor(
+    public media: ObservableMedia,
+    public userService: UserService,
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialogService: DialogService,
+    private languageService: LanguageService
+  ) { }
 
   ngOnInit() {
     this.reRoute();
@@ -65,6 +61,7 @@ export class UserHeaderComponent implements OnInit {
       filter((event) => event instanceof NavigationEnd))
       .subscribe(() => this.reRoute());
     this.initForm();
+    this.patchForm();
     this.getListData();
     this.subscribeSearch();
   }
@@ -75,11 +72,17 @@ export class UserHeaderComponent implements OnInit {
     });
   }
 
+  patchForm() {
+    this.searchForm.patchValue({
+      searchTerm: ""
+    });
+  }
+
   reRoute() {
     if (this.route.snapshot.url.length > 0) {
       let id = _.toNumber(this.route.snapshot.url[0].path);
       if (_.isNaN(id)) {
-        this.router.navigate(['maintenance/user']);
+        this.router.navigate([this.url]);
       } else if (!this.selectedData || (this.selectedData.id != id)) {
         this.select({ id: id });
       }
@@ -89,49 +92,84 @@ export class UserHeaderComponent implements OnInit {
   }
 
   getListData() {
-    if(this.loading.init == true){
+    if(this.loading.init == true) {
       return;
     }
-    this.error.init = false;
-    if(this.listData.length == 0){
+    if(this.listData.length == 0) {
       this.loading.init = true;
-    } else {
+    }
+    else {
       this.loading.more = true;
     }
-    this.userService.getList(this.tableData).pipe(
-      catchError((err) => {
-        if(this.listData.length == 0){
-          this.error.init = true;
-        } else {
-          this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
-        }
-        return observableOf(null);
-      }))
-      .subscribe((res: any) => {
-        // console.log(res);
-        this.loading.init = false;
-        this.loading.more = false;
-        if (res == null) {
-          return;
-        } else if (res.code == 500)  {
-          this.listData = [];
-        }
-        this.listLength = _.toNumber(_.get(res.metadata, 'total'));
-        this.listData = this.listData.concat(res.data);
-      });
+    this.listData = [
+      {
+        id: 1,
+        name: "Jerica",
+        code: "JEC",
+        email: "jerica.l@electronicscience.com",
+        status: 1
+      },
+      {
+        id: 2,
+        name: "Jerome",
+        code: "JEROME",
+        email: "jerome.p@electronicscience.com",
+        status: 1
+      },
+      {
+        id: 3,
+        name: "Allan",
+        code: "ALLAN",
+        email: "allan.d@electronicscience.com",
+        status: 1
+      },
+      {
+        id: 4,
+        name: "Alonzo",
+        code: "ZOE",
+        email: "alonzo.m@electronicscience.com",
+        status: 1
+      },
+      {
+        id: 5,
+        name: "Lielle",
+        code: "LIELLE",
+        email: "lielle.b@electronicscience.com",
+        status: 1
+      }
+    ]
+    this.listLength = 5;
+    this.loading.init = false;
+
+    // this.userService.getList(this.tableData).pipe(
+    //   catchError((err) => {
+    //     this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
+    //     return observableOf(null);
+    //   }))
+    //   .subscribe((res: any) => {
+    //     // console.log(res);
+    //     this.loading.init = false;
+    //     this.loading.more = false;
+    //     if(res && res.data) {
+    //       this.listLength = _.toNumber(_.get(res.metadata, 'total'));
+    //       this.listData = this.listData.concat(res.data);
+    //     }
+    //     else {
+    //       this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
+    //     }
+    //   });
   }
 
   getMoreData() {
-    if(this.loading.more || this.loading.init || this.listData.length >= this.listLength){
-      return;
+    if(!this.loading.more && !this.loading.init && this.listData.length < this.listLength) {
+      this.tableData.page += 1;
+      this.getListData();
     }
-    this.tableData.page += 1;
-    this.getListData();
   }
 
   selectData(header) {
     if(!this.isEditMode) {
-      this.router.navigate(['maintenance/user', header.id]);
+      this.router.navigate([this.url, header.id]);
       this.selectedData = { id: header.id };
       this.emitData.emit({ id: header.id });
     }
@@ -148,7 +186,7 @@ export class UserHeaderComponent implements OnInit {
   }
 
   refresh() {
-    this.router.navigate(['maintenance/user']);
+    this.router.navigate([this.url]);
     this.selectedData = null;
     this.listData = [];
     this.getListData();
@@ -172,11 +210,7 @@ export class UserHeaderComponent implements OnInit {
         }
         this.userService.export(requestData).pipe(
           catchError((err) => {
-            if(this.listData.length == 0){
-              this.error.init = true;
-            } else {
-              this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
-            }
+            this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
             return observableOf(null);
           }))
           .subscribe((res: any) => {
@@ -190,9 +224,6 @@ export class UserHeaderComponent implements OnInit {
     this.searchForm.controls['searchTerm'].valueChanges.pipe(
       filter((term) => !_.isObject(term)),
       debounceTime(600),
-      tap((term) => {
-        // console.log("searchingQuery ", term);
-      }),
       map((term: string) => _.trim(term)),
       distinctUntilChanged()
     ).subscribe((term) => {
@@ -215,15 +246,11 @@ export class UserHeaderComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.filter = Object.assign({}, data.filter);
+        this.filter = _.cloneDeep(data.filter);
+        this.tableData = _.cloneDeep(data.tableData);
         this.listData = data.resultData;
         this.listLength = data.total;
-        this.tableData.page = 1;
-        this.tableData.roles = data.filter.roles ? _.map(data.filter.roles, 'id') as number[] : null;
-        this.tableData.status = data.filter.status;
-        this.tableData.fetchingData = false;
       }
     });
   }
-
 }

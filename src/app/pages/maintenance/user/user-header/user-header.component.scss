@@ -1,7 +1,11 @@
 .search-field {
-  width: 130%;
+  width: 250px;
 
   mat-icon {
     font-size: 15px;
   }
+}
+
+.mat-list-item .mat-line {
+  white-space: pre-wrap;
 }
