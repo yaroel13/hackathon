@@ -10,7 +10,7 @@ import { UserFilterComponent } from '../user-filter/user-filter.component';
 import { EmailInputComponent } from '../../../../utils/email-input/email-input.component';
 import { DialogService, LanguageService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
-import { REQUEST_DATA } from '../../../../utils/constant';
+import { REQUEST_DATA_WITH_OFFSET } from '../../../../utils/constant';
 
 @Component({
   selector: 'esc-user-header',
@@ -33,17 +33,21 @@ export class UserHeaderComponent implements OnInit {
   public listLength = 0;
   public selectedData;
 
-  private tableData = Object.assign({}, REQUEST_DATA,
-    {
-      roles: [],
-      status: "1",
-    }
-  );
-  public filter = {
-    roles: [],
-    status: this.tableData.status,
-    query: ""
-  };
+  public filterNumber: number = 0;
+
+  private tableData: any = {};
+  // private tableData = Object.assign({}, REQUEST_DATA_WITH_OFFSET,
+  //   {
+  //     roles: [],
+  //     status: "1",
+  //   }
+  // );
+  // public filter = {
+  //   roles: [],
+  //   status: this.tableData.status,
+  //   query: ""
+  // };
+  private currentFilter: any;
 
   constructor(
     public media: ObservableMedia,
@@ -56,25 +60,26 @@ export class UserHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let requestData = _.cloneDeep(REQUEST_DATA_WITH_OFFSET)
+    this.tableData = Object.assign({}, requestData, {
+      filter: {
+        status: "0",
+      }
+    }); //used cloneDeep on constant request data
+
     this.reRoute();
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd))
       .subscribe(() => this.reRoute());
     this.initForm();
-    this.patchForm();
+    // this.patchForm();  removed patch form, applied patch on initForm
     this.getListData();
     this.subscribeSearch();
   }
 
   initForm() {
     this.searchForm = this.fb.group({
-      searchTerm: [null],
-    });
-  }
-
-  patchForm() {
-    this.searchForm.patchValue({
-      searchTerm: ""
+      searchTerm: "",
     });
   }
 
@@ -92,10 +97,11 @@ export class UserHeaderComponent implements OnInit {
   }
 
   getListData() {
-    if(this.loading.init == true) {
+    console.log(this.tableData);
+    if (this.loading.init == true) {
       return;
     }
-    if(this.listData.length == 0) {
+    if (this.listData.length == 0) {
       this.loading.init = true;
     }
     else {
@@ -161,17 +167,17 @@ export class UserHeaderComponent implements OnInit {
   }
 
   getMoreData() {
-    if(!this.loading.more && !this.loading.init && this.listData.length < this.listLength) {
+    if (!this.loading.more && !this.loading.init && this.listData.length < this.listLength) {
       this.tableData.page += 1;
       this.getListData();
     }
   }
 
   selectData(header) {
-    if(!this.isEditMode) {
+    if (!this.isEditMode) {
       this.router.navigate([this.url, header.id]);
-      this.selectedData = { id: header.id };
-      this.emitData.emit({ id: header.id });
+      // this.selectedData = { id: header.id };
+      // this.emitData.emit({ id: header.id });
     }
   }
 
@@ -201,36 +207,36 @@ export class UserHeaderComponent implements OnInit {
         email: localStorage.getItem('email')
       }
     })
-    .afterClosed()
-    .subscribe((email) => {
-      if(email) {
-        let requestData = {
-          roles: this.tableData.roles,
-          email: email
+      .afterClosed()
+      .subscribe((email) => {
+        if (email) {
+          let requestData = {
+            roles: this.tableData.roles,
+            email: email
+          }
+          this.userService.export(requestData).pipe(
+            catchError((err) => {
+              this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT", {}));
+              return observableOf(null);
+            }))
+            .subscribe((res: any) => {
+              this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_INFO_REPORT_EMAIL", {}));
+            });
         }
-        this.userService.export(requestData).pipe(
-          catchError((err) => {
-            this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
-            return observableOf(null);
-          }))
-          .subscribe((res: any) => {
-            this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_INFO_REPORT_EMAIL",{}));
-          });
-      }
-    });
+      });
   }
 
   subscribeSearch() {
     this.searchForm.controls['searchTerm'].valueChanges.pipe(
-      filter((term) => !_.isObject(term)),
       debounceTime(600),
+      distinctUntilChanged(),
       map((term: string) => _.trim(term)),
       distinctUntilChanged()
     ).subscribe((term) => {
       this.listData = [];
-      this.tableData.page = REQUEST_DATA.page;
+      this.tableData.page = REQUEST_DATA_WITH_OFFSET.page;
       this.tableData.query = _.toString(term);
-      this.filter.query = _.toString(term);
+      // this.filter.query = _.toString(term);
       this.getListData();
     });
   }
@@ -241,15 +247,26 @@ export class UserHeaderComponent implements OnInit {
       width: '50%',
       autoFocus: false,
       data: {
-        filter: this.filter
+        filter: this.currentFilter
       }
     });
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.filter = _.cloneDeep(data.filter);
-        this.tableData = _.cloneDeep(data.tableData);
-        this.listData = data.resultData;
-        this.listLength = data.total;
+        console.log(data);
+        this.currentFilter = _.cloneDeep(data);
+        this.tableData.filter = {
+          status: _.get(data, 'status') || "0"
+        };
+        // this.listData = data.resultData;
+        // this.listLength = data.total;
+
+        this.filterNumber = 0;
+
+        if (this.tableData.filter.status && this.tableData.filter.status != "0") {
+          this.filterNumber++;
+        }
+
+        this.getListData();
       }
     });
   }

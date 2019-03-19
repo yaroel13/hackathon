@@ -15,7 +15,7 @@
   </div>
   <div mat-dialog-actions>
     <span class="spacer"></span>
-    <button type="button" color="primary" mat-button (click)="getValue()">{{ 'BUTTON_APPLY' | translate }}</button>
+    <button type="button" color="primary" mat-button (click)="dialogRef.close(getValue())">{{ 'BUTTON_APPLY' | translate }}</button>
     <button type="button" color="warn" mat-button (click)="reset()">{{ 'BUTTON_RESET' | translate }}</button>
     <button type="button" mat-button (click)="dialogRef.close()">{{ 'BUTTON_CANCEL' | translate }}</button>
   </div>

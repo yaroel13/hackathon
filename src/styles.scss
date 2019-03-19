@@ -142,3 +142,26 @@ mat-nav-list {
   display: flex !important;
   overflow: hidden !important;
 }
+
+.mat-chip-float {
+  position: relative;
+  right: 22px;
+  top: -26px;
+  z-index: 1;
+       width: 0px;
+       .mat-chip-list-wrapper {
+             position: absolute;
+       }
+ }
+
+ .search-field {
+  width: 250px;
+
+  mat-icon {
+    font-size: 15px;
+  }
+}
+
+.search-field-lt-sm {
+  width: 100%;
+}
