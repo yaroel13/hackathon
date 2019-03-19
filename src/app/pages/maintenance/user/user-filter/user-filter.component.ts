@@ -6,6 +6,7 @@ import { of as observableOf, fromEvent } from 'rxjs';
 import { tap, catchError, debounceTime, map, distinctUntilChanged, finalize, switchMap, retry, takeUntil } from 'rxjs/operators';
 import { DialogService, LanguageService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
+import { ObservableMedia } from '@angular/flex-layout';
 
 const REQUEST_DATA = {
   offset: 0,
@@ -35,7 +36,8 @@ export class UserFilterComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService,
     private dialogService: DialogService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    public media: ObservableMedia,
   ) { }
 
   filterForm: FormGroup;
