@@ -244,7 +244,7 @@ export class UserHeaderComponent implements OnInit {
   openFilter() {
     let dialogRef: MatDialogRef<UserFilterComponent>;
     dialogRef = this.dialogService.openDialog(UserFilterComponent, {
-      width: '50%',
+      width: '500px',
       autoFocus: false,
       data: {
         filter: this.currentFilter
