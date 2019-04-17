@@ -1,13 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 import * as _ from 'lodash';
-import { of as observableOf, fromEvent } from 'rxjs';
-import { distinctUntilChanged, catchError, retry, switchMap, finalize, map, debounceTime, tap, takeUntil } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
-// import { SecurityMatrixService } from '../../../security-matrix/security-matrix.service';
 import { DialogService, LanguageService } from '../../../../services';
-// import { PrincipalService, UserService } from '../../../../services/entities';
 import { UserService } from '../../../../services/entities';
 
 @Component({
@@ -21,51 +17,15 @@ export class UserFormComponent implements OnInit {
   @Output() onClose = new EventEmitter<boolean>();
   @Output() onFormSubmit = new EventEmitter<any>();
 
-  // @ViewChild('principalAC') principalACRef: MatAutocomplete;
-  // @ViewChild(MatAutocompleteTrigger) principalACTr: MatAutocompleteTrigger;
-
-  // @ViewChild('roleAC') roleACRef: MatAutocomplete;
-  // @ViewChild(MatAutocompleteTrigger) roleACTr: MatAutocompleteTrigger;
-
   constructor(
     private fb: FormBuilder,
     @Inject(UserDetailComponent) private parent: UserDetailComponent,
-    // private principalService: PrincipalService,
     private userService: UserService,
-    // private securityMatrixService: SecurityMatrixService,
     private dialogService: DialogService,
     private languageService: LanguageService
   ) { }
 
   public form: FormGroup;
-
-  public principalOptions = [];
-  public principalOptionsLength = 0;
-  public roleOptions = [];
-  public roleOptionsLength = 0;
-  private initialPage = 1;
-  private incrementsOf = 20;
-  private initialKeyword = "";
-
-  public filterLists = {
-    principal: {
-      limit: this.incrementsOf,
-      page: this.initialPage,
-      query: this.initialKeyword,
-      fetchingData: false
-    },
-    role: {
-      limit: this.incrementsOf,
-      page: this.initialPage,
-      query: this.initialKeyword,
-      fetchingData: false
-    }
-  }
-
-  public loading = {
-    principalSearch: false,
-    roleSearch: false
-  }
 
   ngOnInit() {
     this.initForm();
@@ -74,24 +34,18 @@ export class UserFormComponent implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      principal: [null, [Validators.required]],
-      preferred_username: [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
+      code: [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
       name: [null, [Validators.required, Validators.maxLength(200)]],
-      role: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email, Validators.maxLength(200), Validators.pattern(/^[a-zA-Z0-9@._]*$/)]],
-      imei: [null, [Validators.maxLength(15), Validators.pattern(/^[0-9]*$/)]],
       status: ''
     });
   }
 
   patchForm() {
     this.form.patchValue({
-      principal: "",
-      preferred_username: "",
+      code: "",
       name: "",
-      role: "",
       email: "",
-      imei: "",
       status: "",
     });
 
@@ -101,7 +55,7 @@ export class UserFormComponent implements OnInit {
       this.form.patchValue({
         status: selectedDataDetail.status == 1 ? true : false
       });
-      this.form.controls["preferred_username"].disable();
+      this.form.controls["code"].disable();
     } else {
       this.form.patchValue({
         status: true
@@ -118,14 +72,10 @@ export class UserFormComponent implements OnInit {
       this.form.disable();
       let formValue = {
         "id": this.selectedData.id ? this.selectedData.id : null,
-        "principal_id": value.principal.id ? value.principal.id : null,
-        "preferred_username": value.preferred_username ? value.preferred_username : null,
+        "code": value.code ? value.code : null,
         "name": value.name ? value.name : null,
-        "role_id": value.role.id ? value.role.id : null,
         "email": value.email ? value.email : null,
-        "imei": value.imei ? value.imei : null,
-        "status": value.status ? value.status : null,
-        "temporary_password": "Pass123!"
+        "status": value.status ? value.status : null
       }
       if (this.selectedData.id) {
         formValue["status"] = formValue.status == true ? 1 : 0;
@@ -134,8 +84,8 @@ export class UserFormComponent implements OnInit {
             // this.loading.submit = false;
           }))
           .subscribe(
-            (res: any) => {
-              this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_INFO_SUCCESS_UPDATE",{}));
+            () => {
+              this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_INFO_SUCCESS_UPDATE", {}));
               this.onFormSubmit.emit(true);
               this.parent.userDetail = formValue;
               this.parent.updateHeader();
@@ -168,7 +118,7 @@ export class UserFormComponent implements OnInit {
   handleError(err, isForUpdate) {
     this.form.enable();
     if(isForUpdate) {
-      this.form.controls["preferred_username"].disable();
+      this.form.controls["code"].disable();
     }
 
     console.log(err);

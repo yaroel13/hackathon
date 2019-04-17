@@ -13,6 +13,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ChangePasswordChallengeComponent } from './auth/change-password-challenge/change-password-challenge.component';
 import { FooterModule } from './pages/footer/footer.module';
+import { ConfirmComponent } from './utils/confirm/confirm.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -23,7 +24,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    ChangePasswordChallengeComponent
+    ChangePasswordChallengeComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ...MODULES
   ],
   entryComponents: [
-    ChangePasswordChallengeComponent
+    ChangePasswordChallengeComponent,
+    ConfirmComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

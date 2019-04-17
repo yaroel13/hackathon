@@ -1,0 +1,105 @@
+<div fxFlex style="width: -webkit-fill-available;">
+  <split gutterSize="5" useTransition="true"
+  [disabled]="media.isActive('lt-md')">
+
+    <split-area size="50" order="0" [visible]="!(media.isActive('lt-md') && selectedData)"
+      [class.hideList]="(media.isActive('lt-md') && selectedData)" fxLayout="column">
+      <!-- <div fxLayout="column" fxFlexFill> -->
+        <div>
+          <mat-toolbar fxLayout="row">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+              <div class="mat-body">
+                <form [formGroup]="searchForm" novalidate autocomplete="off" autocorrect="off"
+                  (keydown.enter)="$event.preventDefault()">
+                  <mat-form-field class="search-field" [class.search-field-lt-sm]="media.isActive('lt-sm')" floatLabel="never" appearance="standard">
+                    <input matInput [placeholder]="'SEARCH' | translate" formControlName="searchTerm">
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.get('searchTerm').setValue('')"
+                      *ngIf="searchForm.value.searchTerm != ''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </form>
+              </div>
+              <span fxFlex></span>
+              <div fxHide.lt-md="true" fxLayout="row" fxLayout="center center">
+                <button mat-icon-button [matTooltip]="'REFRESH' | translate" (click)="refresh()" [disabled]="detail.isEditMode">
+                  <mat-icon svgIcon="refresh"></mat-icon>
+                </button>
+                <button mat-icon-button [matTooltip]="'ADD_DATA' | translate: { data: 'USER.SINGULAR' | translate }" (click)="newData()" [disabled]="detail.isEditMode">
+                  <mat-icon svgIcon="plus-circle-outline"></mat-icon>
+                </button>
+              </div>
+
+              <button mat-icon-button [matTooltip]="'FILTER' | translate" (click)="openFilter()" [disabled]="detail.isEditMode">
+                <mat-icon svgIcon="filter-variant"></mat-icon>
+              </button>
+              <mat-chip-list class="mat-chip-float" *ngIf="filterNumber">
+                <mat-chip selectable="false">{{ filterNumber }}</mat-chip>
+              </mat-chip-list>
+
+              <button mat-icon-button [matMenuTriggerFor]="menu" [disabled]="detail.isEditMode">
+                <mat-icon svgIcon="dots-vertical"></mat-icon>
+              </button>
+
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item fxHide fxShow.lt-md="true" (click)="refresh()" [disabled]="detail.isEditMode">
+                  <mat-icon svgIcon="refresh"></mat-icon>
+                  <span>{{ 'REFRESH' | translate }}</span>
+                </button>
+                <button mat-menu-item fxHide fxShow.lt-md="true" (click)="newData()" [disabled]="detail.isEditMode">
+                  <mat-icon svgIcon="plus-circle-outline"></mat-icon>
+                  <span>{{ 'NEW_USER' | translate }}</span>
+                </button>
+                <button mat-menu-item (click)="export()" [disabled]="detail.isEditMode">
+                  <mat-icon svgIcon="cloud-download"></mat-icon>
+                  <span>{{ 'EXPORT_AS_EXCEL' | translate }}</span>
+                </button>
+              </mat-menu>
+            </div>
+          </mat-toolbar>
+        </div>
+      <!-- </div> -->
+
+      <div fxLayout="row" fxLayoutAlign="start center" class="mat-sub-header mat-elevation-z1 mat-typography">
+        <span class="count-margin">
+          {{ 'COUNT' | translate }}: {{ listLength }}
+        </span>
+      </div>
+
+      <mat-progress-bar mode="indeterminate" *ngIf="loading.init"></mat-progress-bar>
+
+      <div fxFlex fxLayout style="overflow: auto;" *ngIf="listData?.length > 0" ngxInfiniteScroller
+        (onScrollDown)="getMoreData()">
+        <mat-nav-list fxLayout="column" fxFlex class="mat-data-list" *ngIf="listData?.length > 0">
+          <mat-list-item *ngFor="let data of listData; trackBy: trackById" (click)="selectData(data)"
+            [class.selected]="data?.id == selectedData?.id" mat-no-ink>
+            <h3 matLine>
+              <span class="float-right mat-list-label">
+                {{ data.status == 1 ? "Active" : "Inactive" }}
+              </span>
+              <span>
+                {{ data.name }}
+              </span>
+            </h3>
+            <p matLine>
+              <span class="float-right mat-list-label">
+                {{ data.email }}
+              </span>
+              <span>
+                {{ data.code }}
+              </span>
+            </p>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+      <div *ngIf="!loading.init && !listData?.length" fxFlex fxLayout fxLayoutAlign="center center" class="mat-typography">
+        {{ 'MESSAGE_INFO_NO_DATA' | translate }}
+      </div>
+    </split-area>
+
+    <split-area size="50" order="1" [visible]="!(media.isActive('lt-md') && !selectedData)">
+      <esc-user-detail #detail [selectedData]="selectedData" (onClose)="clearData()"></esc-user-detail>
+    </split-area>
+  </split>
+</div>

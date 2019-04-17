@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -13,7 +13,7 @@ import { UserService } from '../../../../services/entities';
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.scss']
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnChanges {
 
   @Input() header: UserHeaderComponent;
   @Input() selectedData: any;
@@ -34,11 +34,13 @@ export class UserDetailComponent implements OnInit {
   public loading: any = {
     detail: false
   }
+  public isEditMode: boolean = false;
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log("detail", changes.selectedData)
     if (changes.selectedData) {
       if (this.selectedData && this.selectedData.id) {
         if (!changes.selectedData.previousValue || (changes.selectedData.previousValue && changes.selectedData.previousValue.id !== this.selectedData.id)) {
@@ -47,6 +49,9 @@ export class UserDetailComponent implements OnInit {
       }
       else if (this.selectedData) {
         this.add();
+      }
+      else {
+        this.userDetail = null;
       }
     }
   }
@@ -66,9 +71,15 @@ export class UserDetailComponent implements OnInit {
         this.getDetailSub.unsubscribe();
       }))
       .subscribe((res: any) => {
-        // console.log(res);
-        let detail = res.data;
-        this.userDetail = this.helperService.convertToLocalDatetime([detail])[0];
+        console.log(res);
+        if(res && res.data) {
+          this.userDetail = _.cloneDeep(res.data);
+        }
+        else {
+          this.dialogService.openSnackBar(this.languageService.getTranslation("MESSAGE_ERROR_DEFAULT",{}));
+        }
+        // let detail = res.data;
+        // this.userDetail = this.helperService.convertToLocalDatetime([detail])[0];
       });
   }
 

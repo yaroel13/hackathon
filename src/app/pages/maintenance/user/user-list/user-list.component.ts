@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
@@ -11,15 +11,16 @@ import { EmailInputComponent } from '../../../../utils/email-input/email-input.c
 import { DialogService, LanguageService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
 import { REQUEST_DATA_WITH_OFFSET } from '../../../../utils/constant';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 @Component({
-  selector: 'esc-user-header',
-  templateUrl: './user-header.component.html',
-  styleUrls: ['./user-header.component.scss']
+  selector: 'esc-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class UserHeaderComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
-  @Output() emitData: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild(UserDetailComponent) userDetailComponent: UserDetailComponent;
 
   private url = "maintenance/user";
   public searchForm: FormGroup;
@@ -28,7 +29,6 @@ export class UserHeaderComponent implements OnInit {
     init: false,
     more: false
   };
-  public isEditMode: boolean = false;
   public listData = [];
   public listLength = 0;
   public selectedData;
@@ -94,7 +94,7 @@ export class UserHeaderComponent implements OnInit {
       }
     } else {
       this.selectedData = null;
-      this.emitData.emit(this.selectedData);
+      // this.emitData.emit(this.selectedData);
     }
   }
 
@@ -137,7 +137,7 @@ export class UserHeaderComponent implements OnInit {
   }
 
   selectData(header) {
-    if (!this.isEditMode) {
+    if (!this.userDetailComponent.isEditMode) {
       this.router.navigate([this.url, header.id]);
       // this.selectedData = { id: header.id };
       // this.emitData.emit({ id: header.id });
@@ -159,12 +159,12 @@ export class UserHeaderComponent implements OnInit {
 
   select(data: any) {
     this.selectedData = data;
-    this.emitData.emit(data);
+    // this.emitData.emit(data);
   }
 
   newData() {
     this.selectedData = {};
-    this.emitData.emit(this.selectedData);
+    // this.emitData.emit(this.selectedData);
   }
 
   refresh() {
@@ -246,4 +246,5 @@ export class UserHeaderComponent implements OnInit {
       }
     });
   }
+
 }

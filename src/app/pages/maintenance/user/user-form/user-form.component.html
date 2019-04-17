@@ -7,7 +7,7 @@
         </button>
         <span fxFlex></span>
         <span class="mat-detail-header text-align-center">
-          {{ 'DETAILS' | translate }}
+          {{ selectedData.id ? ('EDIT_DATA' | translate: { data: 'USER.SINGULAR' | translate }) : ('ADD_DATA' | translate: { data: 'USER.SINGULAR' | translate }) }}
         </span>
         <span fxFlex></span>
         <button mat-icon-button [matTooltip]="'SAVE' | translate" type="submit" style="text-align:right">
@@ -21,17 +21,17 @@
 
         <div fxFlex fxLayout="column" fxLayoutGap="20px">
           <mat-form-field>
-            <input matInput [placeholder]="'CODE' | translate" formControlName="preferred_username" required>
-            <mat-error *ngIf="form.controls['preferred_username'].hasError('required')">
+            <input matInput [placeholder]="'CODE' | translate" formControlName="code" required>
+            <mat-error *ngIf="form.controls['code'].hasError('required')">
               {{ 'FORM_ERROR_REQUIRED_FIELD' | translate }}
             </mat-error>
-            <mat-error *ngIf="form.controls['preferred_username'].hasError('maxlength')">
+            <mat-error *ngIf="form.controls['code'].hasError('maxlength')">
               {{ 'FORM_ERROR_USER_CODE_MAX_LENGTH' | translate }}
             </mat-error>
-            <mat-error *ngIf="form.controls['preferred_username'].hasError('pattern')">
+            <mat-error *ngIf="form.controls['code'].hasError('pattern')">
               {{ 'FORM_ERROR_ALPHANUMERIC_PATTERN' | translate }}
             </mat-error>
-            <mat-error *ngIf="form.controls['preferred_username'].hasError('notUnique')">
+            <mat-error *ngIf="form.controls['code'].hasError('notUnique')">
               {{ 'MESSAGE_ERROR_CODE_ALREADY_EXISTS' | translate }}
             </mat-error>
           </mat-form-field>
@@ -59,16 +59,6 @@
             </mat-error>
             <mat-error *ngIf="form.controls['email'].hasError('notUnique')">
               {{ 'MESSAGE_ERROR_EMAIL_ALREADY_EXISTS' | translate }}
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput [placeholder]="'IMEI' | translate" formControlName="imei">
-            <mat-error *ngIf="form.controls['imei'].hasError('maxlength')">
-              {{ 'FORM_ERROR_IMEI_MAX_LENGTH' | translate }}
-            </mat-error>
-            <mat-error *ngIf="form.controls['imei'].hasError('pattern')">
-              {{ 'FORM_ERROR_NUMERIC_PATTERN' | translate }}
             </mat-error>
           </mat-form-field>
 

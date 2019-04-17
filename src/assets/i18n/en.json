@@ -71,8 +71,8 @@
   "SEARCH": "Search",
   "SEARCH_LIST": "Search List",
   "STATUS": "Status",
-  "USER": "User",
-  "USERS": "Users",
+  "USER.SINGULAR": "User",
+  "USER.PLURAL": "Users",
   "USER_CODE": "User Code",
   "USER_NAME": "User Name",
 
@@ -100,6 +100,9 @@
   "FORM_ERROR_STORE_NAME_MAX_LENGTH": "Must not exceed 200 characters",
   "FORM_ERROR_USER_CODE_MAX_LENGTH": "Must not exceed 10 characters",
   "FORM_ERROR_USER_NAME_MAX_LENGTH": "Must not exceed 200 characters",
-  "FORM_ERROR_VALID_EMAIL": "Please enter a valid email address"
+  "FORM_ERROR_VALID_EMAIL": "Please enter a valid email address",
+
+  "ADD_DATA": "Add {{data}}",
+  "EDIT_DATA": "Edit {{data}}"
 
 }

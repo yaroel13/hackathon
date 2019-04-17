@@ -16,15 +16,15 @@
         </div>
         <span fxFlex></span>
         <div fxHide.lt-md="true" fxLayout="row" fxLayout="center center">
-          <button mat-icon-button [matTooltip]="'REFRESH' | translate" (click)="refresh()">
+          <button mat-icon-button [matTooltip]="'REFRESH' | translate" (click)="refresh()" [disabled]="isEditMode">
             <mat-icon svgIcon="refresh"></mat-icon>
           </button>
-          <button mat-icon-button [matTooltip]="'NEW_USER' | translate" (click)="newData()" [disabled]="isEditMode">
+          <button mat-icon-button [matTooltip]="'ADD_DATA' | translate: { data: 'USER.SINGULAR' | translate }" (click)="newData()" [disabled]="isEditMode">
             <mat-icon svgIcon="plus-circle-outline"></mat-icon>
           </button>
         </div>
 
-        <button mat-icon-button [matTooltip]="'FILTER' | translate" (click)="openFilter()">
+        <button mat-icon-button [matTooltip]="'FILTER' | translate" (click)="openFilter()" [disabled]="isEditMode">
           <mat-icon svgIcon="filter-variant"></mat-icon>
         </button>
         <mat-chip-list class="mat-chip-float" *ngIf="filterNumber">
@@ -37,15 +37,15 @@
         </button>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item fxHide fxShow.lt-md="true" (click)="refresh()">
+          <button mat-menu-item fxHide fxShow.lt-md="true" (click)="refresh()" [disabled]="isEditMode">
             <mat-icon svgIcon="refresh"></mat-icon>
             <span>{{ 'REFRESH' | translate }}</span>
           </button>
-          <button mat-menu-item fxHide fxShow.lt-md="true" (click)="newData()">
+          <button mat-menu-item fxHide fxShow.lt-md="true" (click)="newData()" [disabled]="isEditMode">
             <mat-icon svgIcon="plus-circle-outline"></mat-icon>
             <span>{{ 'NEW_USER' | translate }}</span>
           </button>
-          <button mat-menu-item (click)="export()">
+          <button mat-menu-item (click)="export()" [disabled]="isEditMode">
             <mat-icon svgIcon="cloud-download"></mat-icon>
             <span>{{ 'EXPORT_AS_EXCEL' | translate }}</span>
           </button>

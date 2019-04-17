@@ -8,6 +8,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserFilterComponent } from './user-filter/user-filter.component';
 import { DialogService } from '../../../services/dialog/dialog.service';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DialogService } from '../../../services/dialog/dialog.service';
     UserHeaderComponent,
     UserDetailComponent,
     UserFormComponent,
-    UserFilterComponent
+    UserFilterComponent,
+    UserListComponent
   ],
   entryComponents: [
     UserFilterComponent

@@ -1,5 +1,5 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loading.detail"></mat-progress-bar>
-<div *ngIf="!header.isEditMode && userDetail && !loading.detail" fxLayout="column" fxFlexFill>
+<div *ngIf="!isEditMode && userDetail && !loading.detail" fxLayout="column" fxFlexFill>
   <div>
     <mat-toolbar fxLayout="row" style="text-align:left">
       <button mat-icon-button [matTooltip]="'CLOSE' | translate" (click)="close()" type="button">
@@ -26,18 +26,8 @@
         </ng-template> -->
         <mat-list>
           <mat-list-item>
-            <mat-icon mat-list-icon svgIcon="account-group"></mat-icon>
-            <h3 matLine>{{ userDetail.principal.name }}</h3>
-            <p matLine class="mat-placeholder">{{ 'ACCOUNT' | translate }}</p>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon mat-list-icon svgIcon="clipboard-account"></mat-icon>
-            <h3 matLine>{{ userDetail.role.name }}</h3>
-            <p matLine class="mat-placeholder">{{ 'ROLE' | translate }}</p>
-          </mat-list-item>
-          <mat-list-item>
             <mat-icon mat-list-icon svgIcon="information-variant"></mat-icon>
-            <h3 matLine>{{ userDetail.preferred_username }}</h3>
+            <h3 matLine>{{ userDetail.code }}</h3>
             <p matLine class="mat-placeholder">{{ 'CODE' | translate }}</p>
           </mat-list-item>
           <mat-list-item>
@@ -51,17 +41,7 @@
             <p matLine class="mat-placeholder">{{ 'EMAIL_ADDRESS' | translate }}</p>
           </mat-list-item>
 
-          <mat-list-item *ngIf="userDetail.imei">
-            <mat-icon mat-list-icon svgIcon="cellphone"></mat-icon>
-            <h3 matLine>{{ userDetail.imei }}</h3>
-            <p matLine class="mat-placeholder">{{ 'IMEI' | translate }}</p>
-          </mat-list-item>
-          <mat-list-item *ngIf="!userDetail.imei">
-            <mat-icon mat-list-icon svgIcon="cellphone"></mat-icon>
-            <p matLine class="mat-placeholder">{{ 'NO_IMEI' | translate }}</p>
-          </mat-list-item>
-
-          <mat-list-item>
+          <!-- <mat-list-item>
             <mat-icon mat-list-icon svgIcon="calendar-today"></mat-icon>
             <h3 matLine>{{ userDetail.created_date | date:'medium' }}</h3>
             <p matLine class="mat-placeholder">{{ 'CREATED_DATE' | translate }}</p>
@@ -70,12 +50,10 @@
             <mat-icon mat-list-icon svgIcon="update"></mat-icon>
             <h3 matLine>{{ userDetail.modified_date | date:'medium' }}</h3>
             <p matLine class="mat-placeholder">Modified Date</p>
-          </mat-list-item>
+          </mat-list-item> -->
           <mat-list-item>
             <mat-icon mat-list-icon svgIcon="information"></mat-icon>
-            <h3 matLine>
-              {{ userDetail?.status == 1 ? "Active" : "Inactive" }}
-            </h3>
+            <h3 matLine>{{ userDetail?.status == 1 ? "Active" : "Inactive" }}</h3>
             <p matLine class="mat-placeholder">{{ 'STATUS' | translate }}</p>
           </mat-list-item>
         </mat-list>
@@ -83,9 +61,9 @@
     </mat-tab-group> -->
   </div>
 </div>
-<div fxFlexFill fxLayoutAlign="center center" *ngIf="!header.isEditMode && !userDetail && !loading.detail" class="mat-typography">
+<div fxFlexFill fxLayoutAlign="center center" *ngIf="!isEditMode && !userDetail && !loading.detail" class="mat-typography">
     {{ 'MESSAGE_INFO_NO_SELECTED_DATA' | translate }}
 </div>
-<div fxFlexFill *ngIf="userDetail && header.isEditMode && !loading.detail">
+<div fxFlexFill *ngIf="userDetail && isEditMode && !loading.detail">
   <esc-user-form [selectedData]="userDetail" (onClose)="onFormClose($event)" (submitTest)="onFormSubmit($event)"></esc-user-form>
 </div>
