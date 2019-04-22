@@ -4,9 +4,9 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { of as observableOf, Subscription } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { UserHeaderComponent } from '../user-header/user-header.component';
 import { DialogService, LanguageService, HelperService } from '../../../../services';
 import { UserService } from '../../../../services/entities';
+import { UserHeaderComponent } from '../user-header/user-header.component';
 
 @Component({
   selector: 'esc-user-detail',
@@ -86,23 +86,23 @@ export class UserDetailComponent implements OnInit, OnChanges {
   add() {
     this.userDetail = {};
     this.router.navigate(['maintenance/user']);
-    this.header.isEditMode = true;
+    this.header.isEditMode = this.isEditMode = true;
   }
 
   close() {
     this.router.navigate(['maintenance/user']);
-    this.header.isEditMode = false;
+    this.header.isEditMode = this.isEditMode = false;
     this.userDetail = undefined;
     this.onClose.emit(true);
   }
 
   edit() {
-    this.header.isEditMode = true;
+    this.header.isEditMode = this.isEditMode = true;
   }
 
   onFormClose(event) {
     if (this.userDetail.id) {
-      this.header.isEditMode = false;
+      this.header.isEditMode = this.isEditMode = false;
     } else {
       this.close();
     }
@@ -150,14 +150,14 @@ export class UserDetailComponent implements OnInit, OnChanges {
   updateHeader() {
     var index = _.findIndex(this.header.listData, {id: this.userDetail.id});
     this.header.listData.splice(index, 1, this.userDetail);
-    this.header.isEditMode = false;
+    this.header.isEditMode = this.isEditMode = false;
     this.getDetail();
   }
 
   addToHeader() {
     this.header.listData.unshift(this.userDetail);
     this.header.listLength = this.header.listLength + 1;
-    this.header.isEditMode = false;
+    this.header.isEditMode = this.isEditMode = false;
     this.getDetail();
   }
 }

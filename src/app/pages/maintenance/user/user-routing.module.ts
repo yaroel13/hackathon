@@ -6,8 +6,8 @@ import { UserListComponent } from './user-list/user-list.component';
 const routes:Routes = [
   {
     path: '**',
-    // component: UserComponent
-    component: UserListComponent
+    component: UserComponent
+    // component: UserListComponent
   }
 ]
 
