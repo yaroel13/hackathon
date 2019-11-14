@@ -16,4 +16,9 @@ export class ClientService {
     return this.httpClient.get(url)
   }
 
+  getInvoice(): Observable<any> {
+    const url = environment.apiEndpoint + '/invoice'
+    return this.httpClient.get(url)
+  }
+
 }
