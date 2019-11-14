@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as moment from 'moment'
 import { ClientService } from '../../client.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './project-invoice-form.component.html',
   styleUrls: ['./project-invoice-form.component.scss']
 })
-export class ProjectInvoiceFormComponent implements OnInit {
+export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
 
   months:String[]
   selectedMonth:String
@@ -28,6 +28,10 @@ export class ProjectInvoiceFormComponent implements OnInit {
     this.selectedMonth = moment().format('MMMM')
     this.months = moment.localeData('en').months()
     this.getInvoice()
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    console.log(changes)
   }
 
   initForm(){

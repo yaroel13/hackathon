@@ -29,7 +29,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Number of user" formControlName="number_of_user" maxlength="3" type="number"
-        >
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
       </mat-form-field>
       <mat-divider></mat-divider>
       <div style="margin-top: 10px;">
@@ -37,7 +37,7 @@
       </div>
       <mat-card-actions style="margin-top: 10px;">
           <button mat-button>POST</button>
-          <button mat-button>CLEAE</button>
+          <button mat-button>CLEAR</button>
         </mat-card-actions>
     </div>
 
