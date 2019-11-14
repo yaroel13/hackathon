@@ -3,7 +3,7 @@
     <mat-form-field style="width: 35%;">
       <mat-label>Project</mat-label>
       <mat-select (selectionChange)="getProjectClientListData($event.value)" [(value)] = selectedProject>
-        <mat-option *ngFor="let project of projects" [value]="project.id">
+        <mat-option *ngFor="let project of projects" [value]="project">
           {{project.project_name}}
         </mat-option>
       </mat-select>

@@ -15,11 +15,11 @@
 
     <div fxLayout="column" fxFlex fxFlexFill style="overflow-y: auto; overflow-x: hidden;">
       <div fxLayout="column" fxFlex="30" fxLayoutAlign="center center">
-        <esc-project-invoice style="width: 100%;"></esc-project-invoice>
+        <esc-project-invoice style="width: 100%;" (projectChange)="onProjectChange($event)"></esc-project-invoice>
       </div>
       <mat-divider class="divider"></mat-divider>
       <div fxLayout="column" fxFlex="auto">
-        <esc-project-invoice-form style="width: 100%; height: 100%;"></esc-project-invoice-form>
+        <esc-project-invoice-form style="width: 100%; height: 100%;" [project]="project"></esc-project-invoice-form>
       </div>
     </div>
 

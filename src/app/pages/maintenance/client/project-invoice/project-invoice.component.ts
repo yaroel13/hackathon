@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash'
 import { ClientService } from '../../client.service';
 
@@ -27,6 +27,8 @@ export interface ClientProject {
 export class ProjectInvoiceComponent implements OnInit {
 
   projects : Project[]
+
+  @Output() projectChange = new EventEmitter<boolean>();
   
   // clientproject: ClientProject[] = [
   //   {id: 0, client_id: 0, project_id: 1, client_name: "Ray"},
@@ -47,12 +49,14 @@ export class ProjectInvoiceComponent implements OnInit {
     this.clientService.getProjectList().subscribe((data) => {
       console.log(data)
       this.projects = data;
-      this.selectedProject = this.projects[0].id
+      this.selectedProject = this.projects[0]
+      this.getProjectClientListData(this.selectedProject)
     })
   }
 
-  getProjectClientListData(projectId){
-    console.log(projectId)
+  getProjectClientListData(project){
+    console.log(project)
+    this.projectChange.emit(project)
   }
 
   onProjectSelect(event:any){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment'
 import { ClientService } from '../../client.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,6 +13,8 @@ export class ProjectInvoiceFormComponent implements OnInit {
   months:String[]
   selectedMonth:String
   totalAmount = 0
+
+  @Input() project = {id:0,project_name:""}
 
   public form: FormGroup
 

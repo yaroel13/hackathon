@@ -8,6 +8,8 @@ import { ObservableMedia } from '@angular/flex-layout';
 })
 export class ClientComponent implements OnInit {
 
+  project: any
+
   constructor(
     public media: ObservableMedia
   ) { }
@@ -23,6 +25,10 @@ export class ClientComponent implements OnInit {
 
   clearData(){
     this.emittedData = undefined;
+  }
+
+  onProjectChange(data){
+    this.project = data
   }
 
 }
