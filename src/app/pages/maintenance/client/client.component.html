@@ -1,0 +1,26 @@
+<div fxFlex style="width: -webkit-fill-available;">
+    <!-- <split disabled="true" gutterSize="5" useTransition="true">
+  
+      <split-area size="50" order="0" [visible]="!(media.isActive('lt-md') && emittedData)"
+        [class.hideList]="(media.isActive('lt-md') && emittedData)">
+  
+        <esc-user-header #header (emitData)="onHeaderEmit($event)">
+        </esc-user-header>
+      </split-area>
+  
+      <split-area size="50" order="1" [visible]="!(media.isActive('lt-md') && !emittedData)">
+        <esc-user-detail [header]="header" [selectedData]="emittedData" (onClose)="clearData()"></esc-user-detail>
+      </split-area>
+    </split> -->
+
+    <div fxLayout="column" fxFlex fxFlexFill style="overflow-y: auto; overflow-x: hidden;">
+      <div fxLayout="column" fxFlex="30" fxLayoutAlign="center center">
+        <esc-project-invoice style="width: 100%;"></esc-project-invoice>
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div fxLayout="column" fxFlex="auto">
+        <esc-project-invoice-form style="width: 100%; height: 100%;"></esc-project-invoice-form>
+      </div>
+    </div>
+
+  </div>

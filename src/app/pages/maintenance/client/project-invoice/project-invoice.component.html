@@ -1,0 +1,22 @@
+<div fxLayout="column" fxFlex fxLayoutAlign="center center">
+  <div fxLayout="row" style="width: 100%;" fxLayoutAlign="center center">
+    <mat-form-field style="width: 35%;">
+      <mat-label>Project</mat-label>
+      <mat-select (selectionChange)="getProjectClientListData($event.value)" [(value)] = selectedProject>
+        <mat-option *ngFor="let project of projects" [value]="project.id">
+          {{project.project_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" style="width: 100%;" fxLayoutAlign="center center">
+    <mat-form-field style="width: 35%;">
+      <mat-label>Project</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let clientproject of filteredClientProject" [value]="clientproject.id">
+          {{clientproject.client_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

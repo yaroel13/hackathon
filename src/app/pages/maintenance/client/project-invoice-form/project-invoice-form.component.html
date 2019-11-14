@@ -1,0 +1,31 @@
+<div fxLayout="column" fxFlex fxLayoutAlign="center center" style="width: 100%;">
+  
+  <form fxLayout="column" style="width: 35%; margin-bottom: 100px;">
+    <div fxLayout="row" style="margin-bottom: 30px;">
+      <!-- <div fxFlex style="padding-left: 10px;"><hr></div> -->
+      <div fxFlex style="text-align: center; font-weight: bold; font-size: xx-large;">Invoice</div>
+      <!-- <div fxFlex style="padding-left: 10px;"><hr></div> -->
+    </div>
+    <mat-form-field>
+      <input matInput placeholder="Invoice Code" [disabled]="true">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Input">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Month</mat-label>
+      <mat-select (selectionChange)="getSelectedMonth($event.value)" [(value)] = selectedMonth>
+        <mat-option *ngFor="let month of months" [value]="month">
+          {{month}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Input">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <div style="margin-top: 10px;">
+      Amount Due:
+    </div>
+  </form>
+</div>

@@ -14,5 +14,13 @@ export const MAINTENANCE_ROUTES: Routes = [
       icon: "",
       name: "USER"
     }
+  },
+  {
+    path: 'client',
+    loadChildren: './client/client.module#ClientModule',
+    data: {
+      icon: "",
+      name: "USER"
+    }
   }
 ];
