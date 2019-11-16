@@ -14,6 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ChangePasswordChallengeComponent } from './auth/change-password-challenge/change-password-challenge.component';
 import { FooterModule } from './pages/footer/footer.module';
 import { ConfirmComponent } from './utils/confirm/confirm.component';
+import { GenericDialogComponent } from './utils/dialog/generic-dialog/generic-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -25,7 +26,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     PageNotFoundComponent,
     ChangePasswordChallengeComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    GenericDialogComponent,
+    GenericDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     ChangePasswordChallengeComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    GenericDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,8 +14,7 @@ export interface Project {
 
 export interface ClientProject {
   id: number;
-  client_id: number;
-  project_id: number;
+  client_project_id: number;
   client_name: string;
 }
 
@@ -29,6 +28,7 @@ export class ProjectInvoiceComponent implements OnInit {
   projects : Project[]
 
   @Output() projectChange = new EventEmitter<boolean>();
+  @Output() clientChange = new EventEmitter<boolean>();
   
   // clientproject: ClientProject[] = [
   //   {id: 0, client_id: 0, project_id: 1, client_name: "Ray"},
@@ -36,8 +36,9 @@ export class ProjectInvoiceComponent implements OnInit {
   // ]
 
   selectedProject
+  selected_client
 
-  filteredClientProject: ClientProject[]
+  client_list: ClientProject[]
 
   constructor( private clientService : ClientService) { }
 
@@ -47,8 +48,8 @@ export class ProjectInvoiceComponent implements OnInit {
 
   getProjectListData(){
     this.clientService.getProjectList().subscribe((data) => {
-      console.log(data)
-      this.projects = data;
+      console.log(data) 
+      this.projects = data.project;
       this.selectedProject = this.projects[0]
       this.getProjectClientListData(this.selectedProject)
     })
@@ -57,10 +58,20 @@ export class ProjectInvoiceComponent implements OnInit {
   getProjectClientListData(project){
     console.log(project)
     this.projectChange.emit(project)
+    this.clientService.getClientList(project.id).subscribe((data) => {
+      console.log(data)
+      this.client_list = data.client
+      this.selected_client = this.client_list[0]
+      this.clientChange.emit(this.selected_client)
+    })
   }
 
   onProjectSelect(event:any){
     console.log(event)
+  }
+
+  getNewClient(data){
+    this.clientChange.emit(data)
   }
 
 }

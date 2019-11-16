@@ -12,9 +12,9 @@
   <div fxLayout="row" style="width: 100%;" fxLayoutAlign="center center">
     <mat-form-field style="width: 35%;">
       <mat-label>Project</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let clientproject of filteredClientProject" [value]="clientproject.id">
-          {{clientproject.client_name}}
+      <mat-select (selectionChange)="getNewClient($event.value)" [(value)] = selected_client>
+        <mat-option *ngFor="let client of client_list" [value]="client">
+          {{client.client_name}}
         </mat-option>
       </mat-select>
     </mat-form-field>

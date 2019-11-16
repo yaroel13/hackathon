@@ -5,22 +5,22 @@ export const MAINTENANCE_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/'
+    redirectTo: '/maintenance/invoice'
   },
+  // {
+  //   path: 'user',
+  //   loadChildren: './user/user.module#UserModule',
+  //   data: {
+  //     icon: "",
+  //     name: "USER"
+  //   }
+  // },
   {
-    path: 'user',
-    loadChildren: './user/user.module#UserModule',
-    data: {
-      icon: "",
-      name: "USER"
-    }
-  },
-  {
-    path: 'client',
+    path: 'invoice',
     loadChildren: './client/client.module#ClientModule',
     data: {
       icon: "",
-      name: "USER"
+      name: "INVOICE"
     }
   }
 ];

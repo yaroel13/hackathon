@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'esc-client',
@@ -9,14 +10,18 @@ import { ObservableMedia } from '@angular/flex-layout';
 export class ClientComponent implements OnInit {
 
   project: any
+  client: any
 
   constructor(
-    public media: ObservableMedia
+    public media: ObservableMedia,
+    private clientService: ClientService
   ) { }
 
   public emittedData;
+  public inv_code
 
   ngOnInit() {
+    this.getUnusedInvoiceCode()
   }
 
   onHeaderEmit(data){
@@ -29,6 +34,17 @@ export class ClientComponent implements OnInit {
 
   onProjectChange(data){
     this.project = data
+  }
+
+  onClientChange(data){
+    this.client = data
+  }
+
+  getUnusedInvoiceCode(){
+    this.clientService.getInvoiceCode().subscribe(data => {
+      console.log(data)
+      this.inv_code = data
+    })
   }
 
 }

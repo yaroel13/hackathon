@@ -2,8 +2,8 @@
   
   <mat-card style="width: 25%; margin-bottom: 100px; padding: 50px; padding-bottom: 16px; border-radius: 20px;">
     <mat-card-header fxLayout="row" fxLayoutAlign="center">
-      <mat-card-title style="text-align: center;">{{project.project_name}}</mat-card-title>
-      <mat-card-subtitle style="text-align: center;">Client name</mat-card-subtitle>
+      <mat-card-title style="text-align: center;">{{getProjectName()}}</mat-card-title>
+      <mat-card-subtitle style="text-align: center;">{{getClientName()}}</mat-card-subtitle>
     </mat-card-header>
     
     <div fxLayout="column" [formGroup]="form">
@@ -12,9 +12,12 @@
         <!-- <div fxFlex style="text-align: center; font-weight: bold; font-size: xx-large;">Invoice</div> -->
         <!-- <div fxFlex style="padding-left: 10px;"><hr></div> -->
       </div>
-      <mat-form-field>
+      <!-- <mat-form-field>
         <input matInput placeholder="Invoice Code" formControlName="invoice_code" [disabled]="true" maxlength="3" type="number">
-      </mat-form-field>
+      </mat-form-field> -->
+      <div style="margin-bottom: 5px;">
+        {{getInvoiceCode()}}
+      </div>
       <mat-form-field>
         <input matInput placeholder="Amount per user" formControlName="amount_per_user" maxlength="3" type="number"
         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
@@ -32,14 +35,16 @@
         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
       </mat-form-field>
       <mat-divider></mat-divider>
+      <mat-checkbox formControlName="vat_exempted" style="margin : 0 5px">VAT exempted</mat-checkbox>
       <div style="margin-top: 10px;">
         Amount Due: {{totalAmount}}
       </div>
       <mat-card-actions style="margin-top: 10px;">
-          <button mat-button>POST</button>
-          <button mat-button>CLEAR</button>
+          <button mat-button (click)="postInvoice()" [disabled]="postSetEnabled()">POST</button>
+          <button mat-button (click)="displayDialog()">CLEAR</button>
         </mat-card-actions>
     </div>
 
   </mat-card>
+  
 </div>
