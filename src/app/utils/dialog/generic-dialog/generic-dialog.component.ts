@@ -16,7 +16,7 @@ export class GenericDialogComponent implements OnInit {
   }
 
   onOk(){
-    this.dialogRef.close
+    this.dialogRef.close()
   }
 
 }

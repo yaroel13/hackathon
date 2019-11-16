@@ -19,7 +19,7 @@
       </div>
       <mat-divider class="divider"></mat-divider>
       <div fxLayout="column" fxFlex="auto">
-        <esc-project-invoice-form style="width: 100%; height: 100%;" [project]="project" [client]="client" [invoice_code]="inv_code"></esc-project-invoice-form>
+        <esc-project-invoice-form style="width: 100%; height: 100%;" (invoiceCodeChange)="getUnusedInvoiceCode()" [project]="project" [client]="client" [invoice_code]="inv_code"></esc-project-invoice-form>
       </div>
     </div>
 

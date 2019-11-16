@@ -1,6 +1,7 @@
 <div fxLayout="column" fxFlex fxLayoutAlign="center center" style="width: 100%;">
   
-  <mat-card style="width: 25%; margin-bottom: 100px; padding: 50px; padding-bottom: 16px; border-radius: 20px;">
+  <mat-card style="width: 25%; margin-bottom: 100px; padding: 50px; padding-bottom: 16px; border-radius: 20px;
+  min-width: 450px;">
     <mat-card-header fxLayout="row" fxLayoutAlign="center">
       <mat-card-title style="text-align: center;">{{getProjectName()}}</mat-card-title>
       <mat-card-subtitle style="text-align: center;">{{getClientName()}}</mat-card-subtitle>
@@ -19,7 +20,7 @@
         {{getInvoiceCode()}}
       </div>
       <mat-form-field>
-        <input matInput placeholder="Amount per user" formControlName="amount_per_user" maxlength="3" type="number"
+        <input matInput placeholder="Amount per user" formControlName="amount_per_user" maxlength="11" type="number" step="0.01"
         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
       </mat-form-field>
       <mat-form-field>
@@ -41,7 +42,8 @@
       </div>
       <mat-card-actions style="margin-top: 10px;">
           <button mat-button (click)="postInvoice()" [disabled]="postSetEnabled()">POST</button>
-          <button mat-button (click)="displayDialog()">CLEAR</button>
+          <button mat-button (click)="clearForm()">CLEAR</button>
+          <button mat-button (click)="resetDefaultValue()">RESET TO DEFAULT</button>
         </mat-card-actions>
     </div>
 

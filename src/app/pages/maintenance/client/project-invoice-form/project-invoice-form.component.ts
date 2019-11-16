@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment'
 import { ClientService } from '../../client.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientProject } from '../project-invoice/project-invoice.component';
 import { MatDialog } from '@angular/material';
 import { GenericDialogComponent, DialogData } from 'src/app/utils/dialog/generic-dialog/generic-dialog.component';
+import { bool } from 'aws-sdk/clients/signer';
 
 @Component({
   selector: 'esc-project-invoice-form',
@@ -19,6 +20,7 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
   invoice:Invoice
   vat_exempted:boolean
 
+  @Output() invoiceCodeChange = new EventEmitter<boolean>()
   @Input() project = {id:0,project_name:""}
   @Input() client:ClientProject
   @Input() invoice_code:InvoiceCode
@@ -49,7 +51,7 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
     this.vat_exempted = false
 
     this.form = this.fb.group({
-      amount_per_user: [null, [Validators.required, Validators.maxLength(3)]],
+      amount_per_user: [null, [Validators.required, Validators.maxLength(11)]],
       number_of_user: [null, [Validators.required, Validators.maxLength(3)]],
       vat_exempted: [false]
     })
@@ -147,27 +149,32 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
   }
 
   postInvoice(){
-    const request = {
-      invoice:this.generateInvoiceRequest()
-    }
-    console.log(request)
-    this.clientService.saveInvoice(request).subscribe(data => {
-      console.log(data)
-      let dialogData:DialogData = {
-        message: "New Invoice has been created",
-        title: "Success"
+    console.log(this.form.controls['amount_per_user'].errors)
+    if(this.form.valid){
+      const request = {
+        invoice:this.generateInvoiceRequest()
       }
-      let displayDialog = this.dialog.open(GenericDialogComponent,{
-        width: '250px',
-        data: dialogData        
+      console.log(request)
+      this.clientService.saveInvoice(request).subscribe(data => {
+        console.log(data)
+        let dialogData:DialogData = {
+          message: "New Invoice has been created",
+          title: "Success"
+        }
+        let displayDialog = this.dialog.open(GenericDialogComponent,{
+          width: '250px',
+          data: dialogData        
+        })
+  
+        displayDialog.afterClosed().subscribe(result => {
+          // this.getUnusedInvoiceCode()
+          // this.getNewInvoiceCodes
+          this.invoiceCodeChange.emit(true)
+          this.clearForm()
+        })
+  
       })
-
-      displayDialog.afterClosed().subscribe(result => {
-        this.getUnusedInvoiceCode()
-        this.clearForm()
-      })
-
-    })
+    }
   }
 
   postSetEnabled(){
@@ -185,6 +192,11 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
   clearForm(){
     this.form.controls['amount_per_user'].setValue('')
     this.form.controls['number_of_user'].setValue('')
+  }
+
+  resetDefaultValue(){
+    this.form.controls['amount_per_user'].setValue(this.invoice.amount_per_user)
+    this.form.controls['number_of_user'].setValue(this.invoice.user_count)
   }
 
 }
