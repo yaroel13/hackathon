@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientProject } from '../project-invoice/project-invoice.component';
 import { MatDialog } from '@angular/material';
 import { GenericDialogComponent, DialogData } from 'src/app/utils/dialog/generic-dialog/generic-dialog.component';
-import { bool } from 'aws-sdk/clients/signer';
 
 @Component({
   selector: 'esc-project-invoice-form',
@@ -19,6 +18,7 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
   totalAmount = 0
   invoice:Invoice
   vat_exempted:boolean
+  error_message = "Error"
 
   @Output() invoiceCodeChange = new EventEmitter<boolean>()
   @Input() project = {id:0,project_name:""}
@@ -121,7 +121,7 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
   }
 
   getInvoiceCode(){
-    return this.invoice != undefined ? this.invoice_code.invoice_code : "NA"
+    return this.invoice_code != undefined ? this.invoice_code.invoice_code : "NA"
   }
 
   generateInvoiceRequest():Invoice{
@@ -197,6 +197,21 @@ export class ProjectInvoiceFormComponent implements OnInit, OnChanges {
   resetDefaultValue(){
     this.form.controls['amount_per_user'].setValue(this.invoice.amount_per_user)
     this.form.controls['number_of_user'].setValue(this.invoice.user_count)
+  }
+
+  displayError(){
+    if(this.invoice_code == undefined){
+      return "Invoice code missing"
+    }
+    else if(this.project == undefined){
+      return "Project detail missing"
+    }
+    else if(this.client == undefined){
+      return "Client detail missing"
+    }
+    else if(this.invoice_code == undefined){
+      return "Invoice detail missing"
+    }
   }
 
 }

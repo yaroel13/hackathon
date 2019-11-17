@@ -34,8 +34,17 @@ export class ClientService {
   }
 
   saveInvoice(request): Observable<any> {
-    console.log(request)
     const url = environment.apiEndpoint + '/invoice'
+    return this.httpClient.post(url, request)
+  }
+
+  getBulkInvoiceCode(): Observable<any> {
+    const url = environment.apiEndpoint + '/invoice_code/bulk'
+    return this.httpClient.get(url)
+  }
+
+  postBulkInvoiceCode(request): Observable<any> {
+    const url = environment.apiEndpoint + '/invoice_code/bulk'
     return this.httpClient.post(url, request)
   }
 

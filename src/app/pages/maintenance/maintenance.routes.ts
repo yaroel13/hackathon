@@ -5,7 +5,7 @@ export const MAINTENANCE_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/maintenance/invoice'
+    redirectTo: '/invoice'
   },
   // {
   //   path: 'user',

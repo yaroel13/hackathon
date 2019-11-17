@@ -3,16 +3,16 @@ import { Routes } from "@angular/router";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 
 export const PAGES_ROUTES: Routes = [
+  // {
+  //   path: '',
+  //   component: DashboardComponent,
+  //   data: {
+  //     icon: "view-dashboard",
+  //     name: "DASHBOARD"
+  //   }
+  // },
   {
     path: '',
-    component: DashboardComponent,
-    data: {
-      icon: "view-dashboard",
-      name: "DASHBOARD"
-    }
-  },
-  {
-    path: 'maintenance',
     // component: DoctorComponent,
     data: {
       icon: "wrench",

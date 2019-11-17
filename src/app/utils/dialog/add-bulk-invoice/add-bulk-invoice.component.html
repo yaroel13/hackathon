@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Add additional invoice number</h1>
+<div style="margin-top: 10px; font-family: 'Roboto' , 'Helvetica Neue';">
+  Last invoice code used: <strong>{{data.last_used_invoice}}</strong>
+</div>
+<div fxLayout="row">
+  <div fxLayoutAlign="start center" style="font-family: 'Roboto' , 'Helvetica Neue'; margin-right: 10px;">
+    Quantity:
+  </div>
+  <div fxFlex mat-dialog-content>
+    <!-- <div style="font-family: Roboto, Helvetica, sans-serif;">Add additional invoice number</div> -->
+    <mat-form-field style="width: 100%;">
+      <input matInput [(ngModel)]="input" type="number" maxlength="3"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </mat-form-field>
+  </div>
+</div>
+<div *ngIf="error_message" style="font-family: 'Roboto' , 'Helvetica Neue'; text-align: center; color: red;">
+  {{error_message}}
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  <button mat-button (click)="ok()" cdkFocusInitial>Ok</button>
+</div>

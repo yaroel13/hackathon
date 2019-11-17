@@ -15,6 +15,7 @@ import { ChangePasswordChallengeComponent } from './auth/change-password-challen
 import { FooterModule } from './pages/footer/footer.module';
 import { ConfirmComponent } from './utils/confirm/confirm.component';
 import { GenericDialogComponent } from './utils/dialog/generic-dialog/generic-dialog.component';
+import { AddBulkInvoiceComponent } from './utils/dialog/add-bulk-invoice/add-bulk-invoice.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -28,7 +29,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangePasswordChallengeComponent,
     ConfirmComponent,
     GenericDialogComponent,
-    GenericDialogComponent
+    GenericDialogComponent,
+    AddBulkInvoiceComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [
     ChangePasswordChallengeComponent,
     ConfirmComponent,
-    GenericDialogComponent
+    GenericDialogComponent,
+    AddBulkInvoiceComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

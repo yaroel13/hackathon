@@ -31,12 +31,13 @@ export class PagesComponent implements OnInit {
     /**
      * Navigation Building
      */
+    console.log('PAGESS',PAGES_ROUTES)
     let temp = PAGES_ROUTES.filter(r => {
       return r.data.name
     })
     this.routes = temp;
 
-    PAGES_ROUTES[1].children = MAINTENANCE_ROUTES;
+    PAGES_ROUTES[0].children = MAINTENANCE_ROUTES;
     // PAGES_ROUTES[2].children = REPORT_ROUTES;
 
     /**
